@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+a{text-decoration : none}
+a:hover{text-decoration: underline;}
+/* 관리자메뉴 */
+.adhome{font-size: 18px;color: #0d6efd;}
+/* 아코디언_left메뉴 */
+.accordion{cursor: pointer;padding: 10px;width: 100%;text-align: left;border: none;outline: none;background: #eee;transition: background-color 0.3s;}
+.accordion.active, .accordion:hover {background-color: #0d6efd;color: #fff;}
+.panel {display: none;padding: 6px 18px;background-color: white;}
+.panel > p{margin: 10px 0}
+.panel a{text-decoration: none}
+.panel a:hover{text-decoration: underline;}
