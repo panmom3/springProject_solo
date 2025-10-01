@@ -100,6 +100,27 @@
 	      <label for="homepage" class="input-group-text">홈페이지</label>
 	      <input type="text" name="homePage" id="homePage" value="https://" class="form-control" placeholder="홈페이지 주소를 입력하세요." />
 	    </div>
+	    <div class="input-group mb-3">
+        <label class="input-group-text bg-secondary-subtle border-secondary-subtle">가고싶은 여행지</label>
+        <div class="border form-control">
+	        <input type="checkbox" class="form-check-input ms-2 me-1" value="기타" name="hopeTour"/>기타
+	        <input type="checkbox" class="form-check-input ms-2 me-1" value="기타" name="hopeTour" checked/>기타
+        </div>
+	    </div>
+	    <div class="input-group mb-3">
+	      <label for="content" class="input-group-text bg-secondary-subtle border-secondary-subtle">자기소개</label>
+	      <textarea rows="5" class="form-control" id="content" name="content" placeholder="자기소개를 입력하세요."></textarea>
+	    </div>
+	    <div class="input-group mb-1">
+	      <div class="input-group-text bg-secondary-subtle border-secondary-subtle">회원 사진(파일용량:2MByte이내)</div>
+	      <input type="file" name="fName" id="file" onchange="imgCheck(this)" class="bg-secondary-subtle form-control"/>
+	    </div>
+	    <div class="text-end m-0 p-0"><img id="photoDemo" width="100px"/></div>
+      <div class="text-center">
+		    <button type="button" class="btn btn-success" onclick="fCheck()">회원가입</button> &nbsp;
+		    <button type="reset" class="btn btn-warning">다시작성</button> &nbsp;
+		    <button type="button" class="btn btn-info" onclick="location.href='${ctp}/member/memberLogin';">돌아가기</button>
+	    </div>
     </div>
 		
 	</form>
