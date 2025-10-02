@@ -30,3 +30,5 @@ select * from member;
 alter table member add hopeTour varchar(20);
 --컬럼삭제
 alter table member drop column aaa;
+
+insert into member (mid,pwd,nickName,name,email) value ('admin', '1234', '관리맨', '관리자', 'panmom5@naver.com');

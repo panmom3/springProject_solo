@@ -4,16 +4,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<jsp:include page="/WEB-INF/views/include/bs5.jsp" />
-	<title>Login</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <jsp:include page="/WEB-INF/views/include/bs5.jsp" />
+  <title>Login</title>
 </head>
 <body>
+<!-- nav -->
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
-<jsp:include page="/WEB-INF/views/include/subvisual.jsp" />
-<p><br/></p>
-<div class="container">
+<!-- header -->
+<jsp:include page="/WEB-INF/views/include/header.jsp">
+  <jsp:param name="bgImage" value="home-bg.jpg"/>
+  <jsp:param name="siteTitle" value="로그인"/>
+  <jsp:param name="subTitle" value="이지트립 로그인페이지입니다."/>
+</jsp:include>
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
 	<form name="myform" method="post">
     <table class="table table-bordered text-center">
       <tr>
@@ -44,7 +52,6 @@
     </table>
   </form>
 </div>
-<p><br/></p>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </body>
 </html>

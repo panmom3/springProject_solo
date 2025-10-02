@@ -4,10 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<jsp:include page="/WEB-INF/views/include/bs5.jsp" />
-	<title>회원가입</title>
+	<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <jsp:include page="/WEB-INF/views/include/bs5.jsp" />
+  <title>회원가입</title>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="${ctp}/js/woo.js"></script>
   <script>
@@ -92,19 +94,64 @@
         submitFlag = 1;
       }
 
-      // 전송전에 파일에 관련된 사항들을 체크
-      
+   		// 전송전에 파일에 관련된 사항들을 체크
+      let fName = document.getElementById("file").value;
+      if(fName.trim() != "") {
+        let ext = fName.substring(fName.lastIndexOf(".")+1).toLowerCase();
+        let maxSize = 1024 * 1024 * 5;
+        let fileSize = document.getElementById("file").files[0].size;
+
+        if(ext != 'jpg' && ext != 'gif' && ext != 'png') {
+          alert("그림파일만 업로드 가능합니다.");
+          return false;
+        }
+        else if(fileSize > maxSize) {
+          alert("업로드할 파일의 최대용량은 5MByte입니다.");
+          return false;
+        }
+        submitFlag = 1;
+      }
+
+      // 전송전에 모든 체크가 끝나면 submitFlag가 1로 되게된다. 이때 값들을 서버로 전송처리
+      if(submitFlag == 1) {
+        if(idCheckSw == 0) {
+          alert("아이디 중복체크버튼을 눌러주세요");
+          document.getElementById("midBtn").focus();
+        } 
+        else if(nickNameSw == 0) {
+          alert("닉네임 중복체크버튼을 눌러주세요");
+          document.getElementById("nickNameBtn").focus();
+        }
+        else {
+          myform.email.value = email;
+          myform.tel.value = tel;
+          myform.address.value = address;
+
+          myform.submit();
+        }
+      }
+      else {
+        alert("회원정보등록 실패~~다시 확인하세요.")
+      }
     }
+    
+    //
+   }
 
   </script>
 
 </head>
 <body>
+<!-- nav -->
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
-<jsp:include page="/WEB-INF/views/include/subvisual.jsp" />
-<p><br/></p>
-<div class="container">
-	<h2>회원가입</h2>
+<!-- header -->
+<jsp:include page="/WEB-INF/views/include/header.jsp">
+  <jsp:param name="bgImage" value="about-bg.jpg"/>
+  <jsp:param name="siteTitle" value="회원가입"/>
+  <jsp:param name="subTitle" value="이지트립 회원가입페이지입니다."/>
+</jsp:include>
+<!-- container -->
+<div class="container px-4 px-lg-5">
 	<form name="myform" method="post" enctype="multipart/form-data" class="was-valideted">
     <div class="input-group mb-3">
       <label for="mid" class="input-group-text">아이디</label>
@@ -212,9 +259,7 @@
 		<input type="hidden" name="tel" />
 		<input type="hidden" name="address" />
 	</form>
-	
 </div>
-<p><br/></p>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </body>
 </html>
