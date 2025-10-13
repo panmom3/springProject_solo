@@ -16,7 +16,7 @@
   	'use strict';
   
     let idCheckSw = 0;
-    let nickNameSw = 0;
+    let nickCheckSw = 0;
 
     // 정규식을 이용한 유효성검사처리
     let regMid = /^[a-zA-Z0-9_]{4,20}$/;// 아이디는 4~20의 영문 대/소문자와 숫자와 밑줄 가능
@@ -25,6 +25,7 @@
     let regEmail =/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 
     function fCheck() {
+    	// 유효성 검사.....
     	let regTel = /\d{2,3}-\d{3,4}-\d{4}$/g;
 
       // 내역을 변수에 담아 회원가입처리
@@ -42,7 +43,7 @@
       let tel3 = myform.tel3.value.trim();
       let tel = tel1 + "-" + tel2 + "-" + tel3;
 
-      // 주소 하나로 묵어서 전송처리 준비
+      // 전송전에 '주소'를 하나로 묶어서 전송처리 준비한다.
       let postcode = myform.postcode.value + " ";
       let roadAddress = myform.roadAddress.value + " ";
       let detailAddress = myform.detailAddress.value + " ";
@@ -118,7 +119,7 @@
           alert("아이디 중복체크버튼을 눌러주세요");
           document.getElementById("midBtn").focus();
         } 
-        else if(nickNameSw == 0) {
+        else if(nickCheckSw == 0) {
           alert("닉네임 중복체크버튼을 눌러주세요");
           document.getElementById("nickNameBtn").focus();
         }
@@ -135,8 +136,76 @@
       }
     }
     
-    //
-   }
+    // 아이디 중복체크
+    function idCheck() {
+    	let mid = myform.mid.value.trim();
+    	
+    	if(!regMid.test(mid)) {
+    		alert("아이디는 4~20자리의 영문 소/대문자와 숫자, 언더바(_)만 사용가능합니다.");
+    		myform.mid.focus();
+    		return false;
+    	}
+    	
+    	$.ajax({
+    		url : "${ctp}/member/memberIdCheck",
+    		type : "post",
+    		data : {mid : mid},
+    		success : (res) => {
+    			if(res != '') {
+    				alert("이미 사용중인 아이디 입니다. 다시 입력하세요.");
+    				myform.mid.focus();
+    			}
+    			else {
+    				alert("사용 가능한 아이디 입니다.");
+    				document.getElementById("mid").readOnly = true;
+    				if(document.getElementById("pwd").value == '') document.getElementById("pwd").focus();
+    				idCheckSw = 1;
+    			}
+    		},
+    		error : () => alert("전송 오류!")
+    	});
+    }
+ 		// 닉네임 중복체크
+    function nickNameCheck() {
+    	let nickName = myform.nickName.value.trim();
+    	
+    	if(!regNickName.test(nickName)) {
+        alert("닉네임은 '한글/숫자/_'만 사용가능합니다.");
+        myform.nickName.focus();
+        return false;
+      }
+    	
+    	$.ajax({
+				url  : "${ctp}/member/memberNickCheck",
+				type : "post",
+				data : {nickName : nickName},
+				success: (res) => {
+					if(res != '') {
+						alert("이미 사용중인 닉네임 입니다. 다시 입력하세요.");
+						myform.nickName.focus();
+					}
+					else {
+						alert("사용 가능한 닉네임 입니다.");
+						document.getElementById("nickName").readOnly = true;
+						if(document.getElementById("name").value == '') document.getElementById("name").focus();
+						nickCheckSw = 1;
+					}
+				},
+				error : () =>	alert("전송 오류!")
+			});
+    }
+ 		
+ 		// 선택된 사진 미리보기
+ 		function imgCheck(e){
+ 			if(e.files && e.files[0]) {
+ 				let reader = new FileReader();
+ 				reader.onload = function(e) {
+ 					document.getElementById("photoDemo").src = e.target.result;
+ 				}
+ 				reader.readAsDataURL(e.files[0]);
+ 			}
+ 		}
+
 
   </script>
 
@@ -222,8 +291,9 @@
 		      <div class="mb-1">
 		      	<input type="text" name="roadAddress" id="sample6_address" size="50" placeholder="주소" class="form-control mb-1">
 		      </div>
-		      <div class="mb-1">
-		        <input type="text" name="detailAddress" id="sample6_detailAddress" placeholder="상세주소" class="form-control">
+		      <div class="input-group mb-1">
+		        <input type="text" name="detailAddress" id="sample6_detailAddress" placeholder="상세주소" class="form-control me-2">
+	          <input type="text" name="extraAddress" id="sample6_extraAddress" placeholder="참고항목" class="form-control">
 		      </div>
 	      </div>
 	    </div>

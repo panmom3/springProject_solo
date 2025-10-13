@@ -10569,6 +10569,7 @@ blockquote {
 
 .btn {
   letter-spacing: 0.0625em;
+  border-radius: 10px;
 }
 
 .form-floating input,

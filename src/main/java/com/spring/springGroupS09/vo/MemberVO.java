@@ -13,11 +13,14 @@ public class MemberVO {
 	private String email;
 	private String tel;
 	private String address;
+	private String hopeTour;
 	private String content;
 	private String photo;
 	private String status;
+	private int point;
 	private int level;
 	private int visitCnt;
+	private int todayCnt;
 	private String startDate;
 	private String lastDate;
 	

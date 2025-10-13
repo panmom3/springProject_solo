@@ -13,19 +13,30 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto py-4 py-lg-0">
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="http://192.168.50.61:9090/springGroupS09/">Home</a></li>
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="#">about</a></li>
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="#">Board</a></li>
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="${ctp}/member/memberJoin">회원가입</a></li>
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="${ctp}/member/memberLogin">로그인</a></li>
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="#">로그아웃</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+                    <a class="nav-link px-lg-3 py-3 py-lg-4 dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">추천여행지</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Action</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </li>
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="#">숙박/예약</a></li>
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="#">소통게시판</a></li>
+                <c:if test="${empty sLevel}">
+                	<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="${ctp}/member/memberJoin">회원가입</a></li>
+                	<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="${ctp}/member/memberLogin">로그인</a></li>
+                	
+                </c:if>
+                <c:if test="${!empty sLevel && sLevel != 0}">
+                  <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="${ctp}/member/memberMain">mypage</a></li>
+                </c:if>
+                <c:if test="${!empty sLevel}">
+                	<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="${ctp}/member/memberLogout">로그아웃</a></li>
+                </c:if>
+                <c:if test="${sLevel == 0}">
+				        	<a href="${ctp}/admin/adminMain" class="w3-bar-item w3-button">관리자메뉴</a>
+				        </c:if>
             </ul>
         </div>
     </div>

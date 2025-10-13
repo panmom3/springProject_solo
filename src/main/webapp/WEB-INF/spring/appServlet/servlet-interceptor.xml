@@ -7,10 +7,10 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-	<beans:bean id="level0Interceptor" class="com.spring.springGroupS.interceptor.Level0Interceptor" />
-	<beans:bean id="level1Interceptor" class="com.spring.springGroupS.interceptor.Level1Interceptor" />
-	<beans:bean id="level2Interceptor" class="com.spring.springGroupS.interceptor.Level2Interceptor" />
-	<beans:bean id="level3Interceptor" class="com.spring.springGroupS.interceptor.Level3Interceptor" />
+	<beans:bean id="level0Interceptor" class="com.spring.springGroupS09.interceptor.Level0Interceptor" />
+	<beans:bean id="level1Interceptor" class="com.spring.springGroupS09.interceptor.Level1Interceptor" />
+	<beans:bean id="level2Interceptor" class="com.spring.springGroupS09.interceptor.Level2Interceptor" />
+	<beans:bean id="level3Interceptor" class="com.spring.springGroupS09.interceptor.Level3Interceptor" />
 	
 	<interceptors>
 	  <interceptor>
@@ -33,8 +33,6 @@
 	  <interceptor>
 	    <mapping path="/board/**"/>
 	    <mapping path="/review/**"/>
-	    <mapping path="/study1/**"/>
-	    <mapping path="/study2/**"/>
 	    <mapping path="/schedule/**"/>
 	    <mapping path="/pds/pdsList"/>
 	    <mapping path="/pds/pdsDownload"/>

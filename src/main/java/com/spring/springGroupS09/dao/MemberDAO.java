@@ -8,6 +8,16 @@ public interface MemberDAO {
 
 	MemberVO getMemberIdCheck(@Param("mid") String mid);
 
+	MemberVO getMemberNickCheck(@Param("nickName") String nickName);
+	
+	int setMemberJoin(@Param("vo") MemberVO vo);
+
+	void setMemberTodayCntClear(@Param("mid") String mid);
+
+	void setMemberInforUpdate(@Param("mid") String mid, @Param("point") int point);
+
+
+
 
 
 }
