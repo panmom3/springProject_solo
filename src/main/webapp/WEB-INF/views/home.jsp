@@ -8,8 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <jsp:include page="/WEB-INF/views/include/bs5.jsp" />
-  <link href="${ctp}/css/styles.css" rel="stylesheet" />
+  <jsp:include page="/WEB-INF/views/include/main.jsp" />
   <title>HOME</title>
 </head>
 <body>

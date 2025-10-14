@@ -22,7 +22,7 @@
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="#">숙박/예약</a></li>
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="#">소통게시판</a></li>
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="${ctp}/board/boardList">소통게시판</a></li>
                 <c:if test="${empty sLevel}">
                 	<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="${ctp}/member/memberJoin">회원가입</a></li>
                 	<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="${ctp}/member/memberLogin">로그인</a></li>

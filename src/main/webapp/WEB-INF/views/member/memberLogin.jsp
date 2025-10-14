@@ -5,10 +5,11 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, user-scalable=yes" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <jsp:include page="/WEB-INF/views/include/bs5.jsp" />
+  <jsp:include page="/WEB-INF/views/include/sub.jsp" />
   <title>Login</title>
 </head>
 <body>
@@ -23,32 +24,36 @@
 <!-- Main Content-->
 <div class="container px-4 px-lg-5">
 	<form name="myform" method="post">
-    <table class="table table-bordered text-center">
-      <tr>
-        <td colspan="2" class="bg-secondary-subtle">로 그 인</td>
-      </tr>
-      <tr>
-        <th class="align-middle">아이디</th>
-        <td><input type="text" name="mid" id="mid" value="${mid}" autofocus required class="form-control"/></td>
-      </tr>
-      <tr>
-        <th class="align-middle">비밀번호</th>
-        <td><input type="password" name="pwd" id="pwd" value="1234" required class="form-control"/></td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <div class="mb-2">
-	          <input type="submit" value="로그인" class="btn btn-success me-2"/>
-	          <input type="reset" value="다시입력" class="btn btn-warning me-2"/>
-	          <input type="button" value="회원가입" onclick="location.href='${ctp}/member/memberJoin';" class="btn btn-secondary"/>
-          </div>
-	    		<div>
-	    			<input type="checkbox" name="idSave" checked />아이디 저장 /
-	    			<a href="memberIdSearch" class="text-decoration-none text-dark link-primary">아이디찾기</a> /
-	    			<a href="#" class="text-decoration-none text-dark link-primary">비밀번호찾기</a>
-	    		</div>
-        </td>
-      </tr>
+    <table class="p-table mobile block">
+    	<caption>{회원가입} - 정보 제공</caption>
+			<colgroup>
+				<col class="w20p">
+				<col>
+			</colgroup>
+	    <tbody class="p-table--th-left">
+	      <tr>
+	        <th class="align-middle">아이디</th>
+	        <td><input type="text" name="mid" id="mid" value="${mid}" autofocus required class="form-control"/></td>
+	      </tr>
+	      <tr>
+	        <th class="align-middle">비밀번호</th>
+	        <td><input type="password" name="pwd" id="pwd" value="1234" required class="form-control"/></td>
+	      </tr>
+	      <tr class="text-center">
+	        <td colspan="2">
+	          <div class="mb-2">
+		          <input type="submit" value="로그인" class="btn type1 medium"/>
+		          <input type="reset" value="다시입력" class="btn type3 medium"/>
+		          <input type="button" value="회원가입" onclick="location.href='${ctp}/member/memberJoin';" class="btn type2 medium"/>
+	          </div>
+		    		<div>
+		    			<input type="checkbox" name="idSave" checked />아이디 저장 /
+		    			<a href="memberIdSearch" class="text-decoration-none text-dark link-primary">아이디찾기</a> /
+		    			<a href="#" class="text-decoration-none text-dark link-primary">비밀번호찾기</a>
+		    		</div>
+	        </td>
+	      </tr>
+	    </tbody>
     </table>
   </form>
 </div>

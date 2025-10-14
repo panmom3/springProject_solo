@@ -69,9 +69,7 @@ public class MemberController {
 			// 1.세션처리
 			String strLevel = "";
 			if(vo.getLevel() == 0) strLevel = "관리자";
-			else if(vo.getLevel() == 1) strLevel = "우수회원";
-			else if(vo.getLevel() == 2) strLevel = "정회원";
-			else if(vo.getLevel() == 3) strLevel = "준회원";
+			else if(vo.getLevel() == 1) strLevel = "회원";
 
 			session.setAttribute("sMid", mid);
 			session.setAttribute("sNickName", vo.getNickName());

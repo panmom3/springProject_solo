@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+/* S-CoreDream */
+@font-face{
+	font-family: 'S-CoreDream';
+	font-weight: 400;
+	src: url("../fonts/S-CoreDream-4Regular.woff2") format('woff2'),
+		url("../fonts/S-CoreDream-4Regular.woff") format('woff');
+}
+@font-face{
+	font-family: 'S-CoreDream';
+	font-weight: 500;
+	src: /*url("../fonts/S-CoreDream-5Medium.woff2") format('woff2'),*/
+	url("../fonts/GmarketSans-Medium.woff") format('woff');
+}
+@font-face{
+	font-family: 'S-CoreDream';
+	font-weight: 600;
+	src: url("../fonts/S-CoreDream-6Bold.woff2") format('woff2'),
+	url("../fonts/S-CoreDream-6Bold.woff") format('woff');
+}
+
+/* GmarketSans */
+@font-face{
+	font-family: 'GmarketSans';
+	font-weight: 400;
+	src: url("../fonts/GmarketSans-Light.woff2") format('woff2'),
+	url("../fonts/GmarketSans-Light.woff") format('woff');
+}
+@font-face{
+	font-family: 'GmarketSans';
+	font-weight: 500;
+	src: url("../fonts/GmarketSans-Medium.woff2") format('woff2'),
+	url("../fonts/GmarketSans-Medium.woff") format('woff');
+}
+@font-face{
+	font-family: 'GmarketSans';
+	font-weight: 600;
+	src: url("../fonts/GmarketSans-Bold.woff2") format('woff2'),
+	url("../fonts/GmarketSans-Bold.woff") format('woff');
+}
+
+/* Montserrat */
+@font-face{
+	font-family: 'Montserrat';
+	font-weight: 400;
+	src: url("../fonts/Montserrat-Regular.woff") format('woff'),
+	url("../fonts/Montserrat-Regular.woff2") format('woff2');
+}
+@font-face{
+	font-family: 'Montserrat';
+	font-weight: 500;
+	src: url("../fonts/Montserrat-Medium.woff") format('woff'),
+	url("../fonts/Montserrat-Medium.woff2") format('woff2');
+}
+@font-face{
+	font-family: 'Montserrat';
+	font-weight: 600;
+	src: url("../fonts/Montserrat-SemiBold.woff") format('woff'),
+	url("../fonts/Montserrat-SemiBold.woff2") format('woff2');
+}
+@font-face{
+	font-family: 'Montserrat';
+	font-weight: 700;
+	src: url("../fonts/Montserrat-Bold.woff") format('woff'),
+	url("../fonts/Montserrat-Bold.woff2") format('woff2');
+}
+@font-face{
+	font-family: 'Montserrat';
+	font-weight: 800;
+	src: url("../fonts/Montserrat-ExtraBold.woff") format('woff'),
+	url("../fonts/Montserrat-ExtraBold.woff2") format('woff2');
+}
