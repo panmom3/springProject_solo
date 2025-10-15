@@ -15,7 +15,22 @@ public class BoardServiceImpl implements BoardService {
 	BoardDAO boardDAO;
 
 	@Override
-	public List<BoardVO> getBoardList() {
-		return boardDAO.getBoardList();
+	public List<BoardVO> getBoardList(int startIndexNo, int pageSize, String search, String searchString) {
+		return boardDAO.getBoardList(startIndexNo, pageSize , search, searchString);
+	}
+
+	@Override
+	public int getTotRecCnt(String search, String searchString) {
+		return boardDAO.getTotRecCnt(search, searchString);
+	}
+
+	@Override
+	public int setBoardInput(BoardVO vo) {
+		return boardDAO.setBoardInput(vo);
+	}
+
+	@Override
+	public BoardVO getBoardContent(int idx) {
+		return boardDAO.getBoardContent(idx);
 	}
 }

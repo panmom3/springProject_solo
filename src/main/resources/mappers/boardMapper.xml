@@ -3,6 +3,27 @@
 <mapper namespace="com.spring.springGroupS09.dao.BoardDAO">
 
 	<select id="getBoardList" resultType="com.spring.springGroupS09.vo.BoardVO">
-		select * from community_board order by idx desc;
+		select *,
+			timestampdiff(hour, wDate, now()) as hour_diff,
+		  datediff(now(), wDate) as date_diff
+		 from community_board 
+		 <if test="search != null and search != ''"> where ${search} like concat('%',#{searchString},'%')</if>
+		 order by idx desc;
 	</select>
+	
+	<select id="getTotRecCnt" resultType="int">
+		select count(*) from community_board <if test="search != ''">where ${search} like concat('%',#{searchString},'%')</if>;
+	</select>
+	
+	<select id="getBoardContent" resultType="com.spring.springGroupS09.vo.BoardVO">
+		select * from community_board where idx = #{idx};
+	</select>
+	
+	
+	
+	<insert id="setBoardInput">
+		insert into community_board values (default,#{vo.mid},#{vo.nickName},#{vo.title},#{vo.content},#{vo.openSw},default,default,default,default)
+	</insert>
+	
+	
 </mapper>

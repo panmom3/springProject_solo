@@ -10691,7 +10691,7 @@ header.masthead:before {
 header.masthead .page-heading,
 header.masthead .post-heading,
 header.masthead .site-heading {
-  color: #fff;
+  color: #000;
 }
 header.masthead .page-heading,
 header.masthead .site-heading {

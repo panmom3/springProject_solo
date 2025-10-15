@@ -52,6 +52,14 @@ public class MessageController {
 			model.addAttribute("message", "이미 사용중인 닉네임이 있습니다.\\n닉네임을 확인후 다시 회원가입하세요.");
 			model.addAttribute("url", "/member/memberJoin");
 		}
+		else if(msgFlag.equals("boardInputOk")) {
+			model.addAttribute("message", "게시글이 등록되었습니다.");
+			model.addAttribute("url", "/board/boardList");
+		}
+		else if(msgFlag.equals("boardInputNo")) {
+			model.addAttribute("message", "게시글 등록실패~!");
+			model.addAttribute("url", "/board/boardInput");
+		}
 		
 		return "include/message";
 	}

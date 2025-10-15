@@ -2,10 +2,18 @@ package com.spring.springGroupS09.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.spring.springGroupS09.vo.BoardVO;
 
 public interface BoardDAO {
 
-	List<BoardVO> getBoardList();
+	List<BoardVO> getBoardList(@Param("startIndexNo") int startIndexNo, @Param("pageSize") int pageSize, @Param("search") String search, @Param("searchString") String searchString);
+
+	int getTotRecCnt(@Param("search") String search, @Param("searchString") String searchString);
+
+	int setBoardInput(@Param("vo") BoardVO vo);
+
+	BoardVO getBoardContent(@Param("idx")int idx);
 
 }
