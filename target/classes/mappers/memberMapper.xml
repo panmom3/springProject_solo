@@ -22,4 +22,15 @@
 	<update id="setMemberInforUpdate">
 		update member set visitCnt=visitCnt+1, lastDate=now(), todayCnt=todayCnt+1, point=point+#{point} where mid=#{mid}; 
 	</update>
+	
+	<update id="setMemberPwdChange">
+	  update member set pwd = #{pwd} where mid = #{mid};
+	</update>
+	
+	<update id="setMemberUpdateOk">
+		update member set nickName=#{vo.nickName},name=#{vo.name},birthday=#{vo.birthday},email=#{vo.email},tel=#{vo.tel},address=#{vo.address},content=#{vo.content},photo=#{vo.photo},hopeTour=#{hopeTour}
+		where mid = #{vo.mid};
+	</update>
+	
+	
 </mapper>

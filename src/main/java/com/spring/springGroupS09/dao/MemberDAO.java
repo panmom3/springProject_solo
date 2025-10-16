@@ -16,6 +16,10 @@ public interface MemberDAO {
 
 	void setMemberInforUpdate(@Param("mid") String mid, @Param("point") int point);
 
+	int setMemberPwdChange(@Param("mid") String mid, @Param("pwd") String pwd);
+
+	int setMemberUpdateOk(@Param("vo") MemberVO vo);
+
 
 
 

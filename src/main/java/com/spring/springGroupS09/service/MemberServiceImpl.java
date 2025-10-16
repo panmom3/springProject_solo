@@ -33,6 +33,15 @@ public class MemberServiceImpl implements MemberService {
 	public void setMemberInforUpdate(String mid, int point) {
 		memberDAO.setMemberInforUpdate(mid, point);
 	}
+	
+	@Override
+	public int setMemberPwdChange(String mid, String pwd) {
+		return memberDAO.setMemberPwdChange(mid, pwd);
+	}
+	@Override
+	public int setMemberUpdateOk(MemberVO vo) {
+		return memberDAO.setMemberUpdateOk(vo);
+	}
 
 	
 

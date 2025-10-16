@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -189,10 +189,59 @@ public class MemberController {
 		return memberService.getMemberNickCheck(nickName);
 	}
 	
+	//회원 비밀번호 변경폼 보기
+	@GetMapping("/memberPwdCheck/{flag}")
+	public String memberPwdCheckGet(Model model, @PathVariable String flag) {
+		model.addAttribute("flag", flag);
+		return "member/memberPwdCheck";
+	}
 	
+	// 회원 비밀번호 검색
+	@ResponseBody
+	@PostMapping("/memberPwdCheck")
+	public String memberPwdCheckPost(String mid, String pwd) {
+		MemberVO vo = memberService.getMemberIdCheck(mid);
+		if(passwordEncoder.matches(pwd, vo.getPwd())) return "1";
+		return "0";
+	}
 	
+	// 회원 비밀번호 변경처리
+	@PostMapping("/memberPwdChange")
+	public String memberPwdChangePost(String mid, String newPwd) {
+		int res = memberService.setMemberPwdChange(mid, passwordEncoder.encode(newPwd));
+		if(res != 0) return "redirect:/message/passwordChangeOk";
+		else return "redirect:/message/passwordChangeNo";
+	}
 	
+	// 회원 정보 수정폼보기
+	@GetMapping("/memberUpdate")
+	public String memberUpdateGet(Model model, String mid) {
+		MemberVO vo = memberService.getMemberIdCheck(mid);
+		model.addAttribute("vo", vo);
+		return "member/memberUpdate";
+	}
 	
+	// 회원 정보 수정처리하기
+	@PostMapping("/memberUpdate")
+	public String memberUpdatePost(MultipartFile fName, MemberVO vo, HttpSession session) {
+		String nickName = (String) session.getAttribute("sNickName");
+		if(memberService.getMemberNickCheck(vo.getNickName()) != null && !nickName.equals(vo.getNickName())) {
+			return "redirect:/message/nickCheckNo?mid="+vo.getMid();
+		}
+		
+		// 회원 사진처리
+		if(fName.getOriginalFilename() != null && !fName.getOriginalFilename().equals("")) {
+			if(!vo.getPhoto().equals("noimage.jpg")) projectProvide.fileDelete(vo.getPhoto(), "member");
+			vo.setPhoto(projectProvide.fileUpload(fName, vo.getMid(), "member"));
+		}
+		
+		int res = memberService.setMemberUpdateOk(vo);
+		if(res != 0) {
+			session.setAttribute("sNickName", vo.getNickName());
+			return "redirect:/message/memberUpdateOk?mid="+vo.getMid();
+		}
+		else return "redirect:/message/memberUpdateNo?mid="+vo.getMid();
+	}
 	
 	
 	

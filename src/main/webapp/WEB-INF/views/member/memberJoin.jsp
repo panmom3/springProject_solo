@@ -310,12 +310,21 @@
 										<div class="col-12 col-sm-24 ">
 											<div class="p-form-group">
 												<select name="tel1" id="tel1" class="p-input" title="연락처 첫번째 번호 선택">
-													<option value="">010</option>
-													<option value="">011</option>
+													<option value="010">010</option>
+													<option value="02">서울</option>
+								          <option value="031">경기</option>
+								          <option value="032">인천</option>
+								          <option value="041">충남</option>
+								          <option value="042">대전</option>
+								          <option value="043">충북</option>
+								          <option value="051">부산</option>
+								          <option value="052">울산</option>
+								          <option value="061">전북</option>
+								          <option value="062">광주</option>
 												</select>
-												<span class="p-form__split"> - </span>
+												<span class="p-form__split">-</span>
 												<input type="tel" name="tel2" class="p-input" maxlength=4 title="연락처 중간번호 입력" value="">
-												<span class="p-form__split"> - </span>
+												<span class="p-form__split">-</span>
 												<input type="tel" name="tel3" class="p-input" maxlength=4 title="연락처 마지막번호 입력" value="">
 											</div>
 										</div>

@@ -36,3 +36,5 @@ alter table member add point int default 100;
 alter table member drop column aaa;
 
 insert into member (mid,pwd,nickName,name,email) value ('admin', '1234', '관리맨', '관리자', 'panmom5@naver.com');
+
+select mid, pwd from member;

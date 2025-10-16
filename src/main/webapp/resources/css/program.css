@@ -1834,7 +1834,7 @@
 .bbs.bbs__form.bbs_new_skin .p-table > tbody > tr > th{background-color:transparent;}
 
 .bbs.bbs__form.bbs_new_skin .p-input[type="search"]:not(.p-upload *),
-.bbs.bbs__form.bbs_new_skin .p-input[type="text"]:not(.p-upload *){height:48px; border-color:#dadce0; border-radius:5px; -webkit-border-radius:5px; color:#4d4d4d; font-size:16px; font-weight:200; letter-spacing:-0.04em;}
+.bbs.bbs__form.bbs_new_skin .p-input[type="text"]:not(.p-upload *){height:48px; border-color:#dadce0; border-radius:5px; -webkit-border-radius:5px; color:#4d4d4d; font-size:16px; font-weight:400; letter-spacing:-0.04em;}
 .bbs.bbs__form.bbs_new_skin .p-input[type="text"][disabled]::placeholder,
 .bbs.bbs__form.bbs_new_skin .p-input[type="text"][readonly]::placeholder{color:#dadce0;}
 .bbs.bbs__form.bbs_new_skin .p-input[type="search"][disabled]:not(.p-upload *)::placeholder,

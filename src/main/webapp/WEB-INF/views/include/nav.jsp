@@ -29,7 +29,16 @@
                 	
                 </c:if>
                 <c:if test="${!empty sLevel && sLevel != 0}">
-                  <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="${ctp}/member/memberMain">mypage</a></li>
+	                <li class="nav-item dropdown">
+	                    <a class="nav-link px-lg-3 py-3 py-lg-4 dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">MyPage</a>
+	                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+	                        <li><a class="dropdown-item" href="${ctp}/member/memberMain">마이페이지</a></li>
+	                        <li><a class="dropdown-item" href="#">일정관리</a></li>
+	                        <li><a class="dropdown-item" href="${ctp}/member/memberPwdCheck/pwdck">비밀번호변경</a></li>
+	                        <li><a class="dropdown-item" href="${ctp}/member/memberPwdCheck/update">회원가입수정</a></li>
+	                        <li><a class="dropdown-item" href="javascript:userDeleteCheck()">회원탈퇴</a></li>
+	                    </ul>
+	                </li>
                 </c:if>
                 <c:if test="${!empty sLevel}">
                 	<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="${ctp}/member/memberLogout">로그아웃</a></li>

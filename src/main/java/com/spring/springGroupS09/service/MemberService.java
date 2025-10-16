@@ -14,6 +14,10 @@ public interface MemberService {
 
 	void setMemberInforUpdate(String mid, int point);
 
+	int setMemberPwdChange(String mid, String pwd);
+
+	int setMemberUpdateOk(MemberVO vo);
+
 
 
 

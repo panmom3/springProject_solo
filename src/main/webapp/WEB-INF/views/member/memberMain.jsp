@@ -17,24 +17,44 @@
 <!-- header -->
 <jsp:include page="/WEB-INF/views/include/header.jsp">
   <jsp:param name="bgImage" value="home-bg.jpg"/>
-  <jsp:param name="siteTitle" value="회원 전용방"/>
-  <jsp:param name="subTitle" value="이지트립 회원 전용방입니다."/>
+  <jsp:param name="siteTitle" value="마이페이지"/>
+  <jsp:param name="subTitle" value=""/>
 </jsp:include>
 <!-- Main Content-->
-<div class="container px-4 px-lg-5">
-	<h2>${sNickName} 회원 전용방</h2>
-	<div class="col">
-    현재 회원 등급 : ${strLevel}<br/>
-    총 방문횟수 : ${mVo.visitCnt}<br/>
-    오늘 방문횟수: ${mVo.todayCnt}<br/>
-    적립포인트 : ${mVo.point}<br/>
-    최종 방문일 : ${sLastDate}<br/>
+<div class="container px-4 px-lg-5 mb-5">
+  <div class="box mb-10">
+      <div class="h3">${sNickName} 회원 전용방</div>
+      <div class="images">
+     		<img src="${ctp}/member/${mVo.photo}" width="200px"/>
+      </div>
   </div>
-  <div class="col">
-    <img src="${ctp}/member/${mVo.photo}" width="200px"/>
-  </div>
+	<table class="table">
+      <caption>테이블제목 - 순으로 정보를 제공</caption>
+      <colgroup>
+          <col>
+          <col>
+          <col>
+          <col>
+      </colgroup>
+      <thead>
+      <tr>
+          <th scope="col">회원 등급</th>
+          <th scope="col">오늘 방문횟수</th>
+          <th scope="col">총 방문횟수</th>
+          <th scope="col">적립포인트</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+          <td>${strLevel}</td>
+          <td>${mVo.todayCnt}</td>
+          <td>${mVo.visitCnt}</td>
+          <td>${mVo.point}</td>
+      </tr>
+      </tbody>
+  </table>
+ 
 </div>
-<p><br/></p>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </body>
 </html>
