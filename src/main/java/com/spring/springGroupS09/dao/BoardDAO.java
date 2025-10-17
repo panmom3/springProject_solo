@@ -14,6 +14,10 @@ public interface BoardDAO {
 
 	int setBoardInput(@Param("vo") BoardVO vo);
 
-	BoardVO getBoardContent(@Param("idx")int idx);
+	BoardVO getBoardContent(@Param("idx") int idx);
+
+	void setReadNumPlus(@Param("idx") int idx);
+
+	BoardVO getPreNextSearch(@Param("idx") int idx, @Param("str") String str);
 
 }

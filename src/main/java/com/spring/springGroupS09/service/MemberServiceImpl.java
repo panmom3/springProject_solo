@@ -1,5 +1,7 @@
 package com.spring.springGroupS09.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +43,19 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int setMemberUpdateOk(MemberVO vo) {
 		return memberDAO.setMemberUpdateOk(vo);
+	}
+	@Override
+	public int getTotRecCnt() {
+		return memberDAO.getTotRecCnt();
+	}
+	@Override
+	public List<MemberVO> getMemberLevelCount(int level) {
+		return memberDAO.getMemberLevelCount(level);
+	}
+	@Override
+	public List<MemberVO> getMemberList(int startIndexNo, int pageSize, int level) {
+		// TODO Auto-generated method stub
+		return memberDAO.getMemberList(startIndexNo, pageSize, level);
 	}
 
 	

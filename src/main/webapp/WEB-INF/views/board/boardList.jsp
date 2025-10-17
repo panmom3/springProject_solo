@@ -87,8 +87,14 @@
 					<tr>
 						<td><span class="bbs_num">${curScrStartNo}</span></td>
 						<td class="p-subject">
-							<a href="boardContent?idx=${vo.idx}&pag=${pageVO.pag}&pageSize=${pageVO.pageSize}">${vo.title}</a>
-						 	<c:if test="${vo.hour_diff <= 24}"><span class="p-icon p-icon__new">새글</span></c:if>
+							<c:if test="${vo.openSw == 'NO'}">
+								<a href="boardContent?idx=${vo.idx}&pag=${pageVO.pag}&pageSize=${pageVO.pageSize}">${vo.title}<font color="red">(비밀글)</font></a>
+						 		<c:if test="${vo.hour_diff <= 24}"><span class="p-icon p-icon__new">새글</span></c:if>
+						 	</c:if>
+						 	<c:if test="${vo.openSw != 'NO'}">
+								<a href="boardContent?idx=${vo.idx}&pag=${pageVO.pag}&pageSize=${pageVO.pageSize}">${vo.title}</a>
+						 		<c:if test="${vo.hour_diff <= 24}"><span class="p-icon p-icon__new">새글</span></c:if>
+						 	</c:if>
 						</td>
 						<td>${vo.nickName}</td>
 						<td>
@@ -105,7 +111,7 @@
 			</table>
 		</div>
 
-		<!-- 블록페이지 시작 
+		<!-- 블록페이지 시작 -->
 		<div class="pagination justify-content-center">
 		  <c:if test="${pageVO.pag > 1}"><a href="boardList?pag=1&pageSize=${pageVO.pageSize}" class="page-item page-link text-decoration-none text-dark link-primary">첫페이지</a></c:if>
 		  <c:if test="${pageVO.curBlock > 0}"><a href="boardList?pag=${(pageVO.curBlock-1)*pageVO.blockSize + 1}&pageSize=${pageVO.pageSize}" class="page-item page-link text-decoration-none text-dark link-primary">이전블록</a></c:if>
@@ -115,7 +121,7 @@
 		  </c:forEach>
 		  <c:if test="${pageVO.curBlock < pageVO.lastBlock}"><a href="boardList?pag=${(pageVO.curBlock+1)*pageVO.blockSize + 1}&pageSize=${pageVO.pageSize}" class="page-item page-link text-decoration-none text-dark link-primary">다음블록</a></c:if>
 		  <c:if test="${pageVO.pag < pageVO.totPage}"><a href="boardList?pag=${pageVO.totPage}&pageSize=${pageVO.pageSize}" class="page-item page-link text-decoration-none text-dark link-primary">마지막페이지</a></c:if>
-		</div>-->
+		</div>
 		<!-- 블록페이지 끝 -->
 		<div class="text-end mt-5">
 			<a href="boardInput" class="btn type1 medium">글쓰기</a>

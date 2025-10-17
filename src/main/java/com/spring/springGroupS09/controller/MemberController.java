@@ -40,16 +40,16 @@ public class MemberController {
 	@GetMapping("/memberLogin")
 	public String memberLoginGet(HttpServletRequest request) {
 		// 쿠키를 검색해서 cMid가 있을때 가져와서 로그인창의 아이디입력박스에 뿌려준다.
-			Cookie[] cookies = request.getCookies();
+		Cookie[] cookies = request.getCookies();
 
-			if(cookies != null) {
-				for(int i=0; i<cookies.length; i++) {
-					if(cookies[i].getName().equals("cMid")) {
-						request.setAttribute("mid", cookies[i].getValue());
-						break;
-					}
+		if(cookies != null) {
+			for(int i=0; i<cookies.length; i++) {
+				if(cookies[i].getName().equals("cMid")) {
+					request.setAttribute("mid", cookies[i].getValue());
+					break;
 				}
 			}
+		}
 		
 		return "member/memberLogin";
 	}
@@ -141,9 +141,9 @@ public class MemberController {
 		
 		model.addAttribute("mVo", mVo);
 		
-		if(mVo.getMid().equals("admin")) {
-			return "redirect:admin/adminMain";
-		}
+//		if(mVo.getMid().equals("admin")) {
+//			return "redirect:admin/adminMain";
+//		}
 		
 		return "member/memberMain";
 	}

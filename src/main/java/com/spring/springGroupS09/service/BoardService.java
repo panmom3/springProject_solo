@@ -14,4 +14,8 @@ public interface BoardService {
 
 	BoardVO getBoardContent(int idx);
 
+	void setReadNumPlus(int idx);
+
+	BoardVO getPreNextSearch(int idx, String str);
+
 }

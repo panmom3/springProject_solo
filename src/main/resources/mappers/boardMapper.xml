@@ -8,7 +8,7 @@
 		  datediff(now(), wDate) as date_diff
 		 from community_board 
 		 <if test="search != null and search != ''"> where ${search} like concat('%',#{searchString},'%')</if>
-		 order by idx desc;
+		 order by idx desc limit #{startIndexNo}, #{pageSize};
 	</select>
 	
 	<select id="getTotRecCnt" resultType="int">
@@ -19,11 +19,24 @@
 		select * from community_board where idx = #{idx};
 	</select>
 	
-	
+	<!--  <![CDATA[조건식....]]>   -->
+	<select id="getPreNextSearch" resultType="com.spring.springGroupS09.vo.BoardVO">
+		<if test="str == 'preVO'">
+			select idx, title, wDate from community_board where <![CDATA[idx < #{idx}]]> order by idx desc limit 1;
+		</if>
+		<if test="str != 'preVO'">
+			select idx, title, wDate from community_board where <![CDATA[idx > #{idx}]]> order by idx limit 1;
+		</if>
+	</select>
 	
 	<insert id="setBoardInput">
 		insert into community_board values (default,#{vo.mid},#{vo.nickName},#{vo.title},#{vo.content},#{vo.openSw},default,default,default,default)
 	</insert>
+	
+	
+	<update id="setReadNumPlus" parameterType="int">
+		update community_board set readNum = readNum + 1 where idx = #{idx};
+	</update>
 	
 	
 </mapper>

@@ -3,7 +3,7 @@
 * Copyright 2013-2023 Start Bootstrap
 * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-clean-blog/blob/master/LICENSE)
 */
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', (e) => {
     let scrollPos = 0;
     const mainNav = document.getElementById('mainNav');
     const headerHeight = mainNav.clientHeight;
@@ -26,4 +26,18 @@ window.addEventListener('DOMContentLoaded', () => {
         }
         scrollPos = currentTop;
     });
+    
+    // Toggle the side navigation
+    const sidebarToggle = document.body.querySelector('#sidebarToggle');
+    if (sidebarToggle) {
+        // Uncomment Below to persist sidebar toggle between refreshes
+        // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
+        //     document.body.classList.toggle('sb-sidenav-toggled');
+        // }
+        sidebarToggle.addEventListener('click', event => {
+            event.preventDefault();
+            document.body.classList.toggle('sb-sidenav-toggled');
+            localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+        });
+    }
 })

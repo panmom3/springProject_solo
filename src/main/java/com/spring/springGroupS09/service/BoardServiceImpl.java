@@ -33,4 +33,14 @@ public class BoardServiceImpl implements BoardService {
 	public BoardVO getBoardContent(int idx) {
 		return boardDAO.getBoardContent(idx);
 	}
+
+	@Override
+	public void setReadNumPlus(int idx) {
+		boardDAO.setReadNumPlus(idx);
+	}
+
+	@Override
+	public BoardVO getPreNextSearch(int idx, String str) {
+		return boardDAO.getPreNextSearch(idx, str);
+	}
 }

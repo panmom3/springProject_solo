@@ -10,6 +10,18 @@
 		select * from member where nickName = #{nickName};
 	</select>
 	
+	<select id="getTotRecCnt" resultType="int">
+		select count(*) from member;
+	</select>
+	
+	<select id="getMemberLevelCount" resultType="com.spring.springGroupS09.vo.MemberVO">
+		select * from member where level = #{level};
+	</select>
+	
+	<select id="getMemberList" resultType="com.spring.springGroupS09.vo.MemberVO">
+		select *, timestampdiff(day, lastDate, now()) as deleteDiff from member <if test="level != 99"> where level=#{level}</if> order by mid limit #{startIndexNo},#{pageSize};
+	</select>
+	
 	<insert id="setMemberJoin">
 		insert into member values 
 		(default,#{vo.mid},#{vo.pwd},#{vo.nickName},#{vo.name},#{vo.birthday},#{vo.email},#{vo.tel},#{vo.address},#{vo.content},#{vo.photo},default,default,default,default,default,#{vo.hopeTour},default,default);
@@ -28,7 +40,7 @@
 	</update>
 	
 	<update id="setMemberUpdateOk">
-		update member set nickName=#{vo.nickName},name=#{vo.name},birthday=#{vo.birthday},email=#{vo.email},tel=#{vo.tel},address=#{vo.address},content=#{vo.content},photo=#{vo.photo},hopeTour=#{hopeTour}
+		update member set nickName=#{vo.nickName},name=#{vo.name},birthday=#{vo.birthday},email=#{vo.email},tel=#{vo.tel},address=#{vo.address},content=#{vo.content},photo=#{vo.photo},hopeTour=#{vo.hopeTour}
 		where mid = #{vo.mid};
 	</update>
 	

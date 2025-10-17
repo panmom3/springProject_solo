@@ -42,17 +42,42 @@
 				</tr>
 				<tr>
 					<th>글내용</th>
-					<td colspan="3" style="min-height:200px">${fn:replace(vo.content, newLine, "<br/>")}</td>
+					<td colspan="3">${fn:replace(vo.content, newLine, "<br/>")}</td>
 				</tr>
 			</tbody>
 		</table>
 		<div class="floatbox btn_group clearfix">
 			<div class="floatleft">
-				<input type="button" value="돌아가기" class="btn type1 small">
+				<input type="button" value="돌아가기" class="btn type1 medium">
 			</div>
 			<div class="floatright">
-				<input type="button" value="수정" class="btn type2 small">
-				<input type="button" value="삭제" class="btn type3 small">
+				<input type="button" value="수정" class="btn type2 medium">
+				<input type="button" value="삭제" class="btn type3 medium">
+			</div>
+		</div>
+		<!-- 이전글/다음글 -->
+		<div class="bbsmovebox">
+			<div class="move_item prev clearfix">
+				<div class="move_title"><em>이전글</em></div>
+				<div class="move_text">
+					<c:if test="${!empty preVO.title}">
+						<a class="move_link" href="boardContent?idx=${preVO.idx}&pag=${pag}&pageSize=${pageSize}">${preVO.title}</a>
+					</c:if>
+				</div>
+				<c:if test="${!empty preVO.title}">
+					<div class="move_date">${fn:substring(vo.WDate,0,10)}</div>
+				</c:if>
+			</div>
+			<div class="move_item next clearfix">
+				<div class="move_title"><em>다음글</em></div>
+				<div class="move_text">
+					<c:if test="${!empty nextVO.title}">
+						<a class="move_link" href="boardContent?idx=${nextVO.idx}&pag=${pag}&pageSize=${pageSize}">${nextVO.title}</a>
+					</c:if>
+				</div>
+				<c:if test="${!empty nextVO.title}">
+					<div class="move_date">${fn:substring(vo.WDate,0,10)}</div>
+				</c:if>
 			</div>
 		</div>
 	</div>

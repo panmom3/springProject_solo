@@ -44,7 +44,7 @@
                 	<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="${ctp}/member/memberLogout">로그아웃</a></li>
                 </c:if>
                 <c:if test="${sLevel == 0}">
-				        	<a href="${ctp}/admin/adminMain" class="w3-bar-item w3-button">관리자메뉴</a>
+				        	<li class="nav-item"><a href="${ctp}/admin/adminMain" class="nav-link px-lg-3 py-3 py-lg-4">관리자메뉴</a></li>
 				        </c:if>
             </ul>
         </div>
