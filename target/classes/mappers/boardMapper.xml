@@ -38,5 +38,13 @@
 		update community_board set readNum = readNum + 1 where idx = #{idx};
 	</update>
 	
+	<update id="setBoardUpdate">
+		update community_board set title=#{vo.title},content=#{vo.content},openSw=#{vo.openSw},wDate=now() where idx = #{vo.idx};
+	</update>
 	
+	
+	
+	<delete id="setBoardDelete">
+		delete from community_board where idx = #{idx};
+	</delete>
 </mapper>

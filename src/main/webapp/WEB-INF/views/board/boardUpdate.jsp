@@ -11,21 +11,20 @@
   <meta name="author" content="" />
   <script src="${ctp}/ckeditor/ckeditor.js"></script>
   <jsp:include page="/WEB-INF/views/include/sub.jsp" />
-	<title>커뮤니티 글쓰기</title>
+	<title>커뮤니티 글수정하기</title>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <jsp:include page="/WEB-INF/views/include/header.jsp">
   <jsp:param name="bgImage" value="home-bg.jpg"/>
   <jsp:param name="siteTitle" value="커뮤니티"/>
-  <jsp:param name="subTitle" value="이지트립 커뮤니티 글쓰기 페이지입니다."/>
+  <jsp:param name="subTitle" value="이지트립 커뮤니티 수정 페이지입니다."/>
 </jsp:include>
 <div class="container px-4 px-lg-5" style="min-height:500px">
-
 	<div class="p-wrap bbs bbs__form bbs_new_skin">
 		<form name="myform" method="post">
 			<table class="p-table mobile block">
-			<caption>커뮤니티 글쓰기</caption>
+			<caption>커뮤니티 수정</caption>
 			<colgroup>
 				<col class="w20p">
 				<col>
@@ -44,7 +43,7 @@
 						<label for="title" class="p-form__label">글제목</label>
 					</th>
 					<td>
-						<input type="text" name="title" id="title" placeholder="글제목을 입력하세요" autofocus required class="p-input"/>
+						<input type="text" name="title" id="title" value="${vo.title}" autofocus required class="p-input"/>
 					</td>
 				</tr>
 				<tr>
@@ -52,7 +51,7 @@
 						<label for="CKEDITOR" class="p-form__label">글내용</label>
 					</th>
 					<td>
-						<textarea rows="6" name="content" id="CKEDITOR" required cols="80" class="p-input"></textarea>
+						<textarea rows="6" name="content" id="CKEDITOR" required cols="80" class="p-input">${vo.content}</textarea>
 						<script>
 	        		CKEDITOR.replace("content", {
 	        			height:400,
@@ -67,24 +66,26 @@
 					<td>
 					<span class="p-form-radio">
 						<input type="radio" name="openSw" id="openSw1" value="OK" class="p-form-radio__input" checked/> 
-						<label for="openSw1" class="p-form-radio__label margin_r_10">공개</label>
+						<label for="openSw1" ${vo.openSw==OK ? 'checked' : ''} value="OK" class="p-form-radio__label margin_r_10">공개</label>
 					</span>
 					<span class="p-form-radio">
 						<input type="radio" name="openSw" id="openSw2" value="NO" class="p-form-radio__input"/>
-						<label for="openSw2" class="p-form-radio__label margin_r_10">비공개</label>
+						<label for="openSw2" ${vo.openSw==NO ? 'checked' : ''} value="NO" class="p-form-radio__label margin_r_10">비공개</label>
 					</span>	
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2" class="text-center">
-						<input type="submit" value="글올리기" class="btn type1 medium" />
-						<input type="reset" value="다시입력" class="btn type3 medium" />
-						<input type="button" value="돌아가기" onclick="location.href='boardList';" class="btn type2 medium" />
+						<input type="submit" value="글수정하기" class="btn type1 medium" />
+						<input type="button" value="돌아가기" onclick="location.href='boardList?pag=${pag}&pageSize=${pageSize}';" class="btn type2 medium" />
 					</td>
 				</tr>
 			</tbody>
 			</table>
-			<input type="hidden" name="mid" value="${sMid}"/>
+			<input type="hidden" name="idx" value="${vo.idx}"/>
+    	<input type="hidden" name="pag" value="${pag}"/>
+    	<input type="hidden" name="pageSize" value="${pageSize}"/>
+    	<input type="hidden" name="mid" value="${sMid}"/>
 		</form>
 	</div>
 </div>

@@ -20,4 +20,8 @@ public interface BoardDAO {
 
 	BoardVO getPreNextSearch(@Param("idx") int idx, @Param("str") String str);
 
+	int setBoardUpdate(@Param("vo") BoardVO vo);
+
+	int setBoardDelete(@Param("idx") int idx);
+
 }

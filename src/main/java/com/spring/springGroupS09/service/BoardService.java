@@ -18,4 +18,14 @@ public interface BoardService {
 
 	BoardVO getPreNextSearch(int idx, String str);
 
+	void imgCheck(String content);
+
+	void imgBackup(String content);
+
+	void imgDelete(String content);
+
+	int setBoardUpdate(BoardVO vo);
+
+	int setBoardDelete(int idx);
+
 }

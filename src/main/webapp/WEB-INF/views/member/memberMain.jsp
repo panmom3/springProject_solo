@@ -22,39 +22,66 @@
 </jsp:include>
 <!-- Main Content-->
 <div class="container px-4 px-lg-5 mb-5">
-  <div class="box mb-10">
-      <div class="h3">${sNickName} 회원 전용방</div>
-      <div class="images">
-     		<img src="${ctp}/member/${mVo.photo}" width="200px"/>
-      </div>
-  </div>
-	<table class="table">
-      <caption>테이블제목 - 순으로 정보를 제공</caption>
-      <colgroup>
-          <col>
-          <col>
-          <col>
-          <col>
-      </colgroup>
-      <thead>
-      <tr>
-          <th scope="col">회원 등급</th>
-          <th scope="col">오늘 방문횟수</th>
-          <th scope="col">총 방문횟수</th>
-          <th scope="col">적립포인트</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-          <td>${strLevel}</td>
-          <td>${mVo.todayCnt}</td>
-          <td>${mVo.visitCnt}</td>
-          <td>${mVo.point}</td>
-      </tr>
-      </tbody>
-  </table>
- 
+	<div class="box imagebox">
+	    <div class="inner">
+	        <div class="image">
+	            <img src="${ctp}/member/${mVo.photo}" alt="프로필이미지">
+	        </div>
+	        <div class="cont" style="width: calc(100% - 310px);">
+	            <div class="tit"><em class="em_b_blue">${sNickName}</em> 회원님 마이페이지</div>
+	            <div class="txt">
+	            	<table class="table table-bordered table-group-divider table-hover table-responsive">
+						      <caption>테이블제목 - 순으로 정보를 제공</caption>
+						      <colgroup>
+						          <col>
+						          <col>
+						          <col>
+						          <col>
+						      </colgroup>
+						      <thead class="table-secondary text-center">
+						      <tr>
+						          <th scope="col">회원 등급</th>
+						          <th scope="col">오늘 방문횟수</th>
+						          <th scope="col">총 방문횟수</th>
+						          <th scope="col">적립포인트</th>
+						      </tr>
+						      </thead>
+						      <tbody class="text-center">
+						      <tr>
+						          <td>${strLevel}</td>
+						          <td>${mVo.todayCnt}</td>
+						          <td>${mVo.visitCnt}</td>
+						          <td>${mVo.point}</td>
+						      </tr>
+						      </tbody>
+						  	</table>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<h3>활동내역</h3>
+	<div class="box">
+		<table class="table table-bordered table-group-divider">
+        <caption>테이블제목 - 순으로 정보를 제공</caption>
+        <colgroup>
+            <col class="w30p">
+            <col class="w70p">
+        </colgroup>
+        <tbody>
+        <tr>
+            <th scope="row" class="table-secondary">커뮤니티 게시판 등록글수</th>
+            <td>테이블 내용1</td>
+        </tr>
+        <tr>
+            <th scope="row" class="table-secondary">테이블 제목2</th>
+            <td>테이블 내용2</td>
+        </tr>
+        </tbody>
+    </table>
+	</div>
+	<h3>일정관리</h3>
 </div>
+
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </body>
 </html>

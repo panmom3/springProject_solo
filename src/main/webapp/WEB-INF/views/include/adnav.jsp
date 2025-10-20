@@ -23,7 +23,19 @@
                         <a class="nav-link" href="${ctp}/admin/complaint/complaintList">신고리스트</a>
                     </nav>
                 </div>
-                 <!-- menu -->
+                <!-- menu -->
+                <div class="sb-sidenav-menu-heading">board</div>
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    게시판관리
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="${ctp}/admin/board/adBoardList">커뮤니티</a>
+                    </nav>
+                </div>
+                 <!-- 통계 -->
                 <div class="sb-sidenav-menu-heading">Addons</div>
                 <a class="nav-link" href="charts.html">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>

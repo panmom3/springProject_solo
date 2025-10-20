@@ -13,6 +13,15 @@
   <meta name="author" content="" />
   <jsp:include page="/WEB-INF/views/include/sub.jsp" />
 	<title>커뮤니티-상세보기</title>
+	<script>
+		'use strict';
+		
+		// 게시글 삭제처리
+		function deleteCheck() {
+			let ans = confirm("현재 게시글을 삭제하시겠습니까?");
+			if(ans) location.href="boardDelete?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}";
+		}
+	</script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
@@ -48,13 +57,20 @@
 		</table>
 		<div class="floatbox btn_group clearfix">
 			<div class="floatleft">
-				<input type="button" value="돌아가기" class="btn type1 medium">
+				<input type="button" value="돌아가기" onclick="location.href='boardList?pag=${pag}&pageSize=${pageSize}';" class="btn type1 medium">
 			</div>
 			<div class="floatright">
-				<input type="button" value="수정" class="btn type2 medium">
-				<input type="button" value="삭제" class="btn type3 medium">
+			<c:if test="${sMid == vo.mid || sLevel == 0}">
+				<c:if test="${sMid == vo.mid}">
+					<input type="button" value="수정" onclick="location.href='boardUpdate?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}';" class="btn type2 medium">
+				</c:if>
+				<input type="button" value="삭제" onclick="deleteCheck()" class="btn type3 medium">
+			</c:if>
 			</div>
 		</div>
+		<%-- 디버깅용: 세션 값 확인 --%>
+		<p>sMid: ${sMid}</p>
+		<p>sLevel: ${sLevel}</p>
 		<!-- 이전글/다음글 -->
 		<div class="bbsmovebox">
 			<div class="move_item prev clearfix">

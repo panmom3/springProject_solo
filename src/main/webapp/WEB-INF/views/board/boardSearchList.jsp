@@ -11,7 +11,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
   <jsp:include page="/WEB-INF/views/include/sub.jsp" />
-	<title>소통게시판</title>
+	<title>소통게시판(검색)</title>
 	<script>
 	'use strict';
 	
@@ -27,10 +27,10 @@
 <jsp:include page="/WEB-INF/views/include/header.jsp">
   <jsp:param name="bgImage" value="home-bg.jpg"/>
   <jsp:param name="siteTitle" value="커뮤니티"/>
-  <jsp:param name="subTitle" value="이지트립 커뮤니티게시판입니다."/>
+  <jsp:param name="subTitle" value="이지트립 커뮤니티검색 리스트입니다."/>
 </jsp:include>
 <div class="container px-4 px-lg-5 pb-5">
-	<div class="p-wrap bbs bbs__list bbs_new_skin">
+	<div class="p-wrap">
 		<div class="boardtopbox">
 			<i class="icon"></i>
 			<div class="box_wrap">
@@ -42,30 +42,11 @@
 		</div>
 		<!-- -->
 		<div class="row">
-			<div class="col-9 col-sm-24 margin_t_10 small">
-				<div class="bbs_page">
-					<span class="item count">총게시물 : <em class="em_b_blue">${fn:length(vos)}</em>건</span>
-					<span class="item pageSize">페이지
-						<select name="pageSize" id="pageSize" onchange="pageSizeCheck()">
-							<option ${pageVO.pageSize == 5 ? 'selected' : ''}>5</option>
-							<option ${pageVO.pageSize == 10 ? 'selected' : ''}>10</option>
-							<option ${pageVO.pageSize == 15 ? 'selected' : ''}>15</option>
-							<option ${pageVO.pageSize == 20 ? 'selected' : ''}>20</option>
-							<option ${pageVO.pageSize == 30 ? 'selected' : ''}>30</option>
-						</select>
-					</span>
-				</div>
+			<div class="col-9 col-sm-24 small">
+				<p class="warning type1 margin_0"><em class="em_b_blue">${pageVO.searchStr}</em>(으)로 <em class="em_b_red">${pageVO.searchString}</em>를 검색한 결과 <em class="em_b_blue">${fn:length(vos)}</em>건이 검색되었습니다.</p>
 			</div>
-			<div class="col-15 col-sm-24 right top_select">
-				<form name="searchForm" method="get" action="boardSearchList">
-					<select name="search" id="search" class="p-input p-input--auto" title="검색영역선택">
-						<option value="title">글제목</option>
-						<option value="nickName">글쓴이</option>
-						<option value="content">글내용</option>
-					</select>
-					<input type="text" name="searchString" id="searchString" class="p-input p-input--auto board_search" required />
-					<input type="submit" class="p-button primary" value="검색"/>
-				</form>
+			<div class="col-15 col-sm-24 right">
+				<a href="boardList" class="btn type2 small">돌아가기</a>
 			</div>
 		</div>
 		<!-- 게시판테이블 -->
@@ -90,14 +71,14 @@
 							<c:if test="${vo.openSw == 'NO'}">
 								<c:if test="${sMid != vo.mid && sLevel != 0}"><font color="red">(비밀글)</font></c:if>
 								<c:if test="${sMid == vo.mid || sLevel == 0}">
-									<a href="boardContent?idx=${vo.idx}&pag=${pageVO.pag}&pageSize=${pageVO.pageSize}">
+									<a href="boardContent?idx=${vo.idx}&pag=${pageVO.pag}&pageSize=${pageVO.pageSize}&boardFlag=search">
 										<c:if test="${sLevel == 0}"><font color="red">(비밀글)</font></c:if>${vo.title}
 									</a>
 							 		<c:if test="${vo.hour_diff <= 24}"><span class="p-icon p-icon__new">새글</span></c:if>
 						 		</c:if>
 						 	</c:if>
 						 	<c:if test="${vo.openSw != 'NO'}">
-								<a href="boardContent?idx=${vo.idx}&pag=${pageVO.pag}&pageSize=${pageVO.pageSize}">${vo.title}</a>
+								<a href="boardContent?idx=${vo.idx}&boardFlag=search&search=${search}&searchString=${searchString}">${vo.title}</a>
 						 		<c:if test="${vo.hour_diff <= 24}"><span class="p-icon p-icon__new">새글</span></c:if>
 						 	</c:if>
 						</td>
@@ -116,28 +97,25 @@
 			</table>
 		</div>
 
+	
 		<!-- 블록페이지 시작 -->
 		<div class="p-pagination justify-content-center">
 			<div class="p-page">
 				<span class="p-page__control">
-			  	<c:if test="${pageVO.pag > 1}"><a href="boardList?pag=1&pageSize=${pageVO.pageSize}" class="p-page__link prev-end">첫페이지</a></c:if>
-			  	<c:if test="${pageVO.curBlock > 0}"><a href="boardList?pag=${(pageVO.curBlock-1)*pageVO.blockSize + 1}&pageSize=${pageVO.pageSize}" class="p-page__link prev-one">이전블록</a></c:if>
+			  	<c:if test="${pag > 1}"><a href="boardList?pag=1&pageSize=${pageVO.pageSize}" class="p-page__link prev-end">첫페이지</a></c:if>
+			  	<c:if test="${curBlock > 0}"><a href="boardList?pag=${(curBlock-1)*blockSize + 1}&pageSize=${pageSize}" class="p-page__link prev-one">이전블록</a></c:if>
 			  </span>
 			  <span class="p-page__link-group">
-				  <c:forEach var="i" begin="${(pageVO.curBlock*pageVO.blockSize)+1}" end="${(pageVO.curBlock*pageVO.blockSize)+pageVO.blockSize}" varStatus="st">
-				  	<c:if test="${i <= pageVO.totPage && i == pageVO.pag}"><a href="boardList?pag=${i}&pageSize=${pageVO.pageSize}" class="p-page__link active">${i}</a></c:if>
-				  	<c:if test="${i <= pageVO.totPage && i != pageVO.pag}"><a href="boardList?pag=${i}&pageSize=${pageVO.pageSize}" class="p-page__link">${i}</a></c:if>
+				  <c:forEach var="i" begin="${(curBlock*blockSize)+1}" end="${(curBlock*blockSize)+blockSize}" varStatus="st">
+				  	<c:if test="${i <= totPage && i == pag}"><a href="boardList?pag=${i}&pageSize=${pageSize}" class="p-page__link active">${i}</a></c:if>
+				  	<c:if test="${i <= totPage && i != pag}"><a href="boardList?pag=${i}&pageSize=${pageSize}" class="p-page__link">${i}</a></c:if>
 				  </c:forEach>
 			  </span>
 			  <span class="p-page__control">
-			  	<c:if test="${pageVO.curBlock < pageVO.lastBlock}"><a href="boardList?pag=${(pageVO.curBlock+1)*pageVO.blockSize + 1}&pageSize=${pageVO.pageSize}" class="p-page__link next-one">다음블록</a></c:if>
-			  	<c:if test="${pageVO.pag < pageVO.totPage}"><a href="boardList?pag=${pageVO.totPage}&pageSize=${pageVO.pageSize}" class="p-page__link next-end">마지막페이지</a></c:if>
+			  	<c:if test="${curBlock < lastBlock}"><a href="boardList?pag=${(curBlock+1)*blockSize + 1}&pageSize=${pageSize}" class="p-page__link next-one">다음블록</a></c:if>
+			  	<c:if test="${pag < totPage}"><a href="boardList?pag=${totPage}&pageSize=${pageSize}" class="p-page__link next-end">마지막페이지</a></c:if>
 				</span>
 			</div>
-		</div>
-		<!-- 블록페이지 끝 -->
-		<div class="text-end mt-5">
-			<a href="boardInput" class="btn type1 medium">글쓰기</a>
 		</div>
 	</div>
 </div>

@@ -292,7 +292,7 @@
 											<input type="button" value="인증번호받기" onclick="emailCertification()" id="certificationBtn" class="btn type2 medium">
 										</div>
 									</div>
-									<!-- <div id="demoSpin" class="mb-3"></div> -->
+									<div id="demoSpin" class="mb-3"></div>
 								</td>
 							</tr>
 							<tr>
@@ -385,7 +385,7 @@
 							<tr>
 								<th scope="row"><label for="content" class="p-form__label">자기소개</label></th>
 								<td>
-									<textarea name="content" id="content" class="p-input" cols="10" rows="5" placeholder="자기소개를 입력하세요." required="required"></textarea>
+									<textarea name="content" id="content" class="p-input" cols="30" rows="5" placeholder="자기소개를 입력하세요." required="required"></textarea>
 								</td>
 							</tr>
 							<tr>

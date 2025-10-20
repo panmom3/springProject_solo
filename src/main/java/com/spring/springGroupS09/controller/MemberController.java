@@ -58,13 +58,14 @@ public class MemberController {
 	public String memberLoginPost(HttpSession session,
 			HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(name="mid", defaultValue = "abio1234", required = false) String mid,
-			@RequestParam(name="pwd", defaultValue = "1234", required = false) String pwd,
+			@RequestParam(name="pwd", defaultValue = "", required = false) String pwd,
 			@RequestParam(name="idSave", defaultValue = "", required = false) String idSave
 		) {
 		//  로그인 인증처리(스프링 시큐리티의 BCryptPasswordEncoder객체를 이용한 암호화되어 있는 비밀번호 비교하기)
 		MemberVO vo = memberService.getMemberIdCheck(mid);
 		
-		if(vo != null) {
+		// 존재하는 아이디가 있다면 비밀번호가 같은지도 비교처리
+		if(vo != null && passwordEncoder.matches(pwd, vo.getPwd())) {
 			// 로그인 인증완료시 처리할 부분(1.세션, 2.쿠키, 3.기타 설정값....)
 			// 1.세션처리
 			String strLevel = "";

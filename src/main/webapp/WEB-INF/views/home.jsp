@@ -4,20 +4,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
   <jsp:include page="/WEB-INF/views/include/main.jsp" />
   <title>HOME</title>
 </head>
 <body>
 <!-- Navbar -->
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
-<!-- header -->
-<jsp:include page="/WEB-INF/views/include/header.jsp" />
 <!-- Main Content-->
-<div class="container px-4 px-lg-5">
+<div class="container">
+		<div class="main_top" style="height:500px;background-color:#1d7b97">
+			<img src="" alt=""/>
+		</div>
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-7">
             <!-- Post preview-->

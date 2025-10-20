@@ -291,60 +291,7 @@ ul.num li .count{display:inline-block;margin-right:12px;font-size: 10px;font-fam
 .line4{margin: 30px 0;height: 2px;background-image: url('../images/template/line4.png');}
 .line5{margin: 30px 0;height: 3px;background-image: url('../images/template/line5.png');}
 
-/* 테이블 */
-.table_unit{font-size: 16px;line-height: 28px;letter-spacing:-0.02em;font-weight:400;color:#3a4159;text-align: right;}
 
-.table{position:relative; width:100%;margin:5px 0 10px;}
-.table:after{display:block; position:absolute; bottom:0; left:0; width:100%; height:1px; background-color:#898f9d; content:'';}
-.table th, table.table td{padding:15px 10px;border:1px solid #dadce0;vertical-align:middle;}
-.table thead tr:first-child th{border-top:2px solid #000000;}
-.table th:first-child, .table td:first-child{border-left:none;}
-.table th:last-child, .table td:last-child{border-right:none;}
-.table thead{text-align: center;}
-.table thead th{border-color:#dadce0;background-color:#f6f6f7;font-size:16px;line-height: 28px;font-weight:500;color:#191d2b;}
-/*.table thead tr:first-child th{background-color:#f2f2f2; color:#333333; font-size:16px; font-weight:500;}*/
-.table tbody{text-align: center;}
-.table tbody th{background-color:#f6f6f7;font-size:16px;line-height: 28px;font-weight:500;color:#191d2b;}
-.table tbody td{font-size:16px;line-height: 28px;font-weight:400;color:#3a4159;}
-.table tfoot{text-align: center;}
-.table tfoot th{background-color:#f6f6f7; font-weight:500;}
-.table tfoot th, table.table tfoot td{background-color:#f6f6f7;font-size:16px;line-height: 28px;font-weight:500;color:#191d2b;}
-.table td img{vertical-align:middle}
-td ul, td li{text-align:left;}
-td ul.bu {margin:0;padding:0;}
-td .num {margin:0;padding:0;}
-
-.table.type2 tbody tr:first-child th, .table.type2 tbody tr:first-child td{border-top: 2px solid #000000;}
-.table.type2 tbody th{border-color:#dadce0; background-color:#f6f6f7; color:#191d2b; font-weight:500;}
-
-/* 반응형테이블 */
-@media all and (max-width:640px){
-    table.table.responsive {border-top:#a6a6a6 solid 1px;}
-    table.table.responsive thead {display:none;}
-    table.table.responsive colgroup {display:none;}
-    table.table.responsive tbody tr {position:relative; display:block; border-bottom:1px solid #d9d9d9;}
-    table.table.responsive tbody tr:after {display:block; clear:both; content:"."; visibility:hidden; height:0;}
-    table.table.responsive tbody tr:nth-child(odd) {background:#f8f8f8;}
-    table.table.responsive tbody td {display:block; padding:4px 3%; border:none; text-align:left; box-sizing:border-box; background-color:transparent;}
-    table.table.responsive tbody th {display:block; padding:4px 3%; text-align:left; vertical-align:middle; background-color:transparent; border:none;}
-    table.table.responsive tbody tr:first-child td, table.table.responsive tbody tr:first-child th {border-top:none;}
-    table.table.responsive thead + tbody th:before, table.table.responsive tbody td:before {display:inline; content:attr(data-content)' : ';}/* thead의 내용을 tbody의 th, td에 각각 삽입 */
-    table.table.responsive tfoot tr {position:relative; display:block; border-bottom:1px solid #d9d9d9;}
-    table.table.responsive tfoot tr:after {display:block; clear:both; content:"."; visibility:hidden; height:0;}
-    table.table.responsive tfoot tr:nth-child(odd) {background:#f8f8f8;}
-    table.table.responsive tfoot td {display:block; padding:4px 3%; border:none; text-align:left; box-sizing:border-box; background-color:transparent;}
-    table.table.responsive tfoot th {display:block; padding:4px 3%; text-align:left; vertical-align:middle; background-color:transparent; border:none;}
-    table.table.responsive tfoot tr:first-child td, table.table.responsive tfoot tr:first-child th {border-top:none;}
-    table.table.responsive tfoot th:before, table.table.responsive tfoot td:before {display:inline; content:attr(data-content)' : ';}/* thead의 내용을 tbody의 th, td에 각각 삽입 */
-
-    table.table.responsive.type2 tbody th:before, table.table.responsive.type2 tbody td:before{display:none;}
-    table.table.responsive.type2 tfoot th:before, table.table.responsive.type2 tfoot td:before{display:none;}
-}
-/* 스크롤테이블 */
-@media only all and (max-width:640px){
-    .table_scroll{position:relative; max-width:100%; overflow-x:auto; }
-    .table_scroll table{min-width:800px; }
-}
 /* 버튼 */
 /*텍스트버튼*/
 .blank, .down, .quick{display: inline-block;position:relative;margin:0 5px;padding-right:26px;}
@@ -366,7 +313,7 @@ td .num {margin:0;padding:0;}
 .btn.type4:hover{color:#272e43;border-color: #898f9d}
 .btn.disabl{color:#dadce0;border-color: #dadce0;background-color: #f6f6f7;cursor: not-allowed;}
 /*버튼크기*/
-.btn.medium{min-width: 182px;padding: 9px 10px;}
+.btn.medium{min-width: 140px;padding: 9px 10px;}
 .btn.small{min-width: 94px;padding: 3px 5px;font-size: 14px;}
 .icon_btn.shape1.medium{min-width: 182px;padding: 9px 45px 9px 20px;}
 .icon_btn.small{min-width: 94px;padding: 3px 5px;font-size: 14px;}
