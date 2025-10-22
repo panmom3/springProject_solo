@@ -1,111 +1,172 @@
 (function($) {
     'use strict';
 
-    $(function() {
-
-        var $window = $(window),
+    var $window = $(window),
+        $document = $(document),
         $html = $('html'),
-        $header = $('#header'),
-        $container = $('#container'),
-        debounce = null;
+        $head = $('head'),
+		$screen = $.screen,
+        $inArray = $.inArray;
 
-        //device check
-        function screen(){
-            var windowWidth = $window.outerWidth();
+    $window.on('load', function() {
+        var $body = $('body'),
+            $htmlAndBody = $html.add($body),
+            $wrapper = $('#wrapper'),
+            $header = $('#header'),
+            $container = $('#container'),
+            $footer = $('#footer');
+		
+		
+        $window.on('screen:wide screen:web', function(event) {
+            window.mode = 'pc';
+        });
 
-            if(windowWidth > 1000){
-                window.mode = 'pc';
-            }else{
-                window.mode = 'mobile';
-            }
-
-            /* window.Homde 사용시
-            var windowHeight = $window.outerHeight();
-
-            if(windowHeight > 880){
-                window.Hmode = 'MaxHeight';
-            }else{
-                window.Hmode = 'MinHeight';
-            }*/
-        }
-        screen();
+        $window.on('screen:tablet screen:phone', function(event) {
+            window.mode = 'mobile';
+        });
 
         //lnb
         var $lnb = $header.find('.lnb'),
-            $lnbShow = $lnb.find('.menu_show'),
+            $lnbShow = $header.find('.menu_show'),
+            $lnbShowBtn = $lnbShow.find('.menu_button'),
             $lnbHide = $lnb.find('.menu_hide'),
+            $lnbHideBtn = $lnbHide.find('.menu_button'),
             $lnbDepthItem = $lnb.find('.depth_item'),
+			$lnbDepth1Item = $lnb.find('.depth1_item'),
+			$lnbDepth1Text = $lnb.find('.depth1_text'),
             $lnbMenu = $lnb.find('.menu'),
+			IsMouse = $lnbMenu.is('.mouse'),
+			IsClick = $lnbMenu.is('.click'),
+			IsMouseleave = $lnbMenu.is('.mouseleave'),
             $lnbDepth2FirstChild = $lnbMenu.find('.depth2 > :first-child'),
+            $lnbSpy = $lnbMenu.find('.spy:last'),
             lnbHeight;
-
-        function refreshlnbHeight() {
-            $html.removeClass('lnb_show lnb_open');
-            lnbHeight = $lnbMenu.css('transition-property', 'none').removeClass('init').outerHeight() || '';
-            $lnbMenu.css('transition-property', '').addClass('init').height('');
+        if(!$lnb.find('.depth2').length){
+            $header.attr('data-depth', 'none');
         }
-        refreshlnbHeight();
+		if(IsClick){
+			$lnbMenu.find('.depth1_text').attr('title', '하위메뉴열기');
+		}
 
-        $window.on('resize', function () {
-            clearTimeout(debounce);
-            debounce = setTimeout(function (){
-                screen();
-            }, 100);
+        function refreshLnbHeight() {
+			$lnbMenu.height('');
+            lnbHeight = $lnbMenu.css('transition-property', 'none').outerHeight() || '';
+            $lnbMenu.css('transition-property', '');
+        }
 
-            refreshlnbHeight();
+        $lnbShowBtn.on('click', function(event) {
+            //클래스 토글
+            $html.toggleClass('lnb_show');
         });
 
-        $lnbShow.on('click', function(event) {
-            $html.addClass('lnb_show');
-
-            if(mode === 'mobile') {
-                //2단메뉴일때 1차메뉴에 active가 없을때
-                if($lnbMenu.hasClass('multiple') && $lnb.find('.depth1_item').hasClass('active') === false){
-                    $lnb.find('.depth1_item:first-child').addClass('active');
-                }
-            }
-        });
-
-        $lnbHide.on('click', function(event) {
+        $lnbHideBtn.on('click', function(event) {
+            //클래스 토글
             $html.removeClass('lnb_show');
         });
+		$('.lnb_curtain button').on('click', function(event) {
+			if(mode === 'mobile') {
+				$html.removeClass('lnb_show');
+			} else{
+				closeMenu();
+			}
+        });
 
-        $lnbDepthItem.on('mouseover focusin', function(event) { //mouseover
-            if(mode === 'pc') {
-                var $this = $(this),
-                    $depth1Itme = ($this.hasClass('depth1_item')) ? $this : $this.parents('.depth1_item');
+		function closeMenu(){//메뉴닫기
+			$lnbMenu.height('');
+			$html.removeClass('lnb_open');
+			$lnbDepthItem.removeClass('active active_prev active_next');
+			$lnbDepth1Text.attr('title', '하위메뉴열기');
+		}
 
-                if($lnbMenu.hasClass('pulldown')) {
-                    var maxHeight = 0;
+      $lnbDepthItem.on('mouseover focusin', function(event) {
+       if(window.mode === 'pc') {
+				if(IsMouse){
+					var $this = $(this),
+						$depth1Item = ($this.hasClass('depth1_item')) ? $this : $this.parents('.depth1_item');
+					if(!$header.is('[data-depth="none"]')){
+						if($lnbMenu.hasClass('pulldown')) {
+							var maxHeight = 0;
 
-                    $lnbDepth2FirstChild.each(function(index, element) {
-                        var $element = $(element),
-                            outerHeight = $element.outerHeight() || 0;
+							$lnbDepth2FirstChild.each(function(index, element) {
+								var $element = $(element),
+									outerHeight = $element.outerHeight() || 0;
 
-                        //기존 값 보다 얻은 값이 초과일 때
-                        if(outerHeight > maxHeight) {
-                            maxHeight = outerHeight;
-                        }
-                    });
+								//기존 값 보다 얻은 값이 초과일 때
+								if(outerHeight > maxHeight) {
+									maxHeight = outerHeight;
+								}
+							});
 
-                    $lnbMenu.height(lnbHeight + maxHeight);
-
-                }else if($lnbMenu.hasClass('eachdown')) {
-                    $lnbMenu.height(lnbHeight + ($depth1Itme.find('.depth2 > :first-child').outerHeight() || ''));
-                }
-
-                $html.addClass('lnb_open');
-                $lnbDepthItem.removeClass('active');
-                $this.addClass('active').parents('li').addClass('active');
+							$lnbMenu.height(lnbHeight + maxHeight);
+						}else if($lnbMenu.hasClass('eachdown')) {
+							$lnbMenu.height(lnbHeight + ($depth1Item.find('.depth_list').outerHeight() || ''));
+						}
+					}
+					$html.addClass('lnb_open');
+					$lnbDepthItem.removeClass('active active_prev active_next');
+					$this.addClass('active');
+					$this.prev('.depth_item').addClass('active_prev');
+					$this.next('.depth_item').addClass('active_next');
+					$this.parents('li').addClass('active');
+					$this.parents('li').prev('.depth_item').addClass('active_prev');
+					$this.parents('li').next('.depth_item').addClass('active_next');
+				}
             }
-
             event.stopPropagation();
-
         }).on('click', function(event) {
-            if(mode === 'mobile') {
+			if(window.mode === 'pc') {
+				if(IsClick){
+					var $this = $(this),
+						IsDepth1 = $this.is('.depth1_item'),
+						IsActive = $this.is('.active'),
+						IsHas = $this.is('.has'),
+						$depth1Item = ($this.hasClass('depth1_item')) ? $this : $this.parents('.depth1_item'),
+						$depth1Text = $this.find('.depth1_text'),
+						$OtherItems = $depth1Item.siblings('.depth1_item'),
+						$OtherTexts = $OtherItems.find('.depth1_text');
+					if(IsDepth1 && IsHas){
+						if(!IsActive){
+							if(!$header.is('[data-depth="none"]')){
+								if($lnbMenu.hasClass('pulldown')) {
+									var maxHeight = 0;
+
+									$lnbDepth2FirstChild.each(function(index, element) {
+										var $element = $(element),
+											outerHeight = $element.outerHeight() || 0;
+
+										//기존 값 보다 얻은 값이 초과일 때
+										if(outerHeight > maxHeight) {
+											maxHeight = outerHeight;
+										}
+									});
+
+									$lnbMenu.height(lnbHeight + maxHeight);
+								}else if($lnbMenu.hasClass('eachdown')) {
+									$lnbMenu.height(lnbHeight + ($depth1Item.find('.depth_list').outerHeight() || ''));
+								}
+							}
+							$html.addClass('lnb_open');
+							$lnbDepthItem.removeClass('active active_prev active_next');
+							$this.addClass('active');
+							$this.prev('.depth_item').addClass('active_prev');
+							$this.next('.depth_item').addClass('active_next');
+							$this.parents('li').addClass('active');
+							$this.parents('li').prev('.depth_item').addClass('active_prev');
+							$this.parents('li').next('.depth_item').addClass('active_next');
+							$OtherTexts.attr('title', '하위메뉴열기');
+							$depth1Text.attr('title', '하위메뉴닫기');
+						} else if(IsActive){
+							closeMenu();
+						}
+						event.preventDefault();
+					}
+				}
+			}
+           if(window.mode === 'mobile') {
                 var $this = $(this),
                     $depthText = $this.children('.depth_text'),
-                    eventTarget = event.target;
+                    eventTarget = event.target,
+					IsActive = $this.is('.active');
 
                 if($depthText.find(eventTarget).length || $depthText[0] === eventTarget) {
                     if($this.hasClass('depth1_item')) {
@@ -116,20 +177,19 @@
                         }
                     }
 
-                    if($this.children('.depth2').length) {
-                        if($lnbMenu.hasClass('multiple')) { //모바일 2단 메뉴일때
-                            $this.addClass('active').siblings('.depth_item').removeClass('active');
-                        }else{
-                            $this.toggleClass('active').siblings('.depth_item').removeClass('active');
-                        }
-                        event.preventDefault();
-                    }
-
-                    if($this.children('.depth3, .depth4, depth5').length) {
+                    if($this.children('.depth').length) {
 						var $Depth = $this.children('.depth'),
-                            DepthDisplay = $Depth.css('display');
-                        if (DepthDisplay !== 'none') {//하위메뉴가 display:none이 아니면 실행
-							$this.toggleClass('active').siblings('.depth_item').removeClass('active');
+							DepthDisplay = $Depth.css('display');
+						if(DepthDisplay!=='none'){//하위메뉴가 display:none이 아니면 실행
+							if(!IsActive){
+								$this.removeClass('active_prev active_next');
+								$this.addClass('active').siblings('.depth_item').removeClass('active active_prev active_next');
+								$this.prev('.depth_item').addClass('active_prev');
+								$this.next('.depth_item').addClass('active_next');
+							} else{
+								$this.removeClass('active');
+								$this.siblings('.depth_item').removeClass('active_prev active_next');
+							}
 							event.preventDefault();
 						}
                     }
@@ -140,102 +200,126 @@
         }).each(function(index, element) {
             var $element = $(element);
 
-            if($element.children('.depth').length) {
+            if($element.children('.depth').find('>.depth_list > .depth_item').length) {
                 $element.addClass('has');
+            }else{
+                $element.addClass('solo');
             }
         });
 
-        $lnbMenu.find('.depth1_item:last-child .depth2 .depth2_itemst .depth2_item:last-child .depth2_text').on('focusout', function(event) {
-            if(mode === 'pc') {
-                $lnbMenu.height('');
-                $html.removeClass('lnb_open');
-                $lnbDepthItem.removeClass('active');
+        $lnbMenu.on('mouseleave', function(event) {
+            if(window.mode === 'pc') {
+				if(IsMouse || IsMouseleave){
+					closeMenu();
+				}
             }
         });
 
-        $lnbMenu.on('mouseleave', function(event) {//mouseleave
-            if(mode === 'pc') {
-                $lnbMenu.height('');
-                $html.removeClass('lnb_open');
-                $lnbDepthItem.removeClass('active');
-            }
-        });
-
-        //side
-        var $side = $container.find('.side'),
-            $sideDepthLI = $side.find('.depth_item'),
-			$sideSpy = $side.find('.spy:last');
-
-        $sideDepthLI.on('click', function(event) {
-            var $this = $(this),
-                $depthText = $this.children('.depth_text'),
-                eventTarget = event.target;
-
-            if($depthText.find(eventTarget).length || $depthText[0] === eventTarget) {
-                if($this.hasClass('depth1_item')) {
-                    if($this.hasClass('active')) {
-                        $html.removeClass('side_open');
-                    }else{
-                        $html.addClass('side_open');
-                    }
-                }
-
-                if($this.children('.depth').length) {
-                    $this.toggleClass('active').siblings('.depth_item').removeClass('active');
-                    event.preventDefault();
-                }
-            }
-
-            event.stopPropagation();
-        }).each(function(index, element) {
-            var $element = $(element);
-
-            if($element.children('.depth').length) {
-                $element.addClass('has');
-            }
-        });
-		if($sideSpy.length) {
-			$html.addClass('side_open');
-			$sideSpy.parents('.depth_item').addClass('active');
+		var $Depth1ItemLast = $lnb.find('.depth1_item:last-child'),
+			Depth1ItemIsSolo = $Depth1ItemLast.is('.solo');
+		if(IsMouse){
+			if(Depth1ItemIsSolo){
+				$Depth1ItemLast.find('>.depth_text').on('focusout', function(event) {
+					if(window.mode === 'pc') {
+						closeMenu();
+					}
+				});
+			} else{
+				var $Depth2ItemLast = $Depth1ItemLast.find('.depth2_item:last-child'),
+					Depth2ItemIsSolo = $Depth2ItemLast.is('.solo');
+				if(Depth2ItemIsSolo){
+					$Depth2ItemLast.find('>.depth_text').on('focusout', function(event) {
+						if(window.mode === 'pc') {
+							closeMenu();
+						}
+					});
+				} else{
+					$lnb.find('.depth1_item:last-child .depth:visible:last').find('> .depth_list > .depth_item:last-child .depth_text').on('focusout', function(event) {
+						if(window.mode === 'pc') {
+							closeMenu();
+						}
+					});
+				}
+			}
+		} else if(IsClick){
+			$lnbDepth1Item.each(function(index, element) {
+				var $this = $(this),
+					$Depth2ItemLast = $this.find('.depth2_item:last-child'),
+					Depth2ItemIsSolo = $Depth2ItemLast.is('.solo');
+				if(Depth2ItemIsSolo){
+					$Depth2ItemLast.find('>.depth_text').on('focusout', function(event) {
+						if(window.mode === 'pc') {
+							closeMenu();
+						}
+					});
+				} else{
+					$lnbDepth1Item.find('.depth:visible:last').find('> .depth_list > .depth_item:last-child .depth_text').on('focusout', function(event) {
+						if(window.mode === 'pc') {
+							closeMenu();
+						}
+					});
+				}
+			});
 		}
 
-        //toggle
-        var $toggle = $('.toggle'),
-            $toggleSelector = $toggle.find('[class*="_show"], [class*="_hide"]');
+		//여기서부터 코드 작성해주세요
 
-        $toggleSelector.on('click', function (event) {
-            var $this = $(this),
-                $parent = $this.parents('.toggle'),
-                parentClass = $this.closest('.toggle').attr('class').replace(/\s+\active/g,'').split(/\s+/).slice(-2)[0].replace(/_item/,'');
+        $window.on('screen:wide screen:web', function(event) {
+            refreshLnbHeight();
 
-            if($this.is('[class*="_show"]')){
-                if ($parent.siblings().hasClass('active')){
-                    $parent.siblings().removeClass('active');
-                    $html.removeClass(parentClass + '_open');
-                }
-                $html.toggleClass(parentClass + '_open');
-                $parent.toggleClass('active');
-            }
-
-            if($this.is('[class*="_hide"]')){
-                $html.removeClass(parentClass + '_open');
-                $this.closest('.active').removeClass('active');
+            if($lnbSpy.length) {
+                $html.removeClass('lnb_open');
+                $lnbSpy.parents('.depth_item').removeClass('active');
+				$lnbDepthItem.removeClass('active_prev active_next');
             }
         });
 
-        //fixed
-        function scroll(){
-            if($window.scrollTop() <= 0){
-                $html.removeClass('fixed');
-            }else{
-                $html.addClass('fixed');
-            }
-        }
-        scroll();
-        $window.on('scroll', function() {
-            scroll();
-        });
+        $window.on('screen:tablet screen:phone', function(event) {
+            refreshLnbHeight();
 
+            if($lnbSpy.length) {
+                $html.addClass('lnb_open');
+                $lnbSpy.parents('.depth_item').addClass('active');
+				$lnbSpy.parents('.depth_item').prev('.depth_item').addClass('active_prev');
+				$lnbSpy.parents('.depth_item').next('.depth_item').addClass('active_next');
+            }
+        });
     });
 
-})(window.jQuery);
+    $(function(){
+        $screen({
+            state : [{
+                name : 'wide',
+                horizontal : {
+                    from : 9999,
+                    to : 1201
+                }
+            }, {
+                name : 'web',
+                horizontal : {
+                    from : 1200,
+                    to : 1001
+                }
+            }, {
+                name : 'tablet',
+                horizontal : {
+                    from : 1000,
+                    to : 641
+                }
+            }, {
+                name : 'phone',
+                horizontal : {
+                    from : 640,
+                    to : 0
+                }
+            }]
+        });
+    });
+
+    $window.on('load', function(event) {
+
+        $window.on('screen:resize', function(event) {
+            
+        }).triggerHandler('screen:resize');
+    });
+})(jQuery);

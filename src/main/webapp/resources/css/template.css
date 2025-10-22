@@ -1,7 +1,12 @@
 @charset "UTF-8";
 
+/* 템플릿 복사 기능*/
+[copy-attr="yes"] {cursor:pointer; transition: 0.2s;}
+[copy-attr="yes"]:hover {box-shadow: 3px 4px 5px 0 rgba(0, 0, 0, 0.5);}
+
 /* 탭메뉴 공통*/
 .tab+.tab{margin-top:60px}
+
 
 /* 탭메뉴 type1 */
 .tab.type1{font-size:0;line-height:0;margin-top: 50px;}
@@ -93,7 +98,7 @@
 }
 
 /* 제목 */
-h3,h4,h5,h6{position:relative;font-family: 'S-CoreDream', "Malgun Gothic", "맑은 고딕", "Dotum", "돋움", "Gulim", "굴림", sans-serif;}
+h3,h4,h5,h6{position:relative;font-family: 'GmarketSans', "Malgun Gothic", "맑은 고딕", "Dotum", "돋움", "Gulim", "굴림", sans-serif;}
 h3{margin-top:50px; margin-bottom:30px; color:#3558d2; font-size:30px; line-height:46px; letter-spacing:-0.02em; font-weight:600}
 h4{margin-top:30px; margin-bottom:20px; color:#191d2b; font-size:22px; line-height:34px; letter-spacing:-0.02em; font-weight:600}
 h5{margin-top:20px; margin-bottom:20px; color:#191d2b; font-size:18px; line-height:28px; letter-spacing:-0.02em; font-weight:500}
@@ -291,7 +296,60 @@ ul.num li .count{display:inline-block;margin-right:12px;font-size: 10px;font-fam
 .line4{margin: 30px 0;height: 2px;background-image: url('../images/template/line4.png');}
 .line5{margin: 30px 0;height: 3px;background-image: url('../images/template/line5.png');}
 
+/* 테이블 */
+.table_unit{font-size: 16px;line-height: 28px;letter-spacing:-0.02em;font-weight:400;color:#3a4159;text-align: right;}
 
+.table{position:relative; width:100%;margin:5px 0 10px;}
+.table:after{display:block; position:absolute; bottom:0; left:0; width:100%; height:1px; background-color:#898f9d; content:'';}
+.table th, table.table td{padding:15px 10px;border:1px solid #dadce0;vertical-align:middle;}
+.table thead tr:first-child th{border-top:2px solid #000000;}
+.table th:first-child, .table td:first-child{border-left:none;}
+.table th:last-child, .table td:last-child{border-right:none;}
+.table thead{text-align: center;}
+.table thead th{border-color:#dadce0;background-color:#f6f6f7;font-size:16px;line-height: 28px;font-weight:500;color:#191d2b;}
+/*.table thead tr:first-child th{background-color:#f2f2f2; color:#333333; font-size:16px; font-weight:500;}*/
+.table tbody{text-align: center;}
+.table tbody th{background-color:#f6f6f7;font-size:16px;line-height: 28px;font-weight:500;color:#191d2b;}
+.table tbody td{font-size:16px;line-height: 28px;font-weight:400;color:#3a4159;}
+.table tfoot{text-align: center;}
+.table tfoot th{background-color:#f6f6f7; font-weight:500;}
+.table tfoot th, table.table tfoot td{background-color:#f6f6f7;font-size:16px;line-height: 28px;font-weight:500;color:#191d2b;}
+.table td img{vertical-align:middle}
+td ul, td li{text-align:left;}
+td ul.bu {margin:0;padding:0;}
+td .num {margin:0;padding:0;}
+
+.table.type2 tbody tr:first-child th, .table.type2 tbody tr:first-child td{border-top: 2px solid #000000;}
+.table.type2 tbody th{border-color:#dadce0; background-color:#f6f6f7; color:#191d2b; font-weight:500;}
+
+/* 반응형테이블 */
+@media all and (max-width:640px){
+    table.table.responsive {border-top:#a6a6a6 solid 1px;}
+    table.table.responsive thead {display:none;}
+    table.table.responsive colgroup {display:none;}
+    table.table.responsive tbody tr {position:relative; display:block; border-bottom:1px solid #d9d9d9;}
+    table.table.responsive tbody tr:after {display:block; clear:both; content:"."; visibility:hidden; height:0;}
+    table.table.responsive tbody tr:nth-child(odd) {background:#f8f8f8;}
+    table.table.responsive tbody td {display:block; padding:4px 3%; border:none; text-align:left; box-sizing:border-box; background-color:transparent;}
+    table.table.responsive tbody th {display:block; padding:4px 3%; text-align:left; vertical-align:middle; background-color:transparent; border:none;}
+    table.table.responsive tbody tr:first-child td, table.table.responsive tbody tr:first-child th {border-top:none;}
+    table.table.responsive thead + tbody th:before, table.table.responsive tbody td:before {display:inline; content:attr(data-content)' : ';}/* thead의 내용을 tbody의 th, td에 각각 삽입 */
+    table.table.responsive tfoot tr {position:relative; display:block; border-bottom:1px solid #d9d9d9;}
+    table.table.responsive tfoot tr:after {display:block; clear:both; content:"."; visibility:hidden; height:0;}
+    table.table.responsive tfoot tr:nth-child(odd) {background:#f8f8f8;}
+    table.table.responsive tfoot td {display:block; padding:4px 3%; border:none; text-align:left; box-sizing:border-box; background-color:transparent;}
+    table.table.responsive tfoot th {display:block; padding:4px 3%; text-align:left; vertical-align:middle; background-color:transparent; border:none;}
+    table.table.responsive tfoot tr:first-child td, table.table.responsive tfoot tr:first-child th {border-top:none;}
+    table.table.responsive tfoot th:before, table.table.responsive tfoot td:before {display:inline; content:attr(data-content)' : ';}/* thead의 내용을 tbody의 th, td에 각각 삽입 */
+
+    table.table.responsive.type2 tbody th:before, table.table.responsive.type2 tbody td:before{display:none;}
+    table.table.responsive.type2 tfoot th:before, table.table.responsive.type2 tfoot td:before{display:none;}
+}
+/* 스크롤테이블 */
+@media only all and (max-width:640px){
+    .table_scroll{position:relative; max-width:100%; overflow-x:auto; }
+    .table_scroll table{min-width:800px; }
+}
 /* 버튼 */
 /*텍스트버튼*/
 .blank, .down, .quick{display: inline-block;position:relative;margin:0 5px;padding-right:26px;}
@@ -313,7 +371,7 @@ ul.num li .count{display:inline-block;margin-right:12px;font-size: 10px;font-fam
 .btn.type4:hover{color:#272e43;border-color: #898f9d}
 .btn.disabl{color:#dadce0;border-color: #dadce0;background-color: #f6f6f7;cursor: not-allowed;}
 /*버튼크기*/
-.btn.medium{min-width: 140px;padding: 9px 10px;}
+.btn.medium{min-width: 120px;padding: 9px 10px;}
 .btn.small{min-width: 94px;padding: 3px 5px;font-size: 14px;}
 .icon_btn.shape1.medium{min-width: 182px;padding: 9px 45px 9px 20px;}
 .icon_btn.small{min-width: 94px;padding: 3px 5px;font-size: 14px;}
@@ -448,79 +506,47 @@ select::-ms-expand {display: none; /* 화살표 없애기 for IE10, 11*/}
     .img_mobile .zoom:before {display:block;position:absolute;left:calc(50% - 6px);top:calc(50% - 6px);width:12px;height:13px;background: url('../images/template/img_more.png') no-repeat;}
 }
 
-/* 조직도 */
-.organization{position: relative;margin: 20px 0;text-align: center;font-size: 0;line-height: 0;}
-.organization:before{}
-.organization .organ_list{list-style: none}
-.organization .organ_list .organ_depth1{position:relative;width: 220px;margin:0 auto 30px;padding:10px 5px;border-radius: 5px;background-color: #0f216e;font-size: 20px;line-height: 28px;letter-spacing: -0.02em;color:#fff;font-family: 'GmarketSans', "Malgun Gothic", "맑은 고딕", "Dotum", "돋움", "Gulim", "굴림", sans-serif;font-weight:500;}
-.organization .organ_list .organ_depth1:after{display: block;position: absolute;bottom:-30px;left:50%;width: 1px;height: 30px;background-color: #dadce0;}
-.organization .organ_list .organ_depth2{position:relative;width: 220px;margin:0 auto 30px;padding:10px 5px;border-radius: 5px;background-color: #3558d2;font-size: 16px;line-height: 28px;letter-spacing: -0.02em;color:#fff;font-weight:500;}
-.organization .organ_list .organ_depth2:after{display: block;position: absolute;bottom:-30px;left:50%;width: 1px;height: 30px;background-color: #dadce0;}
-.organization .organ_list .organ_depth3{position:relative;width: 220px;margin:0 auto 30px;padding:10px 5px;border:1px solid #0f216e;border-radius: 5px;background-color: #fff;font-size: 16px;line-height: 28px;letter-spacing: -0.02em;color:#0f216e;font-weight:500;}
-.organization .organ_list .organ_depth3:after{display: block;position: absolute;bottom:-31px;left:50%;width: 1px;height: 30px;background-color: #dadce0;}
-.organization .organ_list .organ_depth4 .organ_depth4_list {position: relative;display:inline-block;padding-top: 33px;}
-.organization .organ_list .organ_depth4 .organ_depth4_list:before{display:block; position:absolute; top:0; left: calc((50% - 2px) / 2); width: calc(100% - (50% - 2px)); height:1px; background-color:#dadce0;}
-.organization .organ_list .organ_depth4 > ul > li{position: relative;}
-.organization .organ_list .organ_depth4 > ul > li:before{display:block;position: absolute;top:-32px;left:50%;width: 1px;height: 32px;background-color: #dadce0;}
-.organization .organ_list .organ_depth4 .depth4_1{display:inline-block;width: 220px;background-color: #dadce0;font-size: 16px;font-weight:500;line-height: 28px;letter-spacing: -0.02em;color:#3a4159;margin:0 5px;vertical-align: top;padding:10px 5px;border-radius: 5px;}
-.organization .organ_list .organ_depth4 .depth4_2{display:inline-block;position:relative;margin:0 5px;width: 220px;vertical-align: top;}
-.organization .organ_list .organ_depth4 .depth4_2 .tit{padding:5px 5px 15px;border-radius: 5px;background-color: #dadce0;font-size: 16px;font-weight:500;line-height: 28px;letter-spacing: -0.02em;color:#3a4159;}
-.organization .organ_list .organ_depth4 .depth4_2 .txt{position:relative;top:-10px;padding:7px 13px 15px;border-radius: 5px;background-color: #fff;border:1px solid #dadce0;text-align: left;}
-.organization .organ_list .organ_depth5{position:relative;margin-top: 20px;}
-.organization .organ_list .organ_depth5 .organ_depth5_list{position: relative;display: inline-block;}
-.organization .organ_list .organ_depth5 .depth5_1{display:inline-block;width: 220px;background-color: #fff;font-size: 16px;font-weight:500;line-height: 28px;letter-spacing: -0.02em;color:#3a4159;margin:0 5px;vertical-align: top;padding:10px 5px;border:1px solid #dadce0;border-radius: 5px;}
-.organization .organ_list .organ_depth5 .depth5_2{display:inline-block;position:relative;width: 220px;margin:0 5px;padding:0 15px;border:1px solid #dadce0;border-radius: 5px;background-color: #fff;vertical-align: top;}
-.organization .organ_list .organ_depth5 .depth5_2 .tit{padding:8px 0 10px;border-bottom:1px solid #dadce0;font-size: 16px;font-weight:500;line-height: 28px;letter-spacing: -0.02em;color:#3a4159;}
-.organization .organ_list .organ_depth5 .depth5_2 .txt{padding: 15px 0;text-align: left;}
-.organization ul.bu li{padding-left:12px;font-size: 15px;line-height: 22px;color:#596276;}
-.organization ul.bu li:before{border-radius: 0;color:#898f9d;top:8px;background-color: #898f9d;}
+/* 포토리스트 */
+.gallery_list{position:relative; border-top:1px solid #191d2b; border-bottom:1px solid #898f9d;padding: 40px 0 5px;}
+.gallery_list .gallery_item{position:relative; float:left; padding-bottom:35px;}
+.gallery_list .gallery_item a{display:block; position:relative;}
+.gallery_list .gallery_item .photobox{display:block; position:relative;border-radius: 10px;}
+.gallery_list .gallery_item .photobox .inner_photo{display:block; position:relative; height:240px; background-repeat:no-repeat; background-position:center center; background-size:cover; color:transparent; font-size:0;border-radius: 10px;}
+.gallery_list .gallery_item.noimage .photobox .inner_photo{background-color:#f6f8fe;}
+.gallery_list .gallery_item.noimage .photobox .inner_photo:before{display:block; position:absolute; top:50%; left:50%; width:71px; height:71px; background-repeat:no-repeat; background-position:center center; background-image:url(../images/program/newskin/noimage.png); content:''; transform:translate(-50%, -50%);}
+.gallery_list .gallery_item .photobox .photo{display:block; position:absolute; top:0; left:0; width:0; height:0; line-height:0;}
+.gallery_list .gallery_item .photobox .photo img{width:0; height:0;}
+.gallery_list .gallery_item .title{display:block; height:30px; overflow:hidden; line-height:30px; font-size:18px; font-weight:400; letter-spacing:-0.02em;color:#3a4159;text-overflow:ellipsis; display: -webkit-box; -webkit-line-clamp:1; -webkit-box-orient: vertical;}
+.gallery_list .gallery_item .photobox + .title{margin-top:25px;}
+.gallery_list .gallery_item .date{display:block;line-height:24px; color:#898f9d; font-size:15px; font-weight:400; letter-spacing:-0.02em;font-family: 'Montserrat', "Malgun Gothic", "맑은 고딕", "Dotum", "돋움", "Gulim", "굴림", sans-serif;}
+.gallery_list .gallery_item a + .date{margin-top:8px;}
+.gallery_list .gallery_item .tag{font-size: 15px;line-height: 1.2em;color: #ff91b0;font-weight: 400;margin-bottom: 10px;}
+.gallery_list .gallery_item .instar_bar{width: 100%;background-color: #eaeaea;border-radius: 10px;padding: 5px;margin-top:5px}
+.gallery_list .gallery_item .instar_bar > ul > li{display:inline-block;width: calc(33.333% - 4px);font-size: 15px;line-height: 1.2em;color: #686161;text-align: center;}
 
-@media all and (max-width:640px){
-    .organization .organ_list .organ_depth4 > ul > li:before{display: none;}
-    .organization .organ_list .organ_depth4 .organ_depth4_list{padding-top: 0;}
-    .organization .organ_list .organ_depth4 .organ_depth4_list:before{display: none;}
-    .organization .organ_list .organ_depth4 .depth4_1{display: block;margin-right:0;margin-bottom: 20px;}
-    .organization .organ_list .organ_depth4 .depth4_2{display: block;margin-right:0;margin-bottom: 20px;}
-    .organization .organ_list .organ_depth5{margin-top: 0;}
-    .organization .organ_list .organ_depth5 .depth5_1{display: block;margin-right:0;margin-bottom: 20px;}
-    .organization .organ_list .organ_depth5 .depth5_2{display: block;margin-right:0;margin-bottom: 20px;}
+.gallery_list + .p-pagination{margin-top:50px;}
+
+@media all and (min-width:641px){
+    .gallery_list .gallery_item{width:31.4%; margin-right:2.9%;}
+    .gallery_list .gallery_item:nth-child(3n){margin-right:0;}
+    .gallery_list .gallery_item:nth-child(-n+3){border-top:none;}
 }
 
-/* 인사말 */
-.greeting .greet_box{position: relative;padding:40px 40px 23px 60px;margin-bottom: 47px;}
-.greeting .greet_box:before{z-index:-1;display: block;position: absolute;top:0;left:0;width:100%;height:230px;background-color: #f6f8fe;border-radius:10px 10px 140px 10px;}
-.greeting .greet_box .title{position: relative;display:inline-block;width:calc(100% - 400px);padding-top:70px;font-family: 'GmarketSans', "Malgun Gothic", "맑은 고딕", "Dotum", "돋움", "Gulim", "굴림", sans-serif;vertical-align: top;}
-.greeting .greet_box .title:before{display: block;position: absolute;top:20px;left:0;background: url(../images/template/mark_icon.png) no-repeat;width: 40px;height: 25px;}
-.greeting .greet_box .title .txt1{margin-bottom:15px;font-size: 22px;letter-spacing: -0.02em;line-height: 30px;color:#191d2b;font-weight: 300;word-break: keep-all;}
-.greeting .greet_box .title .txt2{font-size: 30px;letter-spacing: -0.02em;line-height: 46px;color:#191d2b;font-weight: 500;word-break: keep-all;}
-.greeting .greet_box .image{float: right;overflow:hidden;width: 383px;height: auto;border-radius: 8px;box-shadow: 8px 6px 60px 0px rgba(0, 0, 0, 0.1);}
-.greeting .greet_cont{padding: 0 60px;}
-.greeting .greet_cont .text{font-size: 16px;line-height: 28px;letter-spacing: -0.02em;color:#3a4159;}
-.greeting .greet_cont .name{margin-top:62px;text-align: right;font-size: 16px;line-height: 28px;letter-spacing: -0.02em;color:#3a4159;font-weight: 500;}
-
-@media all and (max-width:1600px){
-    .greeting .greet_box{margin-bottom: 20px;padding: 40px 40px 23px 40px;}
-    .greeting .greet_box:before{height: 435px;}
-    .greeting .greet_box .title{display: block;width: 100%;padding-top: 40px;}
-    .greeting .greet_box .title:before{top:0;}
-    .greeting .greet_box .image{float:none;margin: 32px auto 0;}
-    .greeting .greet_cont{padding: 0 30px;}
+@media all and (max-width:1000px){
+    .gallery_list .gallery_item .photobox .inner_photo{height:0; padding:33% 0;}
 }
+
 @media all and (max-width:640px){
-    .greeting .greet_box{padding: 20px;}
-    .greeting .greet_box:before{height: 100%;}
-    .greeting .greet_box .title:before{transform: scale(0.8);}
-    .greeting .greet_box .title .txt1{font-size: 18px;line-height: 1.5em;}
-    .greeting .greet_box .title .txt2{font-size: 24px;line-height: 1.5em;}
-    .greeting .greet_box .title .txt2 > br {display: none;}
-    .greeting .greet_box .image{width: 290px;}
-    .greeting .greet_cont{padding: 0 20px;}
-    .greeting .greet_cont .text{font-size: 15px;line-height: 24px;}
-    .greeting .greet_cont .name{margin-top: 32px;font-size: 15px;line-height: 24px;}
+    .gallery_list .gallery_item{width:48.5%; margin-right:3%;}
+    .gallery_list .gallery_item:nth-child(2n){margin-right:0;}
+    .gallery_list .gallery_item:nth-child(-n+2){border-top:none;}
+    .gallery_list .gallery_item .photobox + .title{margin-top:15px;}
+    .gallery_list .gallery_item .title{height:22px; line-height:22px; font-size:15px;}
+    .gallery_list .gallery_item a + .date{margin-top:6px;}
+    .gallery_list .gallery_item .date{font-size:14px;}
 }
 
 /*지도*/
-.map_box{}
 .map_box .map_wrap{overflow:hidden;width:100%;height:502px;background-color:#888da6;border: 1px solid #dadce0;border-radius: 8px;}
 .map_box .icon_col_box{margin: 35px 0;}
 .icon_col_box .icon_col_item .icon.addr:before{background:url("../images/template/box_icon_addr.png") no-repeat;}

@@ -172,177 +172,180 @@
   </script>
 
 </head>
-<body>
-<!-- nav -->
-<jsp:include page="/WEB-INF/views/include/nav.jsp" />
-<!-- header -->
-<jsp:include page="/WEB-INF/views/include/header.jsp">
-  <jsp:param name="bgImage" value="about-bg.jpg"/>
-  <jsp:param name="siteTitle" value="회원가입"/>
-  <jsp:param name="subTitle" value="이지트립 회원가입페이지입니다."/>
-</jsp:include>
-<!-- container -->
-<div class="container px-4 px-lg-5">
-
-	<div class="p-wrap bbs bbs__form bbs_new_skin">
-		<div>
-			<span class="p-form__required--icon">필수</span> 표시는 필수 항목 입니다.
+<body id="sub" class="sub">
+<div id="wrapper">
+	<jsp:include page="/WEB-INF/views/include/nav.jsp" />
+	<div id="container">
+		<jsp:include page="/WEB-INF/views/include/header.jsp">
+  		<jsp:param name="bgImage" value="sub_visual.png"/>
+  		<jsp:param name="siteTitle" value="회원가입 수정"/>
+  		<jsp:param name="subTitle" value=""/>
+		</jsp:include>
+		<div class="wrap clearfix">
+			<main id="colgroup" class="colgroup">
+				<article>
+					<div id="contents">
+						<div class="p-wrap bbs bbs__form bbs_new_skin">
+							<div>
+								<span class="p-form__required--icon">필수</span> 표시는 필수 항목 입니다.
+							</div>
+							<form name="myform" method="post" enctype="multipart/form-data">
+								<fieldset>
+									<legend>회원가입 수정</legend>
+										<table class="p-table mobile block">
+											<caption>{회원가입 수정} - 정보 제공</caption>
+											<colgroup>
+												<col class="w20p">
+												<col>
+											</colgroup>
+											<tbody class="p-table--th-left">
+												<tr>
+													<th scope="row">
+														<label for="name" class="p-form__label">이름 <span class="p-form__required--icon">필수</span></label>
+													</th>
+													<td>
+														<input type="text" name="name" id="name" class="p-input p-input--auto" value="${vo.name}" placeholder="입력하세요.">
+														<span class="p-table__subject_text">이름을 정확히 입력하세요.</span>
+													</td>
+												</tr>
+												<tr>
+													<th scope="row">
+														<label for="mid" class="p-form__label">아이디 <span class="p-form__required--icon">필수</span></label>
+													</th>
+													<td>
+														<input type="text" name="mid" id="mid" class="p-input p-input--auto" value="${sMid}" readonly />
+													</td>
+												</tr>
+												<tr>
+													<th scope="row">
+														<label for="nickName" class="p-form__label">닉네임 <span class="p-form__required--icon">필수</span></label>
+													</th>
+													<td>
+														<input type="text" name="nickName" id="nickName" class="p-input p-input--auto" value="${vo.nickName}" placeholder="닉네임를 입력하세요.">
+														<input type="button" value="닉네임 중복체크" id="nickNameBtn" onclick="nickCheck()" class="btn type1 medium"/>
+													</td>
+												</tr>
+												<tr>
+													<c:set var="email" value="${fn:split(vo.email,'@')}" />
+													<th scope="row">이메일 <span class="p-form__required--icon">필수</span></th>
+													<td>
+														<div class="row">
+															<div class="col-16 col-sm-24">
+																<div class="p-form-group">
+																	<input type="text" name="email1" id="email1" value="${email[0]}" class="p-input" title="이메일 아이디 입력" value="">
+																	<span class="p-form__split">@</span>
+																	<select name="email2" class="p-input" title="이메일 도메인 선택">
+																		<option value="gmail.com" selected>gmail.com</option>
+														        <option value="naver.com">naver.com</option>
+														        <option value="hotmail.com">hotmail.com</option>
+														        <option value="hanmail.com">hanmail.com</option>
+														        <option value="nate.com">nate.com</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<th scope="row">
+														<label for="birthday" class="p-form__label">생일</label>
+													</th>
+													<td>
+														<input type="date" name="birthday" id="birthday" value="${fn:substring(vo.birthday,0,10)}" class="p-input p-input--auto" placeholder="생일을 입력하세요.">
+													</td>
+												</tr>
+												<tr>
+													<c:set var="tel" value="${fn:split(vo.tel,'-')}" />
+													<th scope="row">연락처 <span class="p-form__required--icon">필수</span></th>
+													<td>
+														<div class="row telbox">
+															<div class="col-12 col-sm-24 ">
+																<div class="p-form-group">
+																	<select name="tel1" id="tel1" class="p-input" title="연락처 첫번째 번호 선택">
+																		<option value="010">010</option>
+																		<option value="02">서울</option>
+													          <option value="031">경기</option>
+													          <option value="032">인천</option>
+													          <option value="041">충남</option>
+													          <option value="042">대전</option>
+													          <option value="043">충북</option>
+													          <option value="051">부산</option>
+													          <option value="052">울산</option>
+													          <option value="061">전북</option>
+													          <option value="062">광주</option>
+																	</select>
+																	<span class="p-form__split">-</span>
+																	<input type="tel" name="tel2" value="${fn:trim(tel[1])}" class="p-input" maxlength=4 title="연락처 중간번호 입력" value="">
+																	<span class="p-form__split">-</span>
+																	<input type="tel" name="tel3" value="${fn:trim(tel[2])}" class="p-input" maxlength=4 title="연락처 마지막번호 입력" value="">
+																</div>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<th scope="row">주소</th>
+													<td>
+														<c:set var="address" value="${fn:split(vo.address,'/')}" />
+														<div class="addressbox">
+															<div class="post">
+																<input type="number" name="postcode" id="sample6_postcode" value="${fn:trim(address[0])}" class="p-input p-input--auto zipcode" placeholder="우편번호">
+																<button type="button" onclick="sample6_execDaumPostcode()" title="새창" class="p-button primary postbtn">우편번호</button>
+															</div>
+															<div class="adress mb-2">
+																<input type="text" name="roadAddress" id="sample6_address" value="${fn:trim(address[1])}" placeholder="주소" class="p-input adressinput">
+															</div>
+															<div class="adress">
+																<input type="text" name="detailAddress" id="sample6_detailAddress" value="${fn:trim(address[2])}" class="p-input adressinput" title="상세주소 입력" placeholder="상세주소를 입력해주세요">
+																<input type="hidden" name="extraAddress" id="sample6_extraAddress" value="${fn:trim(address[3])}" placeholder="참고항목" class="p-input adressinput">
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<th scope="row">가고싶은 여행지</th>
+													<td>
+														<c:set var="varHobbys" value="${fn:split('서울/강릉/대전/충북/인천/부산/기타','/')}" />		
+														<c:forEach var="tempHoppy" items="${varHobbys}" varStatus="st"> 
+															<input type="checkbox" name="hopeTour" value="${tempHoppy}" <c:if test="${fn:contains(vo.hopeTour,varHobbys[st.index])}">checked</c:if> />${tempHobby}&nbsp;
+														</c:forEach>
+													</td>
+												</tr>
+												<tr>
+													<th scope="row"><label for="content" class="p-form__label">자기소개</label></th>
+													<td>
+														<textarea name="content" id="content" class="p-input" cols="10">${vo.content}</textarea>
+													</td>
+												</tr>
+												<tr>
+													<th scope="row">회원 사진<br/>(파일용량:2MByte이내)</th>
+													<td>
+														<img src="${ctp}/member/${vo.photo}" width="80px" />
+														<input type="file" name="fName" id="file" onchange="imgCheck(this)" class="bg-secondary-subtle form-control"/>
+														<div class="text-end m-0 p-0"><img id="photoDemo" width="100px"/></div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+								</fieldset>
+								<div class="text-center">
+							    <button type="button" class="btn type1 medium" onclick="fCheck()">회원정보수정</button> &nbsp;
+							    <button type="reset" class="btn type3 medium">다시작성</button> &nbsp;
+							    <button type="button" class="btn type2 medium" onclick="location.href='${ctp}/member/memberMain';">돌아가기</button>
+						    </div>
+						    
+						    <input type="hidden" name="email" />
+								<input type="hidden" name="tel" />
+								<input type="hidden" name="address" />
+								<input type="hidden" name="photo" value="${vo.photo}" />
+							</form>
+						</div>
+					</div><!-- //#contents -->
+				</article>
+			</main>
 		</div>
-		<form name="myform" method="post" enctype="multipart/form-data">
-			<fieldset>
-				<legend>회원가입 수정</legend>
-					<table class="p-table mobile block">
-						<caption>{회원가입 수정} - 정보 제공</caption>
-						<colgroup>
-							<col class="w20p">
-							<col>
-						</colgroup>
-						<tbody class="p-table--th-left">
-							<tr>
-								<th scope="row">
-									<label for="name" class="p-form__label">이름 <span class="p-form__required--icon">필수</span></label>
-								</th>
-								<td>
-									<input type="text" name="name" id="name" class="p-input p-input--auto" value="${vo.name}" placeholder="입력하세요.">
-									<span class="p-table__subject_text">이름을 정확히 입력하세요.</span>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">
-									<label for="mid" class="p-form__label">아이디 <span class="p-form__required--icon">필수</span></label>
-								</th>
-								<td>
-									<input type="text" name="mid" id="mid" class="p-input p-input--auto" value="${sMid}" readonly />
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">
-									<label for="nickName" class="p-form__label">닉네임 <span class="p-form__required--icon">필수</span></label>
-								</th>
-								<td>
-									<input type="text" name="nickName" id="nickName" class="p-input p-input--auto" value="${vo.nickName}" placeholder="닉네임를 입력하세요.">
-									<input type="button" value="닉네임 중복체크" id="nickNameBtn" onclick="nickCheck()" class="btn type1 medium"/>
-								</td>
-							</tr>
-							<tr>
-								<c:set var="email" value="${fn:split(vo.email,'@')}" />
-								<th scope="row">이메일 <span class="p-form__required--icon">필수</span></th>
-								<td>
-									<div class="row">
-										<div class="col-16 col-sm-24">
-											<div class="p-form-group">
-												<input type="text" name="email1" id="email1" value="${email[0]}" class="p-input" title="이메일 아이디 입력" value="">
-												<span class="p-form__split">@</span>
-												<select name="email2" class="p-input" title="이메일 도메인 선택">
-													<option value="gmail.com" selected>gmail.com</option>
-									        <option value="naver.com">naver.com</option>
-									        <option value="hotmail.com">hotmail.com</option>
-									        <option value="hanmail.com">hanmail.com</option>
-									        <option value="nate.com">nate.com</option>
-												</select>
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">
-									<label for="birthday" class="p-form__label">생일</label>
-								</th>
-								<td>
-									<input type="date" name="birthday" id="birthday" value="${fn:substring(vo.birthday,0,10)}" class="p-input p-input--auto" placeholder="생일을 입력하세요.">
-								</td>
-							</tr>
-							<tr>
-								<c:set var="tel" value="${fn:split(vo.tel,'-')}" />
-								<th scope="row">연락처 <span class="p-form__required--icon">필수</span></th>
-								<td>
-									<div class="row telbox">
-										<div class="col-12 col-sm-24 ">
-											<div class="p-form-group">
-												<select name="tel1" id="tel1" class="p-input" title="연락처 첫번째 번호 선택">
-													<option value="010">010</option>
-													<option value="02">서울</option>
-								          <option value="031">경기</option>
-								          <option value="032">인천</option>
-								          <option value="041">충남</option>
-								          <option value="042">대전</option>
-								          <option value="043">충북</option>
-								          <option value="051">부산</option>
-								          <option value="052">울산</option>
-								          <option value="061">전북</option>
-								          <option value="062">광주</option>
-												</select>
-												<span class="p-form__split">-</span>
-												<input type="tel" name="tel2" value="${fn:trim(tel[1])}" class="p-input" maxlength=4 title="연락처 중간번호 입력" value="">
-												<span class="p-form__split">-</span>
-												<input type="tel" name="tel3" value="${fn:trim(tel[2])}" class="p-input" maxlength=4 title="연락처 마지막번호 입력" value="">
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">주소</th>
-								<td>
-									<c:set var="address" value="${fn:split(vo.address,'/')}" />
-									<div class="addressbox">
-										<div class="post">
-											<input type="number" name="postcode" id="sample6_postcode" value="${fn:trim(address[0])}" class="p-input p-input--auto zipcode" placeholder="우편번호">
-											<button type="button" onclick="sample6_execDaumPostcode()" title="새창" class="p-button primary postbtn">우편번호</button>
-										</div>
-										<div class="adress mb-2">
-											<input type="text" name="roadAddress" id="sample6_address" value="${fn:trim(address[1])}" placeholder="주소" class="p-input adressinput">
-										</div>
-										<div class="adress">
-											<input type="text" name="detailAddress" id="sample6_detailAddress" value="${fn:trim(address[2])}" class="p-input adressinput" title="상세주소 입력" placeholder="상세주소를 입력해주세요">
-											<input type="hidden" name="extraAddress" id="sample6_extraAddress" value="${fn:trim(address[3])}" placeholder="참고항목" class="p-input adressinput">
-										</div>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">가고싶은 여행지</th>
-								<td>
-									<c:set var="varHobbys" value="${fn:split('서울/강릉/대전/충북/인천/부산/기타','/')}" />		
-									<c:forEach var="tempHoppy" items="${varHobbys}" varStatus="st"> 
-										<input type="checkbox" name="hopeTour" value="${tempHoppy}" <c:if test="${fn:contains(vo.hopeTour,varHobbys[st.index])}">checked</c:if> />${tempHobby}&nbsp;
-									</c:forEach>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row"><label for="content" class="p-form__label">자기소개</label></th>
-								<td>
-									<textarea name="content" id="content" class="p-input" cols="10">${vo.content}</textarea>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">회원 사진<br/>(파일용량:2MByte이내)</th>
-								<td>
-									<img src="${ctp}/member/${vo.photo}" width="80px" />
-									<input type="file" name="fName" id="file" onchange="imgCheck(this)" class="bg-secondary-subtle form-control"/>
-									<div class="text-end m-0 p-0"><img id="photoDemo" width="100px"/></div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-			</fieldset>
-			<div class="text-center">
-		    <button type="button" class="btn type1 medium" onclick="fCheck()">회원정보수정</button> &nbsp;
-		    <button type="reset" class="btn type3 medium">다시작성</button> &nbsp;
-		    <button type="button" class="btn type2 medium" onclick="location.href='${ctp}/member/memberMain';">돌아가기</button>
-	    </div>
-	    
-	    <input type="hidden" name="email" />
-			<input type="hidden" name="tel" />
-			<input type="hidden" name="address" />
-			<input type="hidden" name="photo" value="${vo.photo}" />
-		</form>
 	</div>
-	
-	
-	
+	<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </div>
-<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </body>
 </html>

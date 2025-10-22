@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
+/* Layout */
 @import url('default.css');
 @import url('common.css');
-@import url('font.css');
-/* @import url('main_layout.css'); */
+@import url('main_layout.css');

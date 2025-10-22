@@ -210,211 +210,214 @@
   </script>
 
 </head>
-<body>
-<!-- nav -->
-<jsp:include page="/WEB-INF/views/include/nav.jsp" />
-<!-- header -->
-<jsp:include page="/WEB-INF/views/include/header.jsp">
-  <jsp:param name="bgImage" value="about-bg.jpg"/>
-  <jsp:param name="siteTitle" value="회원가입"/>
-  <jsp:param name="subTitle" value="이지트립 회원가입페이지입니다."/>
-</jsp:include>
-<!-- container -->
-<div class="container px-4 px-lg-5">
-
-	<div class="p-wrap bbs bbs__form bbs_new_skin">
-		<div>
-			<span class="p-form__required--icon">필수</span> 표시는 필수 항목 입니다.
+<body id="sub" class="sub">
+<div id="wrapper">
+	<jsp:include page="/WEB-INF/views/include/nav.jsp" />
+	<div id="container">
+		<jsp:include page="/WEB-INF/views/include/header.jsp">
+  		<jsp:param name="bgImage" value="sub_visual.png"/>
+  		<jsp:param name="siteTitle" value="회원가입"/>
+  		<jsp:param name="subTitle" value="이지트립 페이지입니다."/>
+		</jsp:include>
+		<div class="wrap clearfix">
+			<main id="colgroup" class="colgroup">
+				<article>
+					<div id="contents">
+						<div class="p-wrap bbs bbs__form bbs_new_skin">
+							<div>
+								<span class="p-form__required--icon">필수</span> 표시는 필수 항목 입니다.
+							</div>
+							<form name="myform" method="post" enctype="multipart/form-data">
+								<fieldset>
+									<legend>회원가입</legend>
+										<table class="p-table mobile block">
+											<caption>{회원가입} - 정보 제공</caption>
+											<colgroup>
+												<col class="w20p">
+												<col>
+											</colgroup>
+											<tbody class="p-table--th-left">
+												<tr>
+													<th scope="row">
+														<label for="name" class="p-form__label">이름 <span class="p-form__required--icon">필수</span></label>
+													</th>
+													<td>
+														<input type="text" name="name" id="name" class="p-input p-input--auto" placeholder="입력하세요.">
+														<span class="p-table__subject_text">이름을 정확히 입력하세요.</span>
+													</td>
+												</tr>
+												<tr>
+													<th scope="row">
+														<label for="mid" class="p-form__label">아이디 <span class="p-form__required--icon">필수</span></label>
+													</th>
+													<td>
+														<input type="text" name="mid" id="mid" class="p-input p-input--auto" placeholder="아이디를 입력하세요.">
+														<input type="button" value="아이디 중복체크" id="midBtn" onclick="idCheck()" class="btn type1 medium"/>
+													</td>
+												</tr>
+												<tr>
+													<th scope="row">
+														<label for="pwd" class="p-form__label">비밀번호 <span class="p-form__required--icon">필수</span></label>
+													</th>
+													<td>
+														<input type="text" name="pwd" id="pwd" class="p-input p-input--auto" placeholder="비밀번호를 입력하세요.">
+													</td>
+												</tr>
+												<tr>
+													<th scope="row">
+														<label for="nickName" class="p-form__label">닉네임 <span class="p-form__required--icon">필수</span></label>
+													</th>
+													<td>
+														<input type="text" name="nickName" id="nickName" class="p-input p-input--auto" placeholder="닉네임를 입력하세요.">
+														<input type="button" value="닉네임 중복체크" id="nickNameBtn" onclick="nickNameCheck()" class="btn type1 medium"/>
+													</td>
+												</tr>
+												<tr>
+													<th scope="row">이메일 <span class="p-form__required--icon">필수</span></th>
+													<td>
+														<div class="row">
+															<div class="col-16 col-sm-24">
+																<div class="p-form-group">
+																	<input type="text" name="email1" id="email1" class="p-input" title="이메일 아이디 입력" value="">
+																	<span class="p-form__split">@</span>
+																	<select name="email2" class="p-input" title="이메일 도메인 선택">
+																		<option value="gmail.com" selected>gmail.com</option>
+														        <option value="naver.com">naver.com</option>
+														        <option value="hotmail.com">hotmail.com</option>
+														        <option value="hanmail.com">hanmail.com</option>
+														        <option value="nate.com">nate.com</option>
+																	</select>
+																</div>
+															</div>
+															<div class="col-8 col-sm-24">
+																<input type="button" value="인증번호받기" onclick="emailCertification()" id="certificationBtn" class="btn type2 medium">
+															</div>
+														</div>
+														<div id="demoSpin" class="mb-3"></div>
+													</td>
+												</tr>
+												<tr>
+													<th scope="row">
+														<label for="birthday" class="p-form__label">생일</label>
+													</th>
+													<td>
+														<input type="date" name="birthday" id="birthday" value="${today}" class="p-input p-input--auto" placeholder="생일을 입력하세요.">
+													</td>
+												</tr>
+												<tr>
+													<th scope="row">연락처 <span class="p-form__required--icon">필수</span></th>
+													<td>
+														<div class="row telbox">
+															<div class="col-12 col-sm-24 ">
+																<div class="p-form-group">
+																	<select name="tel1" id="tel1" class="p-input" title="연락처 첫번째 번호 선택">
+																		<option value="010">010</option>
+																		<option value="02">서울</option>
+													          <option value="031">경기</option>
+													          <option value="032">인천</option>
+													          <option value="041">충남</option>
+													          <option value="042">대전</option>
+													          <option value="043">충북</option>
+													          <option value="051">부산</option>
+													          <option value="052">울산</option>
+													          <option value="061">전북</option>
+													          <option value="062">광주</option>
+																	</select>
+																	<span class="p-form__split">-</span>
+																	<input type="tel" name="tel2" class="p-input" maxlength=4 title="연락처 중간번호 입력" value="">
+																	<span class="p-form__split">-</span>
+																	<input type="tel" name="tel3" class="p-input" maxlength=4 title="연락처 마지막번호 입력" value="">
+																</div>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<th scope="row">주소</th>
+													<td>
+														<div class="addressbox">
+															<div class="post">
+																<input type="number" name="postcode" id="sample6_postcode" class="p-input p-input--auto zipcode" placeholder="우편번호">
+																<button type="button" onclick="sample6_execDaumPostcode()" title="새창" class="p-button primary postbtn">우편번호</button>
+															</div>
+															<div class="adress mb-2">
+																<input type="text" name="roadAddress" id="sample6_address" placeholder="주소" class="p-input adressinput">
+															</div>
+															<div class="adress">
+																<input type="text" name="detailAddress" id="sample6_detailAddress" class="p-input adressinput" title="상세주소 입력" placeholder="상세주소를 입력해주세요">
+																<input type="hidden" name="extraAddress" id="sample6_extraAddress" placeholder="참고항목" class="p-input adressinput">
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<th scope="row">가고싶은 여행지</th>
+													<td>
+														<span class="p-form-checkbox">
+															<input type="checkbox" name="hopeTour" id="hope1" class="p-form-checkbox__input" value="서울" checked>
+															<label for="hope1" class="p-form-checkbox__label">서울</label>
+														</span>
+														<span class="p-form-checkbox">
+															<input type="checkbox" name="hopeTour" id="hope2" class="p-form-checkbox__input" value="강릉">
+															<label for="hope2" class="p-form-checkbox__label">강릉</label>
+														</span>
+														<span class="p-form-checkbox">
+															<input type="checkbox" name="hopeTour" id="hope3" class="p-form-checkbox__input" value="대전">
+															<label for="hope3" class="p-form-checkbox__label">대전</label>
+														</span>
+														<span class="p-form-checkbox">
+															<input type="checkbox" name="hopeTour" id="hope4" class="p-form-checkbox__input" value="충북">
+															<label for="hope4" class="p-form-checkbox__label">충북</label>
+														</span>
+														<span class="p-form-checkbox">
+															<input type="checkbox" name="hopeTour" id="hope5" class="p-form-checkbox__input" value="인천">
+															<label for="hope5" class="p-form-checkbox__label">인천</label>
+														</span>
+														<span class="p-form-checkbox">
+															<input type="checkbox" name="hopeTour" id="hope6" class="p-form-checkbox__input" value="부산">
+															<label for="hope6" class="p-form-checkbox__label">부산</label>
+														</span>
+														<span class="p-form-checkbox">
+															<input type="checkbox" name="hopeTour" id="hope7" class="p-form-checkbox__input" value="기타">
+															<label for="hope7" class="p-form-checkbox__label">기타</label>
+														</span>						
+													</td>
+												</tr>
+												<tr>
+													<th scope="row"><label for="content" class="p-form__label">자기소개</label></th>
+													<td>
+														<textarea name="content" id="content" class="p-input" cols="30" rows="5" placeholder="자기소개를 입력하세요." required="required"></textarea>
+													</td>
+												</tr>
+												<tr>
+													<th scope="row">회원 사진<br/>(파일용량:2MByte이내)</th>
+													<td>
+														<input type="file" name="fName" id="file" onchange="imgCheck(this)" class="bg-secondary-subtle form-control"/>
+														<div class="text-end m-0 p-0">
+															<img id="photoDemo" width="100px"/>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+								</fieldset>
+								<div class="text-center">
+							    <button type="button" class="btn type1" onclick="fCheck()">회원가입</button> &nbsp;
+							    <button type="reset" class="btn type3">다시작성</button> &nbsp;
+							    <button type="button" class="btn type2" onclick="location.href='${ctp}/member/memberLogin';">돌아가기</button>
+						    </div>
+						    
+						    <input type="hidden" name="email" />
+								<input type="hidden" name="tel" />
+								<input type="hidden" name="address" />
+							</form>
+						</div>
+					</div><!-- //#contents -->
+				</article>
+			</main>
 		</div>
-		<form name="myform" method="post" enctype="multipart/form-data">
-			<fieldset>
-				<legend>회원가입</legend>
-					<table class="p-table mobile block">
-						<caption>{회원가입} - 정보 제공</caption>
-						<colgroup>
-							<col class="w20p">
-							<col>
-						</colgroup>
-						<tbody class="p-table--th-left">
-							<tr>
-								<th scope="row">
-									<label for="name" class="p-form__label">이름 <span class="p-form__required--icon">필수</span></label>
-								</th>
-								<td>
-									<input type="text" name="name" id="name" class="p-input p-input--auto" placeholder="입력하세요.">
-									<span class="p-table__subject_text">이름을 정확히 입력하세요.</span>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">
-									<label for="mid" class="p-form__label">아이디 <span class="p-form__required--icon">필수</span></label>
-								</th>
-								<td>
-									<input type="text" name="mid" id="mid" class="p-input p-input--auto" placeholder="아이디를 입력하세요.">
-									<input type="button" value="아이디 중복체크" id="midBtn" onclick="idCheck()" class="btn type1 medium"/>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">
-									<label for="pwd" class="p-form__label">비밀번호 <span class="p-form__required--icon">필수</span></label>
-								</th>
-								<td>
-									<input type="text" name="pwd" id="pwd" class="p-input p-input--auto" placeholder="비밀번호를 입력하세요.">
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">
-									<label for="nickName" class="p-form__label">닉네임 <span class="p-form__required--icon">필수</span></label>
-								</th>
-								<td>
-									<input type="text" name="nickName" id="nickName" class="p-input p-input--auto" placeholder="닉네임를 입력하세요.">
-									<input type="button" value="닉네임 중복체크" id="nickNameBtn" onclick="nickNameCheck()" class="btn type1 medium"/>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">이메일 <span class="p-form__required--icon">필수</span></th>
-								<td>
-									<div class="row">
-										<div class="col-16 col-sm-24">
-											<div class="p-form-group">
-												<input type="text" name="email1" id="email1" class="p-input" title="이메일 아이디 입력" value="">
-												<span class="p-form__split">@</span>
-												<select name="email2" class="p-input" title="이메일 도메인 선택">
-													<option value="gmail.com" selected>gmail.com</option>
-									        <option value="naver.com">naver.com</option>
-									        <option value="hotmail.com">hotmail.com</option>
-									        <option value="hanmail.com">hanmail.com</option>
-									        <option value="nate.com">nate.com</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-8 col-sm-24">
-											<input type="button" value="인증번호받기" onclick="emailCertification()" id="certificationBtn" class="btn type2 medium">
-										</div>
-									</div>
-									<div id="demoSpin" class="mb-3"></div>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">
-									<label for="birthday" class="p-form__label">생일</label>
-								</th>
-								<td>
-									<input type="date" name="birthday" id="birthday" value="${today}" class="p-input p-input--auto" placeholder="생일을 입력하세요.">
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">연락처 <span class="p-form__required--icon">필수</span></th>
-								<td>
-									<div class="row telbox">
-										<div class="col-12 col-sm-24 ">
-											<div class="p-form-group">
-												<select name="tel1" id="tel1" class="p-input" title="연락처 첫번째 번호 선택">
-													<option value="010">010</option>
-													<option value="02">서울</option>
-								          <option value="031">경기</option>
-								          <option value="032">인천</option>
-								          <option value="041">충남</option>
-								          <option value="042">대전</option>
-								          <option value="043">충북</option>
-								          <option value="051">부산</option>
-								          <option value="052">울산</option>
-								          <option value="061">전북</option>
-								          <option value="062">광주</option>
-												</select>
-												<span class="p-form__split">-</span>
-												<input type="tel" name="tel2" class="p-input" maxlength=4 title="연락처 중간번호 입력" value="">
-												<span class="p-form__split">-</span>
-												<input type="tel" name="tel3" class="p-input" maxlength=4 title="연락처 마지막번호 입력" value="">
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">주소</th>
-								<td>
-									<div class="addressbox">
-										<div class="post">
-											<input type="number" name="postcode" id="sample6_postcode" class="p-input p-input--auto zipcode" placeholder="우편번호">
-											<button type="button" onclick="sample6_execDaumPostcode()" title="새창" class="p-button primary postbtn">우편번호</button>
-										</div>
-										<div class="adress mb-2">
-											<input type="text" name="roadAddress" id="sample6_address" placeholder="주소" class="p-input adressinput">
-										</div>
-										<div class="adress">
-											<input type="text" name="detailAddress" id="sample6_detailAddress" class="p-input adressinput" title="상세주소 입력" placeholder="상세주소를 입력해주세요">
-											<input type="hidden" name="extraAddress" id="sample6_extraAddress" placeholder="참고항목" class="p-input adressinput">
-										</div>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">가고싶은 여행지</th>
-								<td>
-									<span class="p-form-checkbox">
-										<input type="checkbox" name="hopeTour" id="hope1" class="p-form-checkbox__input" value="서울" checked>
-										<label for="hope1" class="p-form-checkbox__label">서울</label>
-									</span>
-									<span class="p-form-checkbox">
-										<input type="checkbox" name="hopeTour" id="hope2" class="p-form-checkbox__input" value="강릉">
-										<label for="hope2" class="p-form-checkbox__label">강릉</label>
-									</span>
-									<span class="p-form-checkbox">
-										<input type="checkbox" name="hopeTour" id="hope3" class="p-form-checkbox__input" value="대전">
-										<label for="hope3" class="p-form-checkbox__label">대전</label>
-									</span>
-									<span class="p-form-checkbox">
-										<input type="checkbox" name="hopeTour" id="hope4" class="p-form-checkbox__input" value="충북">
-										<label for="hope4" class="p-form-checkbox__label">충북</label>
-									</span>
-									<span class="p-form-checkbox">
-										<input type="checkbox" name="hopeTour" id="hope5" class="p-form-checkbox__input" value="인천">
-										<label for="hope5" class="p-form-checkbox__label">인천</label>
-									</span>
-									<span class="p-form-checkbox">
-										<input type="checkbox" name="hopeTour" id="hope6" class="p-form-checkbox__input" value="부산">
-										<label for="hope6" class="p-form-checkbox__label">부산</label>
-									</span>
-									<span class="p-form-checkbox">
-										<input type="checkbox" name="hopeTour" id="hope7" class="p-form-checkbox__input" value="기타">
-										<label for="hope7" class="p-form-checkbox__label">기타</label>
-									</span>						
-								</td>
-							</tr>
-							<tr>
-								<th scope="row"><label for="content" class="p-form__label">자기소개</label></th>
-								<td>
-									<textarea name="content" id="content" class="p-input" cols="30" rows="5" placeholder="자기소개를 입력하세요." required="required"></textarea>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">회원 사진<br/>(파일용량:2MByte이내)</th>
-								<td>
-									<input type="file" name="fName" id="file" onchange="imgCheck(this)" class="bg-secondary-subtle form-control"/>
-									<div class="text-end m-0 p-0">
-										<img id="photoDemo" width="100px"/>
-									</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-			</fieldset>
-			<div class="text-center">
-		    <button type="button" class="btn type1" onclick="fCheck()">회원가입</button> &nbsp;
-		    <button type="reset" class="btn type3">다시작성</button> &nbsp;
-		    <button type="button" class="btn type2" onclick="location.href='${ctp}/member/memberLogin';">돌아가기</button>
-	    </div>
-	    
-	    <input type="hidden" name="email" />
-			<input type="hidden" name="tel" />
-			<input type="hidden" name="address" />
-		</form>
 	</div>
-	
-	
-	
+	<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </div>
-<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </body>
 </html>

@@ -18,15 +18,18 @@ CREATE TABLE member (
 
 -- 2. 추천여행지
 CREATE TABLE travel (
-    travel_id      BIGINT AUTO_INCREMENT PRIMARY KEY,
-    title          VARCHAR(100) NOT NULL,
-    region         VARCHAR(50) NOT NULL,
-    theme          VARCHAR(50),
-    description    TEXT,
-    address        VARCHAR(200),
-    image_url      VARCHAR(200),
-    create_date    DATETIME DEFAULT NOW(),
-    update_date    DATETIME DEFAULT NOW() ON UPDATE NOW()
+    idx      int not null AUTO_INCREMENT,  /* 고유번호 */
+    mid			 VARCHAR(20) NOT NULL,               /* 포토갤러리에 올린이 아이디 */
+    part			VARCHAR(10) NOT NULL,							 /* 테마파트(가족/연인/친구/기타) */
+    title          VARCHAR(100) NOT NULL,        /* 제목 */
+    content    TEXT NOT NULL,                    /* 상세내역-사진 List(CKEDITOR사용) */
+    thumbnail  VARCHAR(100) NOT NULL,            /* 썸네일 이미지(ckeditor에 올린 첫번째 사진으로 처리) */
+    address        VARCHAR(200),									/* 여행지 주소 */
+    pDate      datetime NOT NULL DEFAULT NOW(),  /* 올린 날짜 */
+		goodCount  INT NOT NULL DEFAULT 0,
+		readNum    INT NOT NULL DEFAULT 0,
+    primary key(idx),
+  	foreign key(mid) references member(mid)
 );
 
 -- 3. 숙소

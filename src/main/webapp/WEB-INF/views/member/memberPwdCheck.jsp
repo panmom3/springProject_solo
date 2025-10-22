@@ -61,64 +61,74 @@
 		}
 	</script>
 </head>
-<body>
-<jsp:include page="/WEB-INF/views/include/nav.jsp" />
-<jsp:include page="/WEB-INF/views/include/header.jsp">
-  <jsp:param name="bgImage" value="home-bg.jpg"/>
-  <jsp:param name="siteTitle" value="마이페이지"/>
-  <jsp:param name="subTitle" value="비밀번호 변경 페이지입니다."/>
-</jsp:include>
-<div class="container px-4 px-lg-5 pb-5">
-	<form name="myform" id="myform" method="post">
-		<table class="table">
-			<tbody>
-				<tr>
-	        <th colspan="2">
-	          <h3>비밀번호 확인</h3>
-	          <div>(현재 비밀번호를 확인합니다.)</div>
-	        </th>
-	      </tr>
-	      <tr>
-	        <th>비밀번호</th>
-	        <td><input type="password" name="pwd" id="pwd" class="form-control" autofocus required /></td>
-	      </tr>
-	      <tr>
-	        <td colspan="2">
-	          <input type="button" value="비밀번호확인" onclick="pwdCheck()" class="btn type1 medium"/>
-	          <input type="reset" value="다시입력" class="btn type3 medium"/>
-	          <input type="button" value="돌아가기" onclick="location.href='memberMain'" class="btn type2 medium"/>
-	        </td>
-	      </tr>
-			</tbody>
-		</table>
-	</form>
-	<form name="newPassform" id="newPassform" method="post" style="display:none">
-		<table class="table">
-			 <tr>
-        <th colspan="2">
-          <h3>비밀번호 변경</h3>
-          <div>(변경할 비밀번호를 입력하세요)</div>
-        </th>
-      </tr>
-      <tr>
-        <th>새비밀번호</th>
-        <td><input type="password" name="newPwd" id="newPwd" class="form-control" required /></td>
-      </tr>
-      <tr>
-        <th>비밀번호확인</th>
-        <td><input type="password" name="rePwd" id="rePwd" class="form-control" required /></td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <input type="button" value="비밀번호변경" onclick="pwdChange()" class="btn type1 medium"/>
-          <input type="reset" value="다시입력" class="btn type3 medium"/>
-          <input type="button" value="돌아가기" onclick="location.href='memberMain'" class="btn type2 medium"/>
-        </td>
-      </tr>
-		</table>
-		<input type="hidden" name="mid" value="${sMid}" />
-	</form>
+<body id="sub" class="sub">
+<div id="wrapper">
+	<jsp:include page="/WEB-INF/views/include/nav.jsp" />
+	<div id="container">
+		<jsp:include page="/WEB-INF/views/include/header.jsp">
+  		<jsp:param name="bgImage" value="sub_visual.png"/>
+  		<jsp:param name="siteTitle" value="비밀번호변경"/>
+  		<jsp:param name="subTitle" value=""/>
+		</jsp:include>
+		<div class="wrap clearfix">
+			<main id="colgroup" class="colgroup">
+				<article>
+					<div id="contents">
+						<form name="myform" id="myform" method="post">
+							<table class="table">
+								<tbody>
+									<tr>
+						        <th colspan="2">
+						          <h3>비밀번호 확인</h3>
+						          <div>(현재 비밀번호를 확인합니다.)</div>
+						        </th>
+						      </tr>
+						      <tr>
+						        <th>비밀번호</th>
+						        <td><input type="password" name="pwd" id="pwd" class="form-control" autofocus required /></td>
+						      </tr>
+						      <tr>
+						        <td colspan="2">
+						          <input type="button" value="비밀번호확인" onclick="pwdCheck()" class="btn type1 medium"/>
+						          <input type="reset" value="다시입력" class="btn type3 medium"/>
+						          <input type="button" value="돌아가기" onclick="location.href='memberMain'" class="btn type2 medium"/>
+						        </td>
+						      </tr>
+								</tbody>
+							</table>
+						</form>
+						<form name="newPassform" id="newPassform" method="post" style="display:none">
+							<table class="table">
+								 <tr>
+					        <th colspan="2">
+					          <h3>비밀번호 변경</h3>
+					          <div>(변경할 비밀번호를 입력하세요)</div>
+					        </th>
+					      </tr>
+					      <tr>
+					        <th>새비밀번호</th>
+					        <td><input type="password" name="newPwd" id="newPwd" class="form-control" required /></td>
+					      </tr>
+					      <tr>
+					        <th>비밀번호확인</th>
+					        <td><input type="password" name="rePwd" id="rePwd" class="form-control" required /></td>
+					      </tr>
+					      <tr>
+					        <td colspan="2">
+					          <input type="button" value="비밀번호변경" onclick="pwdChange()" class="btn type1 medium"/>
+					          <input type="reset" value="다시입력" class="btn type3 medium"/>
+					          <input type="button" value="돌아가기" onclick="location.href='location.href='${ctp}/member/memberMain';" class="btn type2 medium"/>
+					        </td>
+					      </tr>
+							</table>
+							<input type="hidden" name="mid" value="${sMid}" />
+						</form>
+					</div><!-- //#contents -->
+				</article>
+			</main>
+		</div>
+	</div>
+	<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </div>
-<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </body>
 </html>

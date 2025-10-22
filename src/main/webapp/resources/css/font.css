@@ -1,67 +1,35 @@
 @charset "UTF-8";
 
-/* S-CoreDream */
-@font-face{
-	font-family: 'S-CoreDream';
-	font-weight: 400;
-	src: url("../fonts/S-CoreDream-4Regular.woff2") format('woff2'),
-		url("../fonts/S-CoreDream-4Regular.woff") format('woff');
+/* 웹폰트 */
+@font-face {
+    font-family: 'Sweet';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-display: swap;
 }
-@font-face{
-	font-family: 'S-CoreDream';
-	font-weight: 600;
-	src: url("../fonts/S-CoreDream-6Bold.woff2") format('woff2'),
-	url("../fonts/S-CoreDream-6Bold.woff") format('woff');
+@font-face {
+    font-family: 'YeogiOttaeJalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
 }
-
-/* GmarketSans */
-@font-face{
-	font-family: 'GmarketSans';
-	font-weight: 400;
-	src: url("../fonts/GmarketSans-Light.woff2") format('woff2'),
-	url("../fonts/GmarketSans-Light.woff") format('woff');
+@font-face {
+    font-family: 'GMarketSans';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+    font-weight: 300;
+    font-display: swap;
 }
-@font-face{
-	font-family: 'GmarketSans';
-	font-weight: 500;
-	src: url("../fonts/GmarketSans-Medium.woff2") format('woff2'),
-	url("../fonts/GmarketSans-Medium.woff") format('woff');
+@font-face {
+    font-family: 'GMarketSans';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: 500;
+    font-display: swap;
 }
-@font-face{
-	font-family: 'GmarketSans';
-	font-weight: 600;
-	src: url("../fonts/GmarketSans-Bold.woff2") format('woff2'),
-	url("../fonts/GmarketSans-Bold.woff") format('woff');
+@font-face {
+    font-family: 'GMarketSans';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: 700;
+    font-display: swap;
 }
 
-/* Montserrat */
-@font-face{
-	font-family: 'Montserrat';
-	font-weight: 400;
-	src: url("../fonts/Montserrat-Regular.woff") format('woff'),
-	url("../fonts/Montserrat-Regular.woff2") format('woff2');
-}
-@font-face{
-	font-family: 'Montserrat';
-	font-weight: 500;
-	src: url("../fonts/Montserrat-Medium.woff") format('woff'),
-	url("../fonts/Montserrat-Medium.woff2") format('woff2');
-}
-@font-face{
-	font-family: 'Montserrat';
-	font-weight: 600;
-	src: url("../fonts/Montserrat-SemiBold.woff") format('woff'),
-	url("../fonts/Montserrat-SemiBold.woff2") format('woff2');
-}
-@font-face{
-	font-family: 'Montserrat';
-	font-weight: 700;
-	src: url("../fonts/Montserrat-Bold.woff") format('woff'),
-	url("../fonts/Montserrat-Bold.woff2") format('woff2');
-}
-@font-face{
-	font-family: 'Montserrat';
-	font-weight: 800;
-	src: url("../fonts/Montserrat-ExtraBold.woff") format('woff'),
-	url("../fonts/Montserrat-ExtraBold.woff2") format('woff2');
-}
+

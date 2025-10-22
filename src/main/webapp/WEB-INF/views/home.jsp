@@ -11,75 +11,88 @@
   <jsp:include page="/WEB-INF/views/include/main.jsp" />
   <title>HOME</title>
 </head>
-<body>
-<!-- Navbar -->
-<jsp:include page="/WEB-INF/views/include/nav.jsp" />
-<!-- Main Content-->
-<div class="container">
-		<div class="main_top" style="height:500px;background-color:#1d7b97">
-			<img src="" alt=""/>
-		</div>
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-md-10 col-lg-8 col-xl-7">
-            <!-- Post preview-->
-            <div class="post-preview">
-                <a href="post.html">
-                    <h2 class="post-title">Man must explore, and this is exploration at its greatest</h2>
-                    <h3 class="post-subtitle">Problems look mighty small from 150 miles up</h3>
-                </a>
-                <p class="post-meta">
-                    Posted by
-                    <a href="#!">Start Bootstrap</a>
-                    on September 24, 2023
-                </p>
-            </div>
-            <!-- Divider-->
-            <hr class="my-4" />
-            <!-- Post preview-->
-            <div class="post-preview">
-                <a href="post.html"><h2 class="post-title">I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.</h2></a>
-                <p class="post-meta">
-                    Posted by
-                    <a href="#!">Start Bootstrap</a>
-                    on September 18, 2023
-                </p>
-            </div>
-            <!-- Divider-->
-            <hr class="my-4" />
-            <!-- Post preview-->
-            <div class="post-preview">
-                <a href="post.html">
-                    <h2 class="post-title">Science has not yet mastered prophecy</h2>
-                    <h3 class="post-subtitle">We predict too much for the next year and yet far too little for the next ten.</h3>
-                </a>
-                <p class="post-meta">
-                    Posted by
-                    <a href="#!">Start Bootstrap</a>
-                    on August 24, 2023
-                </p>
-            </div>
-            <!-- Divider-->
-            <hr class="my-4" />
-            <!-- Post preview-->
-            <div class="post-preview">
-                <a href="post.html">
-                    <h2 class="post-title">Failure is not an option</h2>
-                    <h3 class="post-subtitle">Many say exploration is part of our destiny, but it’s actually our duty to future generations.</h3>
-                </a>
-                <p class="post-meta">
-                    Posted by
-                    <a href="#!">Start Bootstrap</a>
-                    on July 8, 2023
-                </p>
-            </div>
-            <!-- Divider-->
-            <hr class="my-4" />
-            <!-- Pager-->
-            <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
-        </div>
-    </div>
+<body id="main" class="main">
+<div id="wrapper">
+	<!-- Navbar -->
+	<jsp:include page="/WEB-INF/views/include/nav.jsp" />
+	<!-- Main Content-->
+	<div class="container">
+		<main>
+			<div class="rowgroup rowgroup1 rowcont" data-index="0">
+				<section class="main_visual">
+					<h2 class="skip">메인비주얼</h2>
+					<div class="visual_box">
+						<div class="wrap">
+							<div class="visual_cont">
+								<div class="tit text1">
+									<span>가을 단풍 여행</span>
+								</div>
+								<div class="tit text2">
+									<span>일년에 딱 한번 열리는 숲 길,<br />
+										단풍축제에 초대합니다.
+									</span>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<div class="visual_slide">
+						<i class="left_bar"></i>
+						<i class="right_bar"></i>
+						<div class="slide_list">
+							<div class="slide_item">
+								<div class="image_box">
+									<div class="inner_image" style="background-image: url('${ctp}/images/main/visual_img_1.jpg')"></div>
+								</div>
+							</div>
+							<div class="slide_item">
+								<div class="image_box">
+									<div class="inner_image" style="background-image: url('${ctp}/images/main/visual_img_2.jpg')"></div>
+								</div>
+							</div>
+							<div class="slide_item">
+								<div class="image_box">
+									<div class="inner_image" style="background-image: url('${ctp}/images/main/visual_img_3.jpg')"></div>
+								</div>
+							</div>
+						</div>
+						<div class="slide_btn">
+							<div class="count_box">
+								<span class="current"></span>
+								<span class="total"></span>
+							</div>
+							<div class="slide_control">
+								<button type="button" class="prev">이전</button>
+								<button type="button" class="auto">일시정지</button>
+								<button type="button" class="next">다음</button>
+							</div>
+						</div>
+					</div>
+					<div class="scrolling">
+						<span class="gage"><span class="gage_bar"></span></span>
+						<img src="${ctp}/images/main/scroll_txt.png" alt="SCROLL DOWN">
+					</div>
+					<div class="wave"></div>
+				</section>
+			</div>
+			<div class="rowgroup2">
+				<div class="wrap">
+					<section>추천여행지</section>
+				</div>
+			</div>
+			<div class="rowgroup3">
+				<div class="colgroup1 clearfix">
+					<section class="popup"></section>
+					<section class="mayor"></section>
+				</div>
+				<div class="colgroup2">
+					<section></section>
+				</div>
+			</div>
+		</main>
+	</div>
+	<!-- Footer -->
+	<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </div>
-<!-- Footer -->
-<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </body>
 </html>

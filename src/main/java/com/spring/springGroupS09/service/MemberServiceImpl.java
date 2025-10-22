@@ -54,7 +54,6 @@ public class MemberServiceImpl implements MemberService {
 	}
 	@Override
 	public List<MemberVO> getMemberList(int startIndexNo, int pageSize, int level) {
-		// TODO Auto-generated method stub
 		return memberDAO.getMemberList(startIndexNo, pageSize, level);
 	}
 
