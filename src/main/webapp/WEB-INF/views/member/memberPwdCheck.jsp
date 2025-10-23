@@ -75,52 +75,64 @@
 				<article>
 					<div id="contents">
 						<form name="myform" id="myform" method="post">
-							<table class="table">
-								<tbody>
+							<table class="table w60p margin_auto">
+								<colgroup>
+									<col class="w30p">
+									<col>
+								</colgroup>
+								<thead>
 									<tr>
 						        <th colspan="2">
 						          <h3>비밀번호 확인</h3>
-						          <div>(현재 비밀번호를 확인합니다.)</div>
+						          <p>(현재 비밀번호를 확인합니다.)</p>
 						        </th>
 						      </tr>
+						    </thead>
+						    <tbody>
 						      <tr>
 						        <th>비밀번호</th>
-						        <td><input type="password" name="pwd" id="pwd" class="form-control" autofocus required /></td>
-						      </tr>
-						      <tr>
-						        <td colspan="2">
-						          <input type="button" value="비밀번호확인" onclick="pwdCheck()" class="btn type1 medium"/>
-						          <input type="reset" value="다시입력" class="btn type3 medium"/>
-						          <input type="button" value="돌아가기" onclick="location.href='memberMain'" class="btn type2 medium"/>
-						        </td>
+						        <td><div class="sd_input"><input type="password" name="pwd" id="pwd" autofocus required /></div></td>
 						      </tr>
 								</tbody>
 							</table>
+							<div class="text_center">
+					    	<div class="margin_t_50">
+				          <input type="button" value="비밀번호확인" onclick="pwdCheck()" class="btn type1 medium"/>
+						      <input type="button" value="돌아가기" onclick="location.href='${ctp}/member/memberMain'" class="btn type2 medium"/>
+				        </div>
+					    </div>
 						</form>
 						<form name="newPassform" id="newPassform" method="post" style="display:none">
-							<table class="table">
-								 <tr>
-					        <th colspan="2">
-					          <h3>비밀번호 변경</h3>
-					          <div>(변경할 비밀번호를 입력하세요)</div>
-					        </th>
-					      </tr>
-					      <tr>
-					        <th>새비밀번호</th>
-					        <td><input type="password" name="newPwd" id="newPwd" class="form-control" required /></td>
-					      </tr>
-					      <tr>
-					        <th>비밀번호확인</th>
-					        <td><input type="password" name="rePwd" id="rePwd" class="form-control" required /></td>
-					      </tr>
-					      <tr>
-					        <td colspan="2">
-					          <input type="button" value="비밀번호변경" onclick="pwdChange()" class="btn type1 medium"/>
-					          <input type="reset" value="다시입력" class="btn type3 medium"/>
-					          <input type="button" value="돌아가기" onclick="location.href='location.href='${ctp}/member/memberMain';" class="btn type2 medium"/>
-					        </td>
-					      </tr>
+							<table class="table w60p margin_auto">
+								<colgroup>
+										<col class="w30p">
+										<col>
+								</colgroup>
+								<thead>
+									 <tr>
+						        <th colspan="2">
+						          <h3>비밀번호 변경</h3>
+						          <div>(변경할 비밀번호를 입력하세요)</div>
+						        </th>
+						      </tr>
+						     </thead>
+						     <tbody>
+						      <tr>
+						        <th>새비밀번호</th>
+						        <td><div class="sd_input"><input type="password" name="newPwd" id="newPwd" class="form-control" required /></div></td>
+						      </tr>
+						      <tr>
+						        <th>비밀번호확인</th>
+						        <td><div class="sd_input"><input type="password" name="rePwd" id="rePwd" class="form-control" required /></div></td>
+						      </tr>
+					      </tbody>
 							</table>
+							<div class="text_center">
+					    	<div class="margin_t_50">
+									<input type="button" value="비밀번호변경" onclick="pwdChange()" class="btn type1 medium"/>
+						      <input type="button" value="돌아가기" onclick="location.href='${ctp}/member/memberMain'" class="btn type2 medium"/>
+				        </div>
+					    </div>
 							<input type="hidden" name="mid" value="${sMid}" />
 						</form>
 					</div><!-- //#contents -->

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.springGroupS09.service.BoardService;
 import com.spring.springGroupS09.service.MemberService;
+import com.spring.springGroupS09.service.TravelService;
 import com.spring.springGroupS09.vo.PageVO;
 
 @Service

@@ -12,6 +12,18 @@
   <meta name="author" content="" />
   <jsp:include page="/WEB-INF/views/include/sub.jsp" />
 	<title>추천여행지</title>
+	<script>
+		'use strict';
+		
+		function travelSearch() {
+	    	let part = $("#part").val();
+	    	let choice = $("#choice").val();
+	    	
+	    	location.href = "travelList?part="+part+"&choice="+choice;
+	    }
+	
+	
+	</script>
 </head>
 <body id="sub" class="sub">
 <div id="wrapper">
@@ -29,90 +41,50 @@
 						<div class="search_bar">
 							<div class="sd_input">
 									<select name="part" id="part">
-											<option value="전체" selected>전체</option>
-											<option value="가족">가족</option>
-											<option value="연인">연인</option>
-											<option value="친구">친구</option>
-											<option value="기타">기타</option>
+											<option value="전체" ${part == '전체' ? 'selected' : ''}>전체</option>
+											<option value="가족" ${part == '가족' ? 'selected' : ''}>가족</option>
+											<option value="연인" ${part == '연인' ? 'selected' : ''}>연인</option>
+											<option value="친구" ${part == '친구' ? 'selected' : ''}>친구</option>
+											<option value="기타" ${part == '기타' ? 'selected' : ''}>기타</option>
 									</select>
 							</div>
 							<div class="sd_input">
 									<select name="choice" id="choice">
-											<option value="최근순" selected>최근순</option>
-											<option value="추천순">추천순</option>
-											<option value="조회순">조회순</option>
-											<option value="댓글순">댓글순</option>
+											<option value="최근순" ${choice == '최근순' ? 'selected' : ''}>최근순</option>
+											<option value="추천순" ${choice == '추천순' ? 'selected' : ''}>추천순</option>
+											<option value="조회순" ${choice == '조회순' ? 'selected' : ''}>조회순</option>
+											<option value="댓글순" ${choice == '댓글순' ? 'selected' : ''}>댓글순</option>
 									</select>
 							</div>
 							<input type="button" value="조건검색" class="btn type2 medium" onclick="travelSearch()" />
+							<c:if test="${sLevel == 0}">
 							<div style="float:right">
 								<input type="button" value="등록하기" onclick="location.href='travelInput';" class="btn type1 medium">
 							</div>
+							</c:if>
 						</div>
             <div class="gallery_list clearfix margin_t_20">
-              <%-- <div class="gallery_item">
-                  <a href="">
-                      <span class="photobox">
-                          <span class="inner_photo" style="background-image:url(${ctp}/images/sub/normal.jpg);"></span>
-                      </span>
-                      <span class="title">단풍여행하기 좋은 추천 여행지 단풍여행하기 좋은 추천 여행지</span>
-                  </a>
-                  <div class="tag">#여행 #가족 #연인 #친구</div>
-                  <div class="date">2026-08-25</div>
-                  <div class="instar_bar">
-                  	<ul>
-											<li><i class="fa-regular fa-pen-to-square" title="댓글수"></i> ${vo.replyCnt}0</li>
-											<li><i class="fa-regular fa-face-grin-hearts" title="좋아요"></i> ${vo.goodCount}0</li>
-											<li><i class="fa-regular fa-eye" title="조회수"></i> ${vo.readNum}0</li>
-										</ul>
-                  </div>
-              </div> --%>
               <c:forEach var="vo" items="${vos}" varStatus="st">
 	              <div class="gallery_item">
-	                  <a href="travelContent?idx=${idx}">
+	                  <a href="travelContent?idx=${vo.idx}">
 	                      <span class="photobox">
-	                          <span class="inner_photo" style="background-image:url(${ctp}/photoGallery/${vo.thumbnail});"></span>
+	                          <span class="inner_photo" style="background-image:url(${ctp}/data/photoGallery/${vo.thumbnail});"></span>
 	                      </span>
 	                      <span class="title">${vo.title}</span>
 	                  </a>
-	                  <div class="tag">${vo.tag}</div>
+	                  <div class="tag">${vo.tags}</div>
 	                  <div class="date">${fn:substring(vo.PDate,0,16)}</div>
 	                  <div class="instar_bar">
 	                  	<ul>
-												<li><i class="fa-regular fa-pen-to-square" title="댓글수"></i> ${vo.replyCnt}0</li>
-												<li><i class="fa-regular fa-face-grin-hearts" title="좋아요"></i> ${vo.goodCount}0</li>
-												<li><i class="fa-regular fa-eye" title="조회수"></i> ${vo.readNum}0</li>
+												<li><i class="fa-regular fa-pen-to-square" title="댓글수"></i>-</li>
+												<li><i class="fa-regular fa-face-grin-hearts" title="좋아요"></i> ${vo.goodCount}</li>
+												<li><i class="fa-regular fa-eye" title="조회수"></i> ${vo.readNum}</li>
 											</ul>
 	                  </div>
 	              </div>
               </c:forEach>
             </div>
-            <div class="p-pagination">
-              <div class="p-page">
-                <span class="p-page__control">
-                    <a href="#" class="p-page__link prev-end"><span class="skip">처음 페이지</span></a>
-                    <a href="#" class="p-page__link prev"><span class="skip">이전 10 페이지</span></a>
-                    <a href="#" class="p-page__link prev-one">이전 페이지</a>
-                </span>
-                <span class="p-page__link-group">
-                    <strong title="현재 1페이지" class="p-page__link">1</strong>
-                    <a href="" title="2페이지 이동" class="p-page__link active">2</a>
-                    <a href="" title="3페이지 이동" class="p-page__link">3</a>
-                    <a href="" title="4페이지 이동" class="p-page__link">4</a>
-                    <a href="" title="5페이지 이동" class="p-page__link">5</a>
-                    <a href="" title="6페이지 이동" class="p-page__link">6</a>
-                    <a href="" title="7페이지 이동" class="p-page__link">7</a>
-                    <a href="" title="8페이지 이동" class="p-page__link">8</a>
-                    <a href="" title="9페이지 이동" class="p-page__link">9</a>
-                    <a href="" title="10페이지 이동" class="p-page__link">110</a>
-                </span>
-                <span class="p-page__control">
-                    <a href="#" class="p-page__link next-one">다음 페이지</a>
-                    <a href="#" class="p-page__link next"><span class="skip">다음 10 페이지</span></a>
-                    <a href="#" class="p-page__link next-end"><span class="skip">끝 페이지</span></a>
-                </span>
-              </div>
-            </div>
+            
 						
 					</div><!-- //#contents -->
 				</article>

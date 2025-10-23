@@ -1,6 +1,8 @@
 package com.spring.springGroupS09.common;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -104,6 +106,30 @@ public class ProjectProvide {
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmss");
 		return sdf.format(date) + "_" + oFileName;
+	}
+
+	//원본파일을 지정된 경로로 복사시켜주기
+	public void fileCopyCheck(String oriFilePath, String copyFilePath) {
+		File oriFile = new File(oriFilePath);
+		File copyFile = new File(copyFilePath);
+		
+		try {
+			FileInputStream fis = new FileInputStream(oriFile);   //읽기 위한 스트림
+			FileOutputStream fos = new FileOutputStream(copyFile); //쓰기 위한 스트림
+			
+			byte[] buffer = new byte[2048];  //2KB
+			int count = 0;
+			while((count = fis.read(buffer)) != -1) {
+				fos.write(buffer, 0, count);    //읽은 만큼(count 바이트) 복사 대상 파일에 씀
+			}
+			fos.flush();  //버퍼에 남은 데이터를 모두 출력(파일에 기록)
+			fos.close();
+			fis.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	

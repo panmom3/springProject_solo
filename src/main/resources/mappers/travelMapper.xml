@@ -3,7 +3,11 @@
 <mapper namespace="com.spring.springGroupS09.dao.TravelDAO">
 
 	<select id="getTravelList" resultType="com.spring.springGroupS09.vo.TravelVO">
-    select * from travel p <if test='part !="전체"'> where part = #{part}</if> order by idx desc limit #{startIndexNo},#{pageSize};
+    select * from travel p <if test='part !="전체"'> where part = #{part}</if> order by ${choice} desc limit #{startIndexNo},#{pageSize};
 	</select>
+	
+	<insert id="setTravelInput">
+		insert into travel values (default,#{vo.mid},#{vo.part},#{vo.title},#{vo.content},#{vo.thumbnail},#{vo.address},default,default,default,#{vo.tags})
+	</insert>
 
 </mapper>

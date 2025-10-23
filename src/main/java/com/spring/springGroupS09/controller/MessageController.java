@@ -96,6 +96,14 @@ public class MessageController {
 			model.addAttribute("message", "게시글 삭제실패~!");
 			model.addAttribute("url", "/board/boardContent?idx="+idx+"&pag="+pageVO.getPag()+"&pageSize="+pageVO.getPageSize());
 		}
+		else if(msgFlag.equals("travelInputOk")) {
+			model.addAttribute("message", "여행지 게시글이 등록되었습니다.");
+			model.addAttribute("url", "/travel/travelList");
+		}
+		else if(msgFlag.equals("travelInputNo")) {
+			model.addAttribute("message", "여행지 게시글 등록 실패");
+			model.addAttribute("url", "/travel/travelInput");
+		}
 		
 		return "include/message";
 	}

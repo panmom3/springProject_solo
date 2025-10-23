@@ -27,11 +27,11 @@
 					<div id="contents">
 						<div class="box imagebox">
 					    <div class="inner">
-					        <div class="image">
+					        <div class="image margin_t_20">
 					            <img src="${ctp}/member/${mVo.photo}" alt="프로필이미지">
 					        </div>
 					        <div class="cont" style="width: calc(100% - 310px);">
-					            <div class="tit"><em class="em_b_blue">${sNickName}</em> 회원님 마이페이지</div>
+					            <div class="tit"><h3 class="margin_t_0 margin_b_10"><em class="em_b_blue">${sNickName}</em> 회원님 마이페이지</h3></div>
 					            <div class="txt">
 					            	<table class="table">
 										      <caption>테이블제목 - 순으로 정보를 제공</caption>
@@ -60,34 +60,33 @@
 										  	</table>
 					            </div>
 					        </div>
-					        <div class="info">
+					        <div class="text_right margin_t_20">
 					        	<a class="btn type1 small" href="${ctp}/member/memberPwdCheck/pwdck">비밀번호변경</a>
-					        	<a class="btn type1 small" href="${ctp}/member/memberPwdCheck/update">회원가입수정</a>
-					        	<a class="btn type1 small" href="javascript:userDeleteCheck()">회원탈퇴</a>
+					        	<a class="btn type2 small" href="${ctp}/member/memberPwdCheck/update">회원가입수정</a>
+					        	<a class="btn type3 small" href="javascript:userDeleteCheck()">회원탈퇴</a>
 					        </div>
 					    </div>
-					</div>
-					<h3>활동내역</h3>
-					<div class="box">
-						<table class="table table-bordered table-group-divider">
+						</div>
+						<h4>활동내역</h4>
+						<table class="table type2">
 				        <caption>테이블제목 - 순으로 정보를 제공</caption>
 				        <colgroup>
 				            <col class="w30p">
-				            <col class="w70p">
+				            <col />
 				        </colgroup>
 				        <tbody>
-				        <tr>
-				            <th scope="row" class="table-secondary">커뮤니티 게시판 등록글수</th>
-				            <td>테이블 내용1</td>
-				        </tr>
-				        <tr>
-				            <th scope="row" class="table-secondary">테이블 제목2</th>
-				            <td>테이블 내용2</td>
-				        </tr>
+					        <tr>
+					            <th scope="row" class="table-secondary">커뮤니티 게시판 등록글수</th>
+					            <td>테이블 내용1</td>
+					        </tr>
+					        <tr>
+					            <th scope="row" class="table-secondary">테이블 제목2</th>
+					            <td>테이블 내용2</td>
+					        </tr>
 				        </tbody>
 				    </table>
-					</div>
-					<h3>일정관리</h3>
+						
+						<h4>일정관리</h4>
 					</div><!-- //#contents -->
 				</article>
 			</main>

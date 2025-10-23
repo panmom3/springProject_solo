@@ -25,37 +25,35 @@
 				<article>
 					<div id="contents">
 						<form name="myform" method="post">
-					    <table class="p-table mobile block">
+					    <table class="table type2 w50p margin_auto">
 					    	<caption>{회원가입} - 정보 제공</caption>
 								<colgroup>
-									<col class="w20p">
+									<col class="w30p">
 									<col>
 								</colgroup>
-						    <tbody class="p-table--th-left">
+						    <tbody>
 						      <tr>
-						        <th class="align-middle">아이디</th>
-						        <td><input type="text" name="mid" id="mid" value="${mid}" autofocus required class="form-control"/></td>
+						        <th>아이디</th>
+						        <td><div class="sd_input"><input type="text" name="mid" id="mid" value="${mid}" autofocus required/></div></td>
 						      </tr>
 						      <tr>
-						        <th class="align-middle">비밀번호</th>
-						        <td><input type="password" name="pwd" id="pwd" required class="form-control"/></td>
-						      </tr>
-						      <tr class="text-center">
-						        <td colspan="2">
-						          <div class="mb-2">
-							          <input type="submit" value="로그인" class="btn type1 medium"/>
-							          <input type="reset" value="다시입력" class="btn type3 medium"/>
-							          <input type="button" value="회원가입" onclick="location.href='${ctp}/member/memberJoin';" class="btn type2 medium"/>
-						          </div>
-							    		<div>
-							    			<input type="checkbox" name="idSave" checked />아이디 저장 /
-							    			<a href="memberIdSearch" class="text-decoration-none text-dark link-primary">아이디찾기</a> /
-							    			<a href="#" class="text-decoration-none text-dark link-primary">비밀번호찾기</a>
-							    		</div>
-						        </td>
+						        <th>비밀번호</th>
+						        <td><div class="sd_input"><input type="password" name="pwd" id="pwd" required class="form-control"/></div></td>
 						      </tr>
 						    </tbody>
 					    </table>
+					    <div class="text_center">
+					    	<div class="margin_t_50">
+				          <input type="submit" value="로그인" class="btn type1 medium"/>
+				          <input type="reset" value="다시입력" class="btn type3 medium"/>
+				          <input type="button" value="회원가입" onclick="location.href='${ctp}/member/memberJoin';" class="btn type2 medium"/>
+			          </div>
+				    		<div class="margin_t_20">
+				    			<input type="checkbox" name="idSave" checked />아이디 저장 /
+				    			<a href="memberIdSearch" class="text-decoration-none text-dark link-primary">아이디찾기</a> /
+				    			<a href="#" class="text-decoration-none text-dark link-primary">비밀번호찾기</a>
+				    		</div>
+					    </div>
 					  </form>
 					</div><!-- //#contents -->
 				</article>
