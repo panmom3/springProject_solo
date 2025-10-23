@@ -66,6 +66,14 @@ public class TravelController {
 		else return "redirect:/message/travelInputNo";
 	}
 	
+	// 추천여행지 상세보기
+	@GetMapping("/travelContent")
+	public String travelContentGet() {
+		
+		
+		return "travel/travelContent";
+	}
+	
 	
 	
 	
