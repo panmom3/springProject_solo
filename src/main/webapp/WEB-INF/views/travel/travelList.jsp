@@ -76,9 +76,9 @@
 	                  <div class="date">${fn:substring(vo.PDate,0,16)}</div>
 	                  <div class="instar_bar">
 	                  	<ul>
-												<li><i class="fa-regular fa-pen-to-square" title="댓글수"></i>-</li>
-												<li><i class="fa-regular fa-face-grin-hearts" title="좋아요"></i> ${vo.goodCount}</li>
-												<li><i class="fa-regular fa-eye" title="조회수"></i> ${vo.readNum}</li>
+												<li><i class="icon-reply" title="댓글수"></i>댓글수${vo.replyCnt}</li>
+												<li><i class="icon-like" title="좋아요"></i>좋아요${vo.goodCount}</li>
+												<li><i class="icon-search" title="조회수"></i>조회수${vo.readNum}</li>
 											</ul>
 	                  </div>
 	              </div>

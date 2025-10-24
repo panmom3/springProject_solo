@@ -9,7 +9,23 @@
 .sub_head .sub_title{padding-top: 190px;}
 .sub_head .sub_title h2{font-size: 45px;line-height: 1.5em;color: #fff;}
 
+/* 컨텐츠 영역 */
 #contents{position: relative;min-height: 500px;background-color: #fff;padding: 50px 0}
+/* 댓글창 */
+.reply_area{position:relative;background-color: #f6f6f7;margin-top:20px;padding:20px;border-radius: 10px;font-family: 'Pretendard','NotoKr';}
+.replyInput{margin: 25px 0;}
+.replyInput .nickName{position: relative;font-size:16px;line-height: 1.5em;color: #2600b5;margin-bottom: 10px;}
+.replyInput .cont{display:table;}
+.replyInput .cont .col_line{display:table-cell;vertical-align: top;}
+.replyInput .cont .col_line.input{width:100%;}
+.replyInput .cont .col_line.input textarea{width:100%;border-radius: 6px 0 0 6px;border-color: #ccc;height: 72px;}
+.replyInput .cont .col_line.submit .btn{margin:0;height: 72px;border-radius: 0 6px 6px 0;border-left:none;border-color: #ccc;background-color:#dadce0;font-size: 16px;
+    font-weight: 600;}
+.replyList{margin: 25px 0;}
+.replyList .nickName{position: relative;font-size:16px;line-height: 1.5em;color: #2600b5;margin-bottom: 10px;}
+.replyList .cont{margin:10px 0}
+.replyList .cont .cont_line{font-size:15px;line-height:1.2em;color:#898f9d}
+.replyList .submit_date{font-size:13px;line-height:1.2em;color:#898f9d}
 /* web */
 @media all and (max-width:1200px){
 

@@ -104,6 +104,10 @@ public class MessageController {
 			model.addAttribute("message", "여행지 게시글 등록 실패");
 			model.addAttribute("url", "/travel/travelInput");
 		}
+		else if(msgFlag.equals("travelDeleteOk")) {
+			model.addAttribute("message", "추천여행지 게시글이 삭제되었습니다.");
+			model.addAttribute("url", "/travel/travelList");
+		}
 		
 		return "include/message";
 	}

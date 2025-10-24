@@ -373,6 +373,8 @@ td .num {margin:0;padding:0;}
 /*버튼크기*/
 .btn.medium{min-width: 120px;padding: 9px 10px;}
 .btn.small{min-width: 94px;padding: 3px 5px;font-size: 14px;}
+.btn.ssmall{min-width: 50px;padding: 4px 2px 1px;font-size: 13px;line-height:20px}
+.btn.ssmall + .btn.ssmall{margin-left:5px}
 .icon_btn.shape1.medium{min-width: 182px;padding: 9px 45px 9px 20px;}
 .icon_btn.small{min-width: 94px;padding: 3px 5px;font-size: 14px;}
 .icon_btn.small > span{font-size: 14px;}

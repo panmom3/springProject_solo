@@ -2,6 +2,7 @@ package com.spring.springGroupS09.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -84,6 +85,43 @@ public class TravelServiceImpl implements TravelService {
 
 	    return res;
 	}
+
+	@Override
+	public void setTravelReadNumPlus(int idx) {
+		travelDAO.setTravelReadNumPlus(idx);
+	}
+
+	@Override
+	public TravelVO getTravelIdxSearch(int idx) {
+		return travelDAO.getTravelIdxSearch(idx);
+	}
+
+	@Override
+	public ArrayList<TravelVO> getTravelReply(int idx) {
+		return travelDAO.getTravelReply(idx);
+	}
+
+	@Override
+	public void setTravelGoodPlus(int idx) {
+		travelDAO.setTravelGoodPlus(idx);
+	}
+
+	@Override
+	public int setTravelReplyInput(TravelVO vo) {
+		return travelDAO.setTravelReplyInput(vo);
+	}
+
+	@Override
+	public int setTravelReplyDelete(int idx) {
+		return travelDAO.setTravelReplyDelete(idx);
+	}
+
+	@Override
+	public void setTravelDelete(int idx) {
+		travelDAO.setTravelDelete(idx);
+	}
+
+
 
 	
 }

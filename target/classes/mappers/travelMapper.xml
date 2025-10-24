@@ -6,8 +6,36 @@
     select * from travel p <if test='part !="전체"'> where part = #{part}</if> order by ${choice} desc limit #{startIndexNo},#{pageSize};
 	</select>
 	
+	<select id="getTravelIdxSearch" resultType="com.spring.springGroupS09.vo.TravelVO">
+		select pg.*,(select count(*) from travelReply where travelIdx = #{idx}) as replyCnt from travel pg where pg.idx = #{idx};
+	</select>
+	
+	<select id="getTravelReply" resultType="com.spring.springGroupS09.vo.TravelVO">
+		select *, idx as replyIdx from travelReply where travelIdx = #{idx} order by idx desc;
+	</select>
+	
 	<insert id="setTravelInput">
 		insert into travel values (default,#{vo.mid},#{vo.part},#{vo.title},#{vo.content},#{vo.thumbnail},#{vo.address},default,default,default,#{vo.tags})
 	</insert>
+	
+	<insert id="setTravelReplyInput">
+		insert into travelReply values (default,#{vo.mid},#{vo.travelIdx},#{vo.content},default);
+	</insert>
 
+	<update id="setTravelReadNumPlus">
+		update travel set readNum = readNum + 1 where idx = #{idx};
+	</update>
+	
+	<update id="setTravelGoodPlus">
+		update travel set goodCount = goodCount + 1 where idx = #{idx};
+	</update>
+	
+	<delete id="setTravelReplyDelete">
+		delete from travelReply where idx = #{idx}; 
+	</delete>
+	
+	<delete id="setTravelDelete">
+		delete from travelReply where travelIdx = #{idx}; 
+		delete from travel where idx = #{idx}; 
+	</delete>
 </mapper>

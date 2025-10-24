@@ -12,6 +12,88 @@
   <meta name="author" content="" />
   <jsp:include page="/WEB-INF/views/include/sub.jsp" />
 	<title>추천여행지</title>
+	<script>
+		'use strict';
+		
+		// 게시글 삭제하기
+		function deleteCheck(idx) {
+			let ans = confirm("현재 게시글을 삭제하시겠습니까?");
+			if(!ans) return false;
+			else location.href="travelDelete?idx="+idx;
+		}
+		
+		// 댓글 등록보기
+		function replyInputShow() {
+			$("#replyInput").toggle();
+		}
+		
+		// 댓글달기
+		function replyCheck() {
+			let content = $("#content").val();
+			if(content.trim() == "") {
+				alert("이용후기을 입력하세요");
+				return false;
+			}
+			let query = {
+					mid : '${sMid}',
+					travelIdx : '${vo.idx}',
+					content : content
+			}
+			$.ajax({
+				url : "${ctp}/travel/travelReplyInput",
+				type : "post",
+				data : query,
+				success : function(res) {
+					if(res != 0) {
+						alert("이용후기가 입력되었습니다.");
+						location.reload();
+					}
+					else alert("이용후기 입력 실패~~");
+				},
+				error : function() {
+					alert("전송 오류!");
+				}
+			});	
+		}
+		// 댓글 삭제하기
+		function replyDelete(idx) {
+			let ans = confirm("선택한 이용후기를 삭제하시겠습니까?");
+			if(!ans) return false;
+			
+			$.ajax({
+				url : "${ctp}/travel/travelReplyDelete",
+				type : "post",
+				data : {idx : idx},
+				success : function(res) {
+					if(res != 0) {
+						alert("이용후기가 삭제되었습니다.");
+						location.reload();
+					}
+					else alert("이용후기 삭제 실패~~");
+				},
+				error : function() {
+					alert("전송 오류!");
+				}
+			});
+		}
+		
+		// 좋아요 처리(중복불허)
+		function goodCheck() {
+			$.ajax({
+				url : "${ctp}/travel/travelGoodCheck",
+				type : "post",
+				data : {idx : ${vo.idx}},
+				success : function(res) {
+					if(res != 0) location.reload();
+					else alert("이미 좋아요 버튼을 클릭하셨습니다.");
+				},
+				error : function() {
+					alert("전송 오류!");
+				}
+			});
+		}
+	
+	</script>
 </head>
 <body id="sub" class="sub">
 <div id="wrapper">
@@ -33,12 +115,12 @@
 								</div>
 								<div class="fieldlistbox">
 									<div class="field_item">
-										<em class="title">작성자</em>
-										<span class="text">${vo.mid}</span>
-									</div>
-									<div class="field_item">
 										<em class="title">조회수</em>
 										<span class="text">${vo.readNum}</span>
+									</div>
+									<div class="field_item">
+										<em class="title">이용후기</em>
+										<span class="text">${vo.replyCnt}</span>
 									</div>
 									<div class="field_item">
 										<em class="title">좋아요</em>
@@ -51,40 +133,79 @@
 								</div>
 								<div class="viewcontentbox">
 									<div class="viewcontent">
-										<div class="bbs_photo">
+										<%-- <div class="bbs_photo">
 											<div class="inner">
 											<c:forEach var="photo" items="${photoList}" varStatus="st">
 												<img src="${ctp}/travel/${photo}" title="${photo}" alt="${photo}" />
 											</c:forEach>
 											</div>
-										</div>
-										<div class="contenttext">
-											우리 집 고양이는 매일 책상 위에서 꾸벅꾸벅 낮잠을 즐깁니다. 고양이가 책상 위에서 자는 것을 좋아하는 특별한 이유가 있을까요 비밀은 책상 위의 유리에 있습니다.
-											유리는 나무보다 열전도가 높아서 열기나 냉기를 사람에게 빠르게 전달합니다. 유리를 놓은 책상 위에 올라간 고양이는 유리의 냉기 때문에 신체의 온도변화를 느끼게 되는데요. 신체의 온도가 변하면 근육이 이완되고 온몸이 나른해집니다. 창문 가에서 낮잠을 잘 때 잠이 더 잘 오는 것도 이와 같은 원리랍니다!<br>
-											<br>
-											졸음은 부족한 잠을 보충하려는 생리적 욕구로서 잠에 빠지기 쉬운 상태를 말합니다. 공부하는 학생들에게는 졸음이 상대하기 어려운 적이라는 사실! 신체의 온도변화를 일으키는 책상 위의 유리는 졸음을 유발하게 됩니다
+										</div> --%>
+										<div class="contenttext text_center">
+											${vo.content}
 										</div>
 									</div>
-									<!-- <div class="attachedfile">첨부파일이 있을 때 출력
-										<div class="attach_item">
-											<span class="text">첨부파일명.jpg</span>
-											<a href="" class="icon_btn type2 shape2 small download"><span>다운로드</span></a>
-										</div>
-										<div class="attach_item">
-											<span class="text">첨부파일명.hwp</span>
-											<a href="" target="_blank" title="새창" class="icon_btn type2 shape2 small preview"><span>미리보기</span></a>
-										</div>
-									</div> -->
 								</div>
 							</div>
-
+							<!-- 댓글창 -->
+							<div class="reply_area">
+								<div class="btn_box">
+									<a href="javascript:goodCheck()" class="icon_like">
+										<span>좋아요</span>
+									</a> ${vo.goodCount}
+									<c:if test="${sLevel <= 1}">
+										<a href="javascript:replyInputShow();" class="icon_reply">
+										    <span>이용후기</span>
+										</a> ${vo.replyCnt}
+									</c:if>
+								</div>
+								<div id="replyInput" class="replyInput" style="display:none;">
+									<form name="replyForm">
+										<div class="nickName">
+											<span>${sNickName}</span>
+										</div>
+										<div class="cont">
+											<div class="col_line input">
+												<textarea rows="4" name="content" id="content"></textarea>
+											</div>
+											<div class="col_line submit">
+												<input type="button" value="등록" onclick="replyCheck()" class="btn btn2 small" />
+											</div>
+										</div>
+									</form>
+								</div>
+								<!-- 댓글 리스트 보여주기 -->
+								<div id="replyList" class="replyList">
+									<c:forEach var="replyVo" items="${replyVos}" varStatus="st"> 
+										<div class="nickName">
+											<span>${replyVo.mid}</span>
+											<c:if test="${sMid == replyVo.mid || sLevel == 0}">
+													<a href="javascript:replyDelete(${replyVo.idx})" class="btn type4 ssmall">삭제</a>
+											</c:if> 
+											<!-- <a href="" class="btn type3 ssmall">좋아요</a>
+											<a href="" class="btn type4 ssmall">신고</a> -->
+										</div>
+										<div class="cont">
+											<p class="col_line">
+												${fn:replace(replyVo.content,newLine,"<br/>")}
+											</p>
+										</div>
+										<div class="submit_date">
+											<span>${fn:substring(replyVo.prDate, 0, 10)}</span>
+										</div>
+										<div class="line3"></div>
+									</c:forEach>
+								</div>
+							</div>
+							
+							
 							<div class="floatbox btn_group clearfix">
 								<div class="floatleft">
 									<a href="travelList" class="btn type2 medium">목록</a>
 								</div>
 								<c:if test="${sLevel == 0}">
 								<div class="floatright">
-									<a href="" class="btn type1 medium">수정</a>
+									<a href="location.href='travelUpdate?idx=${vo.idx}'" class="btn type1 medium">수정</a>
+									<a href="deleteCheck(${vo.idx})" class="btn type3 medium">삭제</a>
 								</div>
 								</c:if>
 							</div>
