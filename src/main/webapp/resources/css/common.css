@@ -123,7 +123,7 @@ input[type="submit"]{cursor:pointer;}
     .lnb .menu .text{font-size: 18px;line-height: 1.5em;font-weight: 400;}
     /* 1차메뉴 */
     .lnb .menu .depth1{}
-    .lnb .menu .depth1_list{width: 100%;padding-left:50%;}
+    .lnb .menu .depth1_list{width: 100%;padding-left:40%}
     .lnb .menu .depth1_item{margin-left:83px}
     .lnb .menu .depth1_text{display: inline-block;position: relative;padding: 33px 0;color:#555;font-size: 20px;font-weight: 500;line-height: 1.5em;}
     .lnb .menu .depth1_text:before{display: block;position: absolute;bottom:-3px;left:-5px;width: 0;height: 5px;background-color: #194f7c;transition: width 0.25s ease-in;}

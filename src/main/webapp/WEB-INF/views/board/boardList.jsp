@@ -11,7 +11,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
   <jsp:include page="/WEB-INF/views/include/sub.jsp" />
-	<title>소통게시판</title>
+	<title>커뮤니티</title>
 	<script>
 	'use strict';
 	
@@ -35,7 +35,7 @@
 			<main id="colgroup" class="colgroup">
 				<article>
 					<div id="contents">
-						<div class="p-wrap bbs bbs__list bbs_new_skin">
+						<div class="p-wrap">
 							<div class="boardtopbox">
 								<i class="icon"></i>
 								<div class="box_wrap">
@@ -50,7 +50,7 @@
 								<div class="col-9 col-sm-24 margin_t_10 small">
 									<div class="bbs_page">
 										<span class="item count">총게시물 : <em class="em_b_blue">${fn:length(vos)}</em>건</span>
-										<span class="item pageSize">페이지
+										<span class="item pageSize">페이지&nbsp;
 											<select name="pageSize" id="pageSize" onchange="pageSizeCheck()">
 												<option ${pageVO.pageSize == 5 ? 'selected' : ''}>5</option>
 												<option ${pageVO.pageSize == 10 ? 'selected' : ''}>10</option>
@@ -63,19 +63,23 @@
 								</div>
 								<div class="col-15 col-sm-24 right top_select">
 									<form name="searchForm" method="get" action="boardSearchList">
-										<select name="search" id="search" class="p-input p-input--auto" title="검색영역선택">
-											<option value="title">글제목</option>
-											<option value="nickName">글쓴이</option>
-											<option value="content">글내용</option>
-										</select>
-										<input type="text" name="searchString" id="searchString" class="p-input p-input--auto board_search" required />
-										<input type="submit" class="p-button primary" value="검색"/>
+										<div class="sd_input">
+											<select name="search" id="search" class="p-input p-input--auto" title="검색영역선택">
+												<option value="title">글제목</option>
+												<option value="nickName">글쓴이</option>
+												<option value="content">글내용</option>
+											</select>
+										</div>
+										<div class="sd_input">
+											<input type="text" name="searchString" id="searchString" class="p-input p-input--auto board_search" required />
+										</div>
+										<input type="submit" class="btn type2 medium" value="검색"/>
 									</form>
 								</div>
 							</div>
 							<!-- 게시판테이블 -->
-							<div class="table-responsive">
-								<table class="p-table" data-breakpoint="760">
+							<div class="board_table">
+								<table class="table responsive">
 									<caption>커뮤니티 게시판 목록 - 번호, 제목, 작성자, 작성일, 조회수 정보  제공</caption>
 									<thead>
 										<tr>
@@ -90,20 +94,20 @@
 									<c:set var="curScrStartNo" value="${pageVO.curScrStartNo}" />
 									<c:forEach var="vo" items="${vos}" varStatus="st">
 										<tr>
-											<td><span class="bbs_num">${curScrStartNo}</span></td>
-											<td class="p-subject">
+											<td><span class="num">${curScrStartNo}</span></td>
+											<td>
 												<c:if test="${vo.openSw == 'NO'}">
 													<c:if test="${sMid != vo.mid && sLevel != 0}"><font color="red">(비밀글)</font></c:if>
 													<c:if test="${sMid == vo.mid || sLevel == 0}">
 														<a href="boardContent?idx=${vo.idx}&pag=${pageVO.pag}&pageSize=${pageVO.pageSize}">
-															<c:if test="${sLevel == 0}"><font color="red">(비밀글)</font></c:if>${vo.title}
+															<c:if test="${sLevel == 0}"><i class="icon_secret">비밀글</i></c:if>${vo.title}
 														</a>
-												 		<c:if test="${vo.hour_diff <= 24}"><span class="p-icon p-icon__new">새글</span></c:if>
+												 		<c:if test="${vo.hour_diff <= 24}"><span class="icon_new">새글</span></c:if>
 											 		</c:if>
 											 	</c:if>
 											 	<c:if test="${vo.openSw != 'NO'}">
 													<a href="boardContent?idx=${vo.idx}&pag=${pageVO.pag}&pageSize=${pageVO.pageSize}">${vo.title}</a>
-											 		<c:if test="${vo.hour_diff <= 24}"><span class="p-icon p-icon__new">새글</span></c:if>
+											 		<c:if test="${vo.hour_diff <= 24}"><span class="icon_new">새글</span></c:if>
 											 	</c:if>
 											</td>
 											<td>${vo.nickName}</td>
@@ -141,7 +145,7 @@
 								</div>
 							</div>
 							<!-- 블록페이지 끝 -->
-							<div class="text-end mt-5">
+							<div class="text_right mt-5">
 								<a href="boardInput" class="btn type1 medium">글쓰기</a>
 							</div>
 						</div>

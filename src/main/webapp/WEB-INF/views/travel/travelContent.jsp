@@ -150,12 +150,14 @@
 							<div class="reply_area">
 								<div class="btn_box">
 									<a href="javascript:goodCheck()" class="icon_like">
-										<span>좋아요</span>
-									</a> ${vo.goodCount}
+										<i class="t_icon like margin_r_5" title="좋아요"></i>
+										<span>${vo.goodCount}</span>
+									</a> 
 									<c:if test="${sLevel <= 1}">
-										<a href="javascript:replyInputShow();" class="icon_reply">
-										    <span>이용후기</span>
-										</a> ${vo.replyCnt}
+										<a href="javascript:replyInputShow();" class="icon_reply margin_l_20">
+											<i class="t_icon reply margin_r_5" title="이용후기"></i>
+										    <span>${vo.replyCnt}</span>
+										</a> 
 									</c:if>
 								</div>
 								<div id="replyInput" class="replyInput" style="display:none;">
@@ -196,8 +198,6 @@
 									</c:forEach>
 								</div>
 							</div>
-							
-							
 							<div class="floatbox btn_group clearfix">
 								<div class="floatleft">
 									<a href="travelList" class="btn type2 medium">목록</a>

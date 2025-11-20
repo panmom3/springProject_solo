@@ -19,6 +19,28 @@ try {
 					$wrapper = $('#wrapper'),
 					$container = $('#container');
 					
+				var scrollTop = $window.scrollTop();
+				var scrollBottom = scrollTop + $window.height(),
+					$rowgroup = $('.rowcont'),
+					wrapperOffset = $wrapper.offset();
+				if(scrollTop > wrapperOffset.top) {
+					$wrapper.attr('data-nontop', 'nontop');
+				}else{
+					$wrapper.attr('data-nontop', 'top');
+				};
+				setTimeout(function(){
+					$rowgroup.each(function(){
+						var $this = $(this),
+							ThisOffset = $this.offset(),
+							ThisIndex = $this.attr('data-index');
+						if(scrollBottom > ThisOffset.top) {
+							$this.attr('data-active', 'Y');
+							$wrapper.attr('data-row', ThisIndex);
+						} else{
+							$this.attr('data-active', 'N');
+						}
+					});
+				}, 50);
 				$window.on('scroll', function(event) {
 					var scrollTop = $window.scrollTop(),
 						scrollBottom = scrollTop + $window.height(),
@@ -46,17 +68,17 @@ try {
 							$this.attr('data-active', 'N');
 						}
 					});
-					setTimeout(function() {
-						$rowgroup.each(function (){
-							var $this = $(this),
-								ThisOffset = $this.offset();
-							if(scrollBottom > ThisOffset.top) {
-								$this.attr('data-state', 'on');
-							} else{
-								$this.attr('data-state', 'off');
-							}
-						});
-					}, 5000);
+					// setTimeout(function() {
+					// 	$rowgroup.each(function (){
+					// 		var $this = $(this),
+					// 			ThisOffset = $this.offset();
+					// 		if(scrollBottom > ThisOffset.top) {
+					// 			$this.attr('data-state', 'on');
+					// 		} else{
+					// 			$this.attr('data-state', 'off');
+					// 		}
+					// 	});
+					// }, 5000);
 				});
 
 				//메인비주얼 슬릭
@@ -66,7 +88,7 @@ try {
 					$visualSlideItem = $visualSlide.find('.slick-slide');
 
 				$visualSlide.slick({
-					autoplay : false,
+					autoplay : true,
 					autoplaySpeed: 4000,
 					pauseOnHover: false,
 					swipe : false,

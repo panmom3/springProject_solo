@@ -401,7 +401,7 @@
 											</tbody>
 										</table>
 								</fieldset>
-								<div class="text-center">
+								<div class="text_center margin_t_30">
 							    <button type="button" class="btn type1" onclick="fCheck()">회원가입</button> &nbsp;
 							    <button type="reset" class="btn type3">다시작성</button> &nbsp;
 							    <button type="button" class="btn type2" onclick="location.href='${ctp}/member/memberLogin';">돌아가기</button>

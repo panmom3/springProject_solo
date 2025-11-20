@@ -72,9 +72,9 @@
 								</c:if>
 								</div>
 							</div>
-							<%-- 디버깅용: 세션 값 확인 --%>
+							<%-- 디버깅용: 세션 값 확인 
 							<p>sMid: ${sMid}</p>
-							<p>sLevel: ${sLevel}</p>
+							<p>sLevel: ${sLevel}</p>--%>
 							<!-- 이전글/다음글 -->
 							<div class="bbsmovebox">
 								<div class="move_item prev clearfix">

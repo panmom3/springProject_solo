@@ -35,21 +35,18 @@
                         <a class="nav-link" href="${ctp}/admin/board/adBoardList">커뮤니티</a>
                     </nav>
                 </div>
-                 <!-- 통계 -->
+                 <!-- 통계 
                 <div class="sb-sidenav-menu-heading">Addons</div>
                 <a class="nav-link" href="charts.html">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                     Charts
                 </a>
-                <a class="nav-link" href="tables.html">
+               	<a class="nav-link" href="tables.html">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Tables
                 </a>
-            </div>
+                -->
         </div>
-        <div class="sb-sidenav-footer">
-            <div class="small">Logged in as:</div>
-            Start Bootstrap
-        </div>
+       
     </nav>
 </div>

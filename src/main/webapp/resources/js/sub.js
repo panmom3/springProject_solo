@@ -1,5 +1,3 @@
-
-
 (function($) {
     'use strict';
 
@@ -7,14 +5,36 @@
         $document = $(document),
         $html = $('html'),
         $head = $('head'),
-		$screen = $.screen,
+				$screen = $.screen,
         $inArray = $.inArray;
 
     $window.on('load', function() {
 
-		//여기서부터 코드 작성해주세요
-
-
+		    //레이어팝업
+				$('.popup_btn').click(function (){
+					$(this).siblings().addClass('on');
+				});
+				$('.popup_close').click(function (){
+					$('.popup').removeClass('on');
+					$('.popup_btn').focus();
+				});
+				
+		    //FAQ
+				$('.temp_accordion .accordion_item button.accordion_btn').on('click', function() {
+					var $this = $(this),
+						$MyParent = $this.parent('.accordion_item'),
+						IsActive = $MyParent.is('.active'),
+						$MyLayer = $this.siblings('.accordion_con');
+					if(!IsActive){
+						$MyParent.addClass('active');
+						$MyLayer.slideDown();
+						$this.attr('title', '내용닫기');
+					} else{
+						$MyParent.removeClass('active');
+						$MyLayer.slideUp();
+						$this.attr('title', '내용열기');
+					}
+				});
 		
 
         $window.on('screen:tablet screen:phone', function(event) {

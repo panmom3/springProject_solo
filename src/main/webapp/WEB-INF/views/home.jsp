@@ -16,7 +16,7 @@
 	<!-- Navbar -->
 	<jsp:include page="/WEB-INF/views/include/nav.jsp" />
 	<!-- Main Content-->
-	<div class="container">
+	<div id="container">
 		<main>
 			<div class="rowgroup rowgroup1 rowcont" data-index="0">
 				<section class="main_visual">
@@ -25,11 +25,11 @@
 						<div class="wrap">
 							<div class="visual_cont">
 								<div class="tit text1">
-									<span>가을 단풍 여행</span>
+									<span>단풍 따라 가을여행</span>
 								</div>
 								<div class="tit text2">
-									<span>일년에 딱 한번 열리는 숲 길,<br />
-										단풍축제에 초대합니다.
+									<span>패키지로 간편하게 떠나는<br />
+										가을 국내 여행
 									</span>
 								</div>
 							</div>
@@ -42,17 +42,17 @@
 						<div class="slide_list">
 							<div class="slide_item">
 								<div class="image_box">
-									<div class="inner_image" style="background-image: url('${ctp}/images/main/visual_img_1.jpg')"></div>
+									<div class="inner_image" style="background-image: url('${ctp}/images/main/visual_img1.jpg')"></div>
 								</div>
 							</div>
 							<div class="slide_item">
 								<div class="image_box">
-									<div class="inner_image" style="background-image: url('${ctp}/images/main/visual_img_2.jpg')"></div>
+									<div class="inner_image" style="background-image: url('${ctp}/images/main/visual_img2.jpg')"></div>
 								</div>
 							</div>
 							<div class="slide_item">
 								<div class="image_box">
-									<div class="inner_image" style="background-image: url('${ctp}/images/main/visual_img_3.jpg')"></div>
+									<div class="inner_image" style="background-image: url('${ctp}/images/main/visual_img3.jpg')"></div>
 								</div>
 							</div>
 						</div>
@@ -75,18 +75,58 @@
 					<div class="wave"></div>
 				</section>
 			</div>
-			<div class="rowgroup2">
+			<div class="rowgroup rowgroup2 rowcont" data-index="1">
 				<div class="wrap">
-					<section>추천여행지</section>
+					<section>
+						<div class="title_box">
+							<h2>고객님만을 위한 추천여행</h2>
+						</div>
+						<div class="content">
+							<div class="cont_list">
+								<div class="cont_item">
+									<div class="img_inner" style="background-image: url(${ctp}/images/main/row2_img1.jpg);"></div>
+									<div class="desc">
+										<span class="tit">단풍트레킹 설악산</span>
+										<span class="hash">#가족여행 #단풍구경 #힐링여행</span>
+									</div>
+								</div>
+								<div class="cont_item">
+									<div class="img_inner" style="background-image: url(${ctp}/images/main/row2_img2.jpg);"></div>
+									<div class="desc">
+										<span class="tit">단풍트레킹 설악산</span>
+										<span class="hash">#가족여행 #단풍구경 #힐링여행</span>
+									</div>
+								</div>
+								<div class="cont_item">
+									<div class="img_inner" style="background-image: url(${ctp}/images/main/row2_img3.jpg);"></div>
+									<div class="desc">
+										<span class="tit">단풍트레킹 설악산</span>
+										<span class="hash">#가족여행 #단풍구경 #힐링여행</span>
+									</div>
+								</div>
+								<div class="cont_item">
+									<div class="img_inner" style="background-image: url(${ctp}/images/main/row2_img4.jpg);"></div>
+									<div class="desc">
+										<span class="tit">단풍트레킹 설악산</span>
+										<span class="hash">#가족여행 #단풍구경 #힐링여행</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
 				</div>
 			</div>
-			<div class="rowgroup3">
+			<div class="rowgroup rowgroup3 rowcont" data-index="2">
 				<div class="colgroup1 clearfix">
-					<section class="popup"></section>
-					<section class="mayor"></section>
+					<section>
+					
+					</section>
 				</div>
 				<div class="colgroup2">
-					<section></section>
+					<section>
+						
+
+					</section>
 				</div>
 			</div>
 		</main>

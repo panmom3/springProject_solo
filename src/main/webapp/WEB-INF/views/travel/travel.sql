@@ -12,7 +12,7 @@ CREATE TABLE travel (
     pDate      datetime NOT NULL DEFAULT NOW(),  /* 올린 날짜 */
 		goodCount  INT NOT NULL DEFAULT 0,           /* 좋아요수 */
 		readNum    INT NOT NULL DEFAULT 0,           /* 조회수 */
-		tags     VARCHAR(10),
+		tags     VARCHAR(100),
     primary key(idx),
   	foreign key(mid) references member(mid)
 );
