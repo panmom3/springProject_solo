@@ -31,7 +31,7 @@ public class AdminController {
 	public String adminMainGet() {
 		return "admin/adminMain";
 	}
-	
+	// 회원리스트	
 	@GetMapping("/member/adMemberList")
 	public String adMemberListGet(Model model, PageVO pageVO) {
 		pageVO.setSection("member");
@@ -42,6 +42,13 @@ public class AdminController {
 		model.addAttribute("vos", vos);
 		model.addAttribute("pageVO", pageVO);
 		
-		return "admin//member/adMemberList";
+		return "admin/member/adMemberList";
+	}
+	
+	// 숙소등록 폼보기
+	@GetMapping("/stay/adStayInput")
+	public String adStayInputGet() {
+		
+		return "admin/stay/adStayInput";
 	}
 }
