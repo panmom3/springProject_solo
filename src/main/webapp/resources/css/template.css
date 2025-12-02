@@ -403,9 +403,19 @@ td .num {margin:0;padding:0;}
 .icon_btn.shape3 > span{font-size: 0;line-height: 0;}
 
 /* 폼양식 */
+.p-input{display: inline-block;width: 100%;height: 50px;margin: 2px 0;background-color: #fff;border: 1px solid #cdcdcd;border-radius: 5px;vertical-align: middle;box-sizing: border-box;transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;padding: 0 12px 2px;line-height: inherit;}
+.p-input-auto{display:inline-block;width:auto}
+.p-select {width:202px; height:50px; padding:9px 35px 9px 20px; border:1px solid #dadce0; border-radius: 5px; font-size: 16px; font-weight:400; color:#3a4159; -webkit-appearance: none; -moz-appearance: none; appearance: none; background:  url('../images/template/select_arr.png') no-repeat 90% 50%; background-color: #fff;}
+.p-select::-ms-expand {display: none; /* 화살표 없애기 for IE10, 11*/}
+.p-select:checked {background:  url('../images/template/select_arr2.png') no-repeat 90% 50%;}
+.p-select:focus {border-color:#414a73; color:#414a73; outline: none;}
+.p-select option {color:#898f9d;background-color: #fff;}
+.p-select option:hover {color:#3a4159;}
+textarea.p-input{height:auto;padding:12px;word-wrap: break-word;word-break: break-all;}
+
 .sd_input {display: inline-block; position: relative; margin: 2px; vertical-align: top;}
 .sd_input input {width:100%; height: 50px; padding:9px 16px; border: 1px solid #dadce0; border-radius: 5px; font-size: 16px; color:#898f9d;}
-.sd_input .input-auto {display:inline-block; width: auto;}
+.sd_input input.input-auto {display:inline-block; width: auto;}
 .sd_input input:hover{border-color:#898f9d; outline: none; color:#ffffff;}
 .sd_input input:focus {border-color:#4876ef; outline: none; color:#3a4159;}
 .sd_input input[disabled] {cursor: not-allowed; border-color:#c5c9d6; background-color: #f4f5f9; color:#888da6;}
@@ -426,7 +436,7 @@ td .num {margin:0;padding:0;}
 .sd_input.finish input::placeholder{color:#3a4159;}
 
 .sd_input select {width:202px; height:50px; padding:9px 35px 9px 20px; border:1px solid #dadce0; border-radius: 5px; font-size: 16px; font-weight:400; color:#3a4159; -webkit-appearance: none; -moz-appearance: none; appearance: none; background:  url('../images/template/select_arr.png') no-repeat 90% 50%; background-color: #fff;}
-select::-ms-expand {display: none; /* 화살표 없애기 for IE10, 11*/}
+.sd_input select::-ms-expand {display: none; /* 화살표 없애기 for IE10, 11*/}
 .sd_input select:checked {background:  url('../images/template/select_arr2.png') no-repeat 90% 50%;}
 .sd_input select:focus {border-color:#414a73; color:#414a73; outline: none;}
 .sd_input select option {color:#898f9d;background-color: #fff;}

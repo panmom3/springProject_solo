@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.springGroupS09.dao.CustomerDAO">
+	<select id="getTotRecCnt" resultType="int">
+		<if test="part == '전체'">
+			select count(*) from inquiry <if test="mid !='admin'"> where mid=#{mid} </if>
+		</if>
+		<if test="part != '전체'">
+			select count(*) from inquiry where part = #{part} <if test="mid != 'admin'"> and mid=#{mid} </if>
+		</if>
+	</select>
+	
+	<select id="getTotRecCntAdmin" resultType="int">
+		select count(*) from inquiry <if test="part != '전체'"> where reply = #{part} </if>
+	</select>
+	
+	<select id="getInquiryList" resultType="com.spring.springGroupS09.vo.InquiryVO">
+		<if test="part == '전체'">
+			select * from inquiry <if test="mid != 'admin'"> where mid=#{mid} </if> order by idx desc limit #{startIndexNo}, #{pageSize};
+		</if>
+		<if test="part != '전체'">
+			select * from inquiry where part = #{part} <if test="mid != 'admin'"> and mid=#{mid} </if> order by idx desc limit #{startIndexNo}, #{pageSize};
+		</if>
+	</select>
+	
+	
+	<insert id="setInquiryInput">
+		insert into inquiry values (default,#{vo.mid},#{vo.title},#{vo.part},default,,#{vo.content} <if test="vo.FName != ''"> ,fName=#{vo.FName},FSName=#{vo.FSName}</if> where idx=#{vo.idx});
+	</insert>
+
+</mapper>

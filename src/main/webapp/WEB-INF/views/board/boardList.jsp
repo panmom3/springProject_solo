@@ -145,7 +145,7 @@
 								</div>
 							</div>
 							<!-- 블록페이지 끝 -->
-							<div class="text_right mt-5">
+							<div class="text_right">
 								<a href="boardInput" class="btn type1 medium">글쓰기</a>
 							</div>
 						</div>

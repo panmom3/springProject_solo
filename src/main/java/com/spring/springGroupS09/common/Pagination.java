@@ -3,9 +3,11 @@ package com.spring.springGroupS09.common;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.springGroupS09.dao.CustomerDAO;
 import com.spring.springGroupS09.service.BoardService;
 import com.spring.springGroupS09.service.MemberService;
 import com.spring.springGroupS09.service.TravelService;
+import com.spring.springGroupS09.vo.InquiryVO;
 import com.spring.springGroupS09.vo.PageVO;
 
 @Service
@@ -16,6 +18,9 @@ public class Pagination {
 	
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired
+	CustomerDAO customerDAO;
 	
 	/*
 	 * @Autowired AdminService adminService;
@@ -36,6 +41,13 @@ public class Pagination {
 			if(level == 99)	totRecCnt = memberService.getTotRecCnt(); //전체 회원 수 조회
 			else totRecCnt = memberService.getMemberLevelCount(level).size(); //해당 등급 회원 수만 조회
 		}
+		else if(pageVO.getSection().equals("inquiry")) {
+			String mid = pageVO.getSearchString();
+			totRecCnt = customerDAO.getTotRecCnt(part, mid);
+		}
+		else if(pageVO.getSection().equals("adminInquiry")) {
+	  	totRecCnt = customerDAO.getTotRecCntAdmin(part);
+	  }
 		
 		int totPage = (totRecCnt % pageSize) == 0 ? totRecCnt / pageSize : (totRecCnt / pageSize) + 1; // 총 페이지 수 계산. 만약 나누어떨어지지 않으면 마지막 페이지가 하나 더 필요하므로 +1.
 		int startIndexNo = (pag - 1) * pageSize; //현재 페이지의 시작 인덱스

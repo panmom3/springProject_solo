@@ -68,9 +68,9 @@
 									</div>
 								</div>
 								<ul class="depth_list depth2_list clearfix">
-									<li class="depth_item depth2_item clearfix"><a href="" class="depth_text depth2_text"><span>공지사항</span></a></li>
-									<li class="depth_item depth2_item clearfix"><a href="" class="depth_text depth2_text"><span>자주찾는질문</span></a></li>
-									<li class="depth_item depth2_item clearfix"><a href="" class="depth_text depth2_text"><span>문의하기</span></a></li>
+									<li class="depth_item depth2_item clearfix"><a href="${ctp}/customer/faqList" class="depth_text depth2_text"><span>자주찾는질문</span></a></li>
+									<li class="depth_item depth2_item clearfix"><a href="${ctp}/customer/inquiry/inquiryList" class="depth_text depth2_text"><span>문의하기</span></a></li>
+									<li class="depth_item depth2_item clearfix"><a href="#" class="depth_text depth2_text"><span>여행자보험</span></a></li>
 								</ul>
 							</div>
 						</li>
