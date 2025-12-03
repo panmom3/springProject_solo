@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.spring.springGroupS09.vo.InquiryReplyVO;
 import com.spring.springGroupS09.vo.InquiryVO;
 
 public interface CustomerDAO {
@@ -15,6 +16,10 @@ public interface CustomerDAO {
 	List<InquiryVO> getInquiryList(@Param("startIndexNo") int startIndexNo, @Param("pageSize") int pageSize, @Param("part") String part, @Param("mid") String mid);
 
 	void setInquiryInput(@Param("vo") InquiryVO vo);
+
+	InquiryVO getInquiryView(@Param("idx") int idx);
+
+	InquiryReplyVO getInquiryReply(@Param("idx") int idx);
 
 
 

@@ -61,6 +61,7 @@
 					            </div>
 					        </div>
 					        <div class="text_right margin_t_20">
+					        	<a class="btn type2 small" href="${ctp}/customer/inquiry/inquiryList">1:1문의하기</a>
 					        	<a class="btn type1 small" href="${ctp}/member/memberPwdCheck/pwdck">비밀번호변경</a>
 					        	<a class="btn type2 small" href="${ctp}/member/memberPwdCheck/update">회원가입수정</a>
 					        	<a class="btn type3 small" href="javascript:userDeleteCheck()">회원탈퇴</a>

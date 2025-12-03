@@ -22,10 +22,15 @@
 			select * from inquiry where part = #{part} <if test="mid != 'admin'"> and mid=#{mid} </if> order by idx desc limit #{startIndexNo}, #{pageSize};
 		</if>
 	</select>
+	<select id="getInquiryView" resultType="com.spring.springGroupS09.vo.InquiryVO">
+		select * from inquiry where idx = #{idx};
+	</select>
+	<select id="getInquiryReply" resultType="com.spring.springGroupS09.vo.InquiryReplyVO">
+		select * from inquiryReply where inquiryIdx = #{idx};
+	</select>
 	
-	
-	<insert id="setInquiryInput">
-		insert into inquiry values (default,#{vo.mid},#{vo.title},#{vo.part},default,,#{vo.content} <if test="vo.FName != ''"> ,fName=#{vo.FName},FSName=#{vo.FSName}</if> where idx=#{vo.idx});
-	</insert>
+  <insert id="setInquiryInput">
+    insert into inquiry values (default,#{vo.mid},#{vo.title},#{vo.part},default,#{vo.content},#{vo.FName},#{vo.FSName},default);
+  </insert>
 
 </mapper>

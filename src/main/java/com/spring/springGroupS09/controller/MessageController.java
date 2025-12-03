@@ -108,6 +108,10 @@ public class MessageController {
 			model.addAttribute("message", "추천여행지 게시글이 삭제되었습니다.");
 			model.addAttribute("url", "/travel/travelList");
 		}
+		else if(msgFlag.equals("inquiryInputOk")) {
+			model.addAttribute("message", "1:1 문의가 등록되었습니다.");
+			model.addAttribute("url", "/customer/inquiry/inquiryList");
+		}
 		
 		return "include/message";
 	}

@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.springGroupS09.common.ProjectProvide;
 import com.spring.springGroupS09.dao.CustomerDAO;
+import com.spring.springGroupS09.vo.InquiryReplyVO;
 import com.spring.springGroupS09.vo.InquiryVO;
 
 @Service
@@ -41,5 +42,15 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 		
 		
+	}
+
+	@Override
+	public InquiryVO getInquiryView(int idx) {
+		return customerDAO.getInquiryView(idx);
+	}
+
+	@Override
+	public InquiryReplyVO getInquiryReply(int idx) {
+		return customerDAO.getInquiryReply(idx);
 	}
 }

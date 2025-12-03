@@ -10,7 +10,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
   <jsp:include page="/WEB-INF/views/include/sub.jsp" />
-	<title>문의작성하기</title>
+	<title>문의글 수정하기</title>
 	<script>
 		//선택한파일 미리보기 기능
 		var sel_files = []; // 전체 선택된 파일 저장 (누적)
@@ -20,9 +20,9 @@
 		});
 		
 		function handleImgsFileSelect(e) {
-			var files = e.target.files;		// 파일의 정보를 담아온다.
-		  var filesArr = Array.prototype.slice.call(files);		// 여러개의 파일일경우는 배열로 저장되어 있다. 각 파일객체별로 잘라서 정보를 filesArr배열에 담는다.
-		  $(".imgs_wrap").html('');		// 기존에 존재하는것들 clear시킨후 아래쪽에서 append시켜준다.
+			var files = e.target.files;
+		  var filesArr = Array.prototype.slice.call(files);
+		  $(".imgs_wrap").html('');
 		  
 		  // 🔥 현재 선택한 파일 개수가 기존 파일 개수 포함해서 10개 이상이면 막기
 		  if(sel_files.length + filesArr.length >= 10) {
@@ -87,7 +87,7 @@
 	<div id="container">
 		<jsp:include page="/WEB-INF/views/include/header.jsp">
   		<jsp:param name="bgImage" value="sub_visual.png"/>
-  		<jsp:param name="siteTitle" value="1:1문의 작성하기"/>
+  		<jsp:param name="siteTitle" value="문의글 수정하기"/>
   		<jsp:param name="subTitle" value=""/>
 		</jsp:include>
 		<div class="wrap clearfix">
@@ -106,33 +106,32 @@
 										<tr>
 											<th scope="row">제목</th>
 											<td>
-												<input type="text" name="title" class="p-input" maxlength="100" placeholder="제목을 입력하세요." autofocus />
+												<input type="text" name="title" value="${vo.title}" class="p-input" maxlength="100" autofocus />
 											</td>
 										</tr>
 										<tr>
 											<th scope="row">문의유형</th>
 											<td class="text_left">
 												<select name="part" class="p-select">
-													<option value="">선택해주세요.</option>
-													<option value="이용문의">이용문의</option>
-													<option value="여행관련문의">여행관련문의</option>
-													<option value="숙박예약문의">숙박예약문의</option>
-													<option value="회원정보문의">회원정보문의</option>
-													<option value="기타문의">기타문의</option>
+													<option value="이용문의" ${vo.part == '이용문의' ? 'selected' : ''}>이용문의</option>
+													<option value="여행관련문의" ${vo.part == '여행관련문의' ? 'selected' : ''}>여행관련문의</option>
+													<option value="숙박예약문의" ${vo.part == '숙박예약문의' ? 'selected' : ''}>숙박예약문의</option>
+													<option value="회원정보문의" ${vo.part == '회원정보문의' ? 'selected' : ''}>회원정보문의</option>
+													<option value="기타문의" ${vo.part == '기타문의' ? 'selected' : ''}>기타문의</option>
 												</select>
 											</td>
 										</tr>
 										<tr>
 											<th scope="row">내용</th>
 											<td>
-												<textarea name="content" rows="5" class="p-input" placeholder="문의할 내용을 입력해주세요."></textarea>
+												<textarea name="content" rows="5" class="p-input">${vo.content}</textarea>
 											</td>
 										</tr>
 										<tr>
 											<th scope="row">파일첨부</th>
 											<td class="text_left">
 												<input type="file" name="file" id="file" multiple accept=".jpg,.png,.pdf,.doc,.docx,.hwp" />
-												<div class="imgs_wrap"></div>
+												<div class="imgs_wrap"><c:if test="${!empty vo.FSName}"><img src="${ctp}/data/inquiry/${vo.FSName}"  width="400px"/></c:if></div>
 												<p class="warning type1 margin_t_10">파일 형식은 jpg / png / pdf / doc / docx / hwp만 허용합니다.(최대 10개 업로드가능)</p>
 											</td>
 										</tr>
@@ -163,9 +162,9 @@
 								</table>
 							</div>
 							<div class="text_center margin_t_50">
-								<input type="button" value="등 록" onclick="fCheck()" class="btn medium type1"/> &nbsp;
+								<input type="button" value="수 정" onclick="fCheck()" class="btn medium type1"/> &nbsp;
 				    		<input type="reset" value="다시입력" class="btn medium type3"/> &nbsp;
-				    		<input type="button" value="돌아가기" onclick="location.href='${ctp}/customer/inquiry/inquiryList?pag=${pag}';" class="btn medium type2"/>
+				    		<input type="button" value="돌아가기" onclick="location.href='${ctp}/customer/inquiry/inquiryView?idx=${vo.idx}&pag=${pag}';" class="btn medium type2"/>
 							</div>
 						</form>	
 					</div><!-- //#contents -->

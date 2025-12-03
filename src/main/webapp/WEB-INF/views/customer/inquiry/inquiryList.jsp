@@ -59,7 +59,7 @@
 									<c:forEach var="vo" items="${vos}">
 									<tr>
 										<td>${vo.part}</td>
-										<td class="text_left"><a href="#">${vo.title}</a></td>
+										<td class="text_left"><a href="${ctp}/customer/inquiry/inquiryView?idx=${vo.idx}&pag=${pageVO.pag}">${vo.title}</a></td>
 										<td>${vo.mid}</td>
 										<td>${fn:substring(vo.WDate,0,10)}</td>
 										<td>

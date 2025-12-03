@@ -79,14 +79,20 @@ public class ProjectProvide {
 		return sFileName;
 	}
 
-	// 지정된경로에 파일 저정하기
+	// 지정된경로에 파일 저장하기
 	public void writeFile(MultipartFile fName, String sFileName, String part) throws IOException {
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 		String realPath = request.getSession().getServletContext().getRealPath("/resources/data/"+part+"/");
 		
+		// 폴더가 존재하지 않으면 생성
+		File dir = new File(realPath);
+		if(!dir.exists()) {
+			dir.mkdirs(); // 상위 폴더까지 포함해서 생성
+		}
+		
 		FileOutputStream fos = new FileOutputStream(realPath + sFileName);
 		
-		if(fName.getBytes().length != -1) {
+		if(fName.getBytes().length != 0) {
 			fos.write(fName.getBytes());
 		}
 		fos.flush();
