@@ -64,13 +64,16 @@
 								<tr>
 									<td colspan="4">
 										<c:if test="${!empty vo.FSName}">
-									    <c:set var="ext" value="${fn:toLowerCase(fn:substringAfterLast(vo.FSName, '.'))}" />
+									    <c:set var="ext" value="${fn:toLowerCase(fn:split(vo.FSName, '.')[fn:length(fn:split(vo.FSName, '.')) - 1])}" />
 									    <c:set var="imgExt" value="jpg,png,gif" />
-									
+											<!-- 이미지출력 -->
 									    <c:if test="${fn:contains(imgExt, ext)}">
-									        <img src="${ctp}/data/inquiry/${vo.FSName}" width="400px"><br/>
+									    	<c:set var="imgs" value="${fn:split(vo.FSName,'/')}" />
+									    	<c:forEach var="img" items="${imgs}">
+									        <img src="${ctp}/data/inquiry/${img}" width="400px"><br/><br/>
+									       </c:forEach>
 									    </c:if>
-									
+											<!-- 파일출력 -->
 									    <c:if test="${!fn:contains(imgExt, ext)}">
 									        <a href="${ctp}/data/inquiry/${vo.FSName}" download>📄 ${vo.FSName}</a><br/>
 									    </c:if>

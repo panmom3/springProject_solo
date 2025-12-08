@@ -3,6 +3,37 @@
 <mapper namespace="com.spring.springGroupS09.dao.StayDAO">
 
 	<select id="getStaylist" resultType="com.spring.springGroupS09.vo.StayVO">
-		SELECT stay_thumbnail, region, part, title, stay_tags, price FROM stay ORDER BY stay_idx DESC;
+		SELECT stay_idx, stay_thumbnail, region, part, title, stay_tags, price FROM stay ORDER BY stay_idx DESC;
 	</select>
+	
+	<select id="getStayContent" resultType="com.spring.springGroupS09.vo.StayVO">
+		select * from stay where stay_idx = #{idx};
+	</select>
+	
+	<select id="getReservationInfo" parameterType="int" resultType="com.spring.springGroupS09.vo.ReservationVO">
+		select r.reservation_idx,r.mid,r.stay_idx,r.check_in,r.check_out,r.total_price,r.status,r.created_at,s.title
+    from reservation r join stay s on r.stay_idx = s.stay_idx
+    where r.reservation_idx = #{reservation_idx}
+	</select>
+	
+	<select id="getMyReservationList" parameterType="String" resultType="com.spring.springGroupS09.vo.ReservationVO">
+		select r.reservation_idx,r.mid,r.stay_idx,r.check_in,r.check_out,r.total_price,r.status,r.created_at,s.title
+		from reservation r join stay s on r.stay_idx = s.stay_idx
+		where r.mid = #{mid}
+		order by r.created_at desc
+	</select>
+	
+	<insert id="insertReservation" parameterType="com.spring.springGroupS09.vo.ReservationVO" useGeneratedKeys="true" keyProperty="reservation_idx">
+	  insert into reservation (mid, stay_idx, check_in, check_out, total_price, status, created_at)
+	  values (#{mid}, #{stay_idx}, #{check_in}, #{check_out}, #{total_price}, default, default)
+	</insert>
+	
+<!-- 	<update id="reservationCancel">
+		update reservation set status = '취소' where reservation_idx = #{reservation_idx};
+	</update> -->
+	
+	<delete id="reservationCancel">
+		delete from reservation where reservation_idx = #{reservation_idx}; 
+	</delete>
+
 </mapper>

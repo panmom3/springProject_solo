@@ -16,4 +16,6 @@ public class StayVO {
 	private String stay_thumbnail;
 	private String stay_tags;
 
+	private double latitude;  // 위도
+	private double longitude;  // 경도
 }

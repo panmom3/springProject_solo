@@ -112,6 +112,10 @@ public class MessageController {
 			model.addAttribute("message", "1:1 문의가 등록되었습니다.");
 			model.addAttribute("url", "/customer/inquiry/inquiryList");
 		}
+		else if(msgFlag.equals("reservationCancelOk")) {
+			model.addAttribute("message", "예약이 취소되었습니다.");
+			model.addAttribute("url", "/stay/stayList");
+		}
 		
 		return "include/message";
 	}

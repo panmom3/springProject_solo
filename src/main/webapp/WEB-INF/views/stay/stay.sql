@@ -15,7 +15,13 @@ CREATE TABLE stay (
     stay_tags			 VARCHAR(100)   											/* 숙소키워드 */
 );
 
+drop table stay, reservation;
+
 select * from stay;
+
+alter table stay add column latitude DECIMAL(10, 7) NULL,
+add column longitude DECIMAL(10, 7) NULL;
+
 -- 4. 예약
 CREATE TABLE reservation (
     reservation_idx INT AUTO_INCREMENT PRIMARY KEY,     /* 예약의 고유번호 */
@@ -32,16 +38,20 @@ CREATE TABLE reservation (
 
 select * from stay;
 
+SELECT stay_idx, title FROM stay;
+
+--delete from reservation where __;
+
 INSERT INTO stay VALUES (
     DEFAULT,
-    '충남',
-    '리조트',
-    '발리리조트',
-    '충남 보령시 해안로 450',
-    '041-935-4500',
-    'http://baleresort.com',
-    232180,
-    '전객실오션뷰 감성 보령리조트',
+    '강릉',
+    '펜션',
+    '하늘아래바다펜션',
+    '강릉 강릉시 해안로 544',
+    '010-1234-1234',
+    'http://khk.com',
+    100000,
+    '오션뷰펜션 감성펜션',
     'normal.jpg',
-    '#대천'
+    '#강릉'
 );

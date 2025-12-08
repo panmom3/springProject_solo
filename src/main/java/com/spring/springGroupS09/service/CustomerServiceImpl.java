@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.springGroupS09.common.ProjectProvide;
 import com.spring.springGroupS09.dao.CustomerDAO;
@@ -27,21 +28,30 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public void setInquiryInput(MultipartFile file, InquiryVO vo) {
+	public void setInquiryInput(MultipartHttpServletRequest file, InquiryVO vo) {
 		try {
-			String oFileName = file.getOriginalFilename();
-			if(oFileName != null && !oFileName.equals("")) {
-				String saveFileName = UUID.randomUUID().toString().substring(0,4) + "_" + oFileName;
-				projectProvide.writeFile(file, saveFileName, "inquiry");
-				vo.setFName(oFileName);
-				vo.setFSName(saveFileName);
+			List<MultipartFile> fileList = file.getFiles("file");
+			String oFileNames = "";
+			String sFileNames = "";
+			
+			for(MultipartFile f : fileList) {
+				String oFileName = f.getOriginalFilename();
+				String sFileName = projectProvide.saveFileName(oFileName);
+			
+				projectProvide.writeFile(f, sFileName, "inquiry");
+				
+				oFileNames += oFileName + "/";
+				sFileNames += sFileName + "/";
 			}
+			oFileNames = oFileNames.substring(0, oFileNames.length()-1);
+			sFileNames = sFileNames.substring(0, sFileNames.length()-1);
+			vo.setFName(oFileNames);
+			vo.setFSName(sFileNames);
+			
 			customerDAO.setInquiryInput(vo);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
 
 	@Override

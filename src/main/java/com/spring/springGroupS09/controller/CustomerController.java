@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.springGroupS09.common.Pagination;
 import com.spring.springGroupS09.service.CustomerService;
@@ -77,10 +77,9 @@ public class CustomerController {
 	}
 
 	@PostMapping("/inquiry/inquiryInput")
-	public String inquiryInputPost(MultipartFile file, InquiryVO vo, HttpSession session) {
+	public String inquiryInputPost(MultipartHttpServletRequest file, InquiryVO vo, HttpSession session) {
 		String mid = (String) session.getAttribute("sMid");
 		vo.setMid(mid);
-		
 		
 		// VO 값 확인
     System.out.println("====== InquiryVO ======");

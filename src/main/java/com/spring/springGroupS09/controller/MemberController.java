@@ -1,6 +1,7 @@
 package com.spring.springGroupS09.controller;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.springGroupS09.common.ProjectProvide;
 import com.spring.springGroupS09.service.MemberService;
+import com.spring.springGroupS09.service.StayService;
 import com.spring.springGroupS09.vo.MemberVO;
+import com.spring.springGroupS09.vo.ReservationVO;
 
 @Controller
 @RequestMapping("/member")
@@ -29,6 +32,9 @@ public class MemberController {
 	
 	@Autowired
 	MemberService memberService; 
+	
+	@Autowired
+	StayService stayService;
 	
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
@@ -136,11 +142,16 @@ public class MemberController {
 	@GetMapping("/memberMain")
 	public String memberMainGet(Model model, HttpSession session) {
 		String mid = (String) session.getAttribute("sMid");
+		
 		MemberVO mVo = memberService.getMemberIdCheck(mid);
 		
 		if (mVo == null) return "redirect:/member/memberLogin";  // 예외 처리
 		
+		// 마이페이지 예약현황
+		List<ReservationVO> vos = stayService.getMyReservationList(mid);
+		
 		model.addAttribute("mVo", mVo);
+		model.addAttribute("vos", vos);
 		
 //		if(mVo.getMid().equals("admin")) {
 //			return "redirect:admin/adminMain";
@@ -242,6 +253,14 @@ public class MemberController {
 			return "redirect:/message/memberUpdateOk?mid="+vo.getMid();
 		}
 		else return "redirect:/message/memberUpdateNo?mid="+vo.getMid();
+	}
+	
+	// 예약취소하기
+	@GetMapping("/reservationCancel")
+	public String reservationCancelGet(int reservation_idx) {
+		stayService.reservationCancel(reservation_idx);
+		
+		return "redirect:/message/reservationCancelOk";
 	}
 	
 	
