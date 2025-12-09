@@ -20,6 +20,10 @@ public interface CustomerService {
 
 	void setInquiryInput(MultipartHttpServletRequest file, InquiryVO vo);
 
+	int setInquiryUpdate(MultipartFile file, InquiryVO vo);
+
+	int setInquiryDelete(int idx, String fSName);
+
 
 
 }

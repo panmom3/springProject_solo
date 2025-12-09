@@ -21,6 +21,10 @@ public interface CustomerDAO {
 
 	InquiryReplyVO getInquiryReply(@Param("idx") int idx);
 
+	int setInquiryUpdate(@Param("vo") InquiryVO vo);
+
+	int setInquiryDelete(@Param("idx") int idx);
+
 
 
 }

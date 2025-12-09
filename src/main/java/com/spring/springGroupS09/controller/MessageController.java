@@ -112,6 +112,22 @@ public class MessageController {
 			model.addAttribute("message", "1:1 문의가 등록되었습니다.");
 			model.addAttribute("url", "/customer/inquiry/inquiryList");
 		}
+		else if(msgFlag.equals("inquiryUpdateOk")) {
+			model.addAttribute("message", "1:1 문의글이 수정되었습니다.");
+			model.addAttribute("url", "/customer/inquiry/inquiryList");
+		}
+		else if(msgFlag.equals("inquiryUpdateNo")) {
+			model.addAttribute("message", "1:1 문의글 수정실패~.");
+			model.addAttribute("url", "/customer/inquiry/inquiryUpdate?idx="+idx);
+		}
+		else if(msgFlag.equals("inquiryDeleteOk")) {
+			model.addAttribute("message", "1:1 문의글이 삭제되었습니다.");
+			model.addAttribute("url", "/customer/inquiry/inquiryList");
+		}
+		else if(msgFlag.equals("inquiryDeleteNo")) {
+			model.addAttribute("message", "1:1 문의글 삭제실패~.");
+			model.addAttribute("url", "/customer/inquiry/inquiryView?idx="+idx);
+		}
 		else if(msgFlag.equals("reservationCancelOk")) {
 			model.addAttribute("message", "예약이 취소되었습니다.");
 			model.addAttribute("url", "/stay/stayList");

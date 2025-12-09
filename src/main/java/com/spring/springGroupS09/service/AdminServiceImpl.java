@@ -1,13 +1,44 @@
 package com.spring.springGroupS09.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.springGroupS09.dao.AdminDAO;
+import com.spring.springGroupS09.vo.InquiryReplyVO;
+import com.spring.springGroupS09.vo.InquiryVO;
 
 @Service
 public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	AdminDAO adminDAO;
+
+	//1:1문의
+	@Override
+	public ArrayList<InquiryVO> getInquiryListAdmin(int startIndexNo, int pageSize, String part) {
+		return adminDAO.getInquiryListAdmin(startIndexNo, pageSize, part);
+	}
+
+	@Override
+	public InquiryVO getInquiryContent(int idx) {
+		return adminDAO.getInquiryContent(idx);
+	}
+
+	
+	 @Override 
+	 public InquiryReplyVO getInquiryReplyContent(int idx) {
+		 return adminDAO.getInquiryReplyContent(idx);
+	}
+
+	@Override
+	public int setInquiryInputAdmin(InquiryReplyVO vo) {
+		return adminDAO.setInquiryInputAdmin(vo);
+	}
+
+	@Override
+	public void setInquiryUpdateAdmin(int inquiryIdx) {
+		adminDAO.setInquiryUpdateAdmin(inquiryIdx); 
+	}
 }

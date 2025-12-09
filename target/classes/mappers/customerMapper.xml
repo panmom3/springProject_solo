@@ -32,5 +32,13 @@
   <insert id="setInquiryInput">
     insert into inquiry values (default,#{vo.mid},#{vo.title},#{vo.part},default,#{vo.content},#{vo.FName},#{vo.FSName},default);
   </insert>
+  
+  <update id="setInquiryUpdate">
+  	update inquiry set title=#{vo.title},part=#{vo.part},wDate=now(),content=#{vo.content} <if test="vo.FName != ''"> ,fName=#{vo.FName},FSName=#{vo.FSName} </if>where idx=#{vo.idx};
+  </update>
+  
+  <delete id="setInquiryDelete">
+  	delete from inquiry where idx = #{idx};
+  </delete>
 
 </mapper>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.springGroupS09.common.Pagination;
@@ -112,8 +113,45 @@ public class CustomerController {
 		return "customer/inquiry/inquiryView";
 	}
 	
+	// 문의글 수정하기
+	@GetMapping("/inquiry/inquiryUpdate")
+	public String inquiryUpdateGet(Model model, int idx,
+				@RequestParam(name="pag", defaultValue = "1", required = false) int pag
+		) {
+		InquiryVO vo = customerService.getInquiryView(idx);
+		
+		// 해당 문의글의 답변글 가져오기
+		InquiryReplyVO reVO = customerService.getInquiryReply(idx);
+			
+		model.addAttribute("vo", vo);
+		model.addAttribute("reVO", reVO);
+		model.addAttribute("pag", pag);
+		model.addAttribute("idx", idx);
+		
+		return "customer/inquiry/inquiryUpdate";	
+	}
 	
+	@PostMapping("/inquiry/inquiryUpdate")
+	public String inquiryUpdatePost(Model model, MultipartFile file, InquiryVO vo,
+			@RequestParam(name="pag", defaultValue = "1", required = false) int pag
+			) {
+			int res = customerService.setInquiryUpdate(file, vo);
+			model.addAttribute("pag", pag);
+			model.addAttribute("idx", vo.getIdx());
+			
+			if(res != 0) return "redirect:/message/inquiryUpdateOk";
+			else return "redirect:/message/inquiryUpdateNo";
+	}
 	
+	// 1:1문의 내용 삭제처리(글쓴이는 답글이 달리기전까지는 현재글을 '수정/삭제'할수 있다. 삭제시 '답변글'을 먼저 삭제하고 원본글을 삭제처리한다.
+	@GetMapping("/inquiry/inquiryDelete")
+	public String inquiryDeleteGet(Model model, int idx,
+			@RequestParam(name="fSName", defaultValue = "", required = false) String fSName
+			) {
+		int res = customerService.setInquiryDelete(idx, fSName);
+		if(res != 0) return "redirect:/message/inquiryDeleteOk";
+		else return "redirect:/message/inquiryDeleteNo?idx="+idx;
+	}
 	
 	
 }

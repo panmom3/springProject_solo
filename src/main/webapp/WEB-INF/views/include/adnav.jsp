@@ -47,6 +47,12 @@
                         <a class="nav-link" href="${ctp}/admin/board/adBoardList">커뮤니티</a>
                     </nav>
                 </div>
+                <!-- customer -->
+                <div class="sb-sidenav-menu-heading">Customer</div>
+                <a class="nav-link" href="${ctp}/admin/inquiry/adInquiryList">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    1:1문의
+                </a>
                  <!-- 통계 
                 <div class="sb-sidenav-menu-heading">Addons</div>
                 <a class="nav-link" href="charts.html">
