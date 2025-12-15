@@ -17,4 +17,17 @@ public interface AdminService {
 
 	void setInquiryUpdateAdmin(int inquiryIdx);
 
+	int setMemberLevelChange(int idx, int level);
+	
+	int setInquiryReplyUpdate(InquiryReplyVO reVO);
+
+	int setAdInquiryReplyDelete(int reIdx);
+
+	int setInquiryReplyStatusUpdate(int inquiryIdx);
+
+	void setAdInquiryDelete(int idx, String fSName, int reIdx);
+
+
+
+
 }

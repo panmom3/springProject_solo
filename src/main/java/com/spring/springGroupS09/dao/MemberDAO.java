@@ -26,10 +26,9 @@ public interface MemberDAO {
 
 	List<MemberVO> getMemberLevelCount(@Param("level") int level);
 
-	List<MemberVO> getMemberList(@Param("startIndexNo")int startIndexNo, @Param("pageSize")int pageSize, @Param("level")int level);
+	List<MemberVO> getMemberList(@Param("startIndexNo") int startIndexNo, @Param("pageSize")int pageSize, @Param("level")int level);
 
-
-
+	int setUserDelete(@Param("mid") String mid);
 
 
 }

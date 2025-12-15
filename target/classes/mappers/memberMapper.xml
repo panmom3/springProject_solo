@@ -24,7 +24,7 @@
 	
 	<insert id="setMemberJoin">
 		insert into member values 
-		(default,#{vo.mid},#{vo.pwd},#{vo.nickName},#{vo.name},#{vo.birthday},#{vo.email},#{vo.tel},#{vo.address},#{vo.content},#{vo.photo},default,default,default,default,default,#{vo.hopeTour},default,default);
+		(default,#{vo.mid},#{vo.pwd},#{vo.nickName},#{vo.name},#{vo.birthday},#{vo.email},#{vo.tel},#{vo.address},#{vo.content},#{vo.photo},default,default,default,default,default,#{vo.hopeTour},default,default,default);
 	</insert>
 	
 	<update id="setMemberTodayCntClear">
@@ -42,6 +42,10 @@
 	<update id="setMemberUpdateOk">
 		update member set nickName=#{vo.nickName},name=#{vo.name},birthday=#{vo.birthday},email=#{vo.email},tel=#{vo.tel},address=#{vo.address},content=#{vo.content},photo=#{vo.photo},hopeTour=#{vo.hopeTour}
 		where mid = #{vo.mid};
+	</update>
+	
+	<update id="setUserDelete">
+		update member set status='BLOCKED', userDel='OK', level=999, lastDate=now() where mid = #{mid};
 	</update>
 	
 	

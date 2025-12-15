@@ -20,4 +20,15 @@ public interface AdminDAO {
 
 	void setInquiryUpdateAdmin(@Param("inquiryIdx") int inquiryIdx);
 
+	int setMemberLevelChange(@Param("idx") int idx, @Param("level") int level);
+	
+	int setInquiryReplyUpdate(@Param("reVO") InquiryReplyVO reVO);
+
+	int setAdInquiryReplyDelete(@Param("reIdx") int reIdx);
+
+	int setInquiryReplyStatusUpdate(@Param("inquiryIdx") int inquiryIdx);
+
+	void setAdInquiryDelete(@Param("idx") int idx, @Param("fSName") String fSName, @Param("reIdx") int reIdx);
+
+
 }

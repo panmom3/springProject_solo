@@ -128,6 +128,18 @@ public class MessageController {
 			model.addAttribute("message", "1:1 문의글 삭제실패~.");
 			model.addAttribute("url", "/customer/inquiry/inquiryView?idx="+idx);
 		}
+		else if(msgFlag.equals("adInquiryReplyUpdateOk")) {
+			model.addAttribute("message", "1:1 문의 답변글이 수정되었습니다.");
+			model.addAttribute("url", "/admin/inquiry/adInquiryReply?idx="+idx);
+		}
+		else if(msgFlag.equals("adInquiryReplyUpdateNo")) {
+			model.addAttribute("message", "1:1 문의 답변글이 수정 실패~~");
+			model.addAttribute("url", "/admin/inquiry/adInquiryReply?idx="+idx);
+		}
+		else if(msgFlag.equals("adInquiryDeleteOk")) {
+			model.addAttribute("message", "1:1 문의 원본글(+답변글)이 삭제 되었습니다.");
+			model.addAttribute("url", "/admin/inquiry/adInquiryList");
+		}
 		else if(msgFlag.equals("reservationCancelOk")) {
 			model.addAttribute("message", "예약이 취소되었습니다.");
 			model.addAttribute("url", "/stay/stayList");

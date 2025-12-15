@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.springGroupS09.common.ProjectProvide;
+import com.spring.springGroupS09.service.AdminService;
 import com.spring.springGroupS09.service.MemberService;
 import com.spring.springGroupS09.service.StayService;
 import com.spring.springGroupS09.vo.MemberVO;
@@ -29,6 +30,9 @@ import com.spring.springGroupS09.vo.ReservationVO;
 @Controller
 @RequestMapping("/member")
 public class MemberController {
+	
+	@Autowired
+	AdminService adminService;
 	
 	@Autowired
 	MemberService memberService; 
@@ -263,6 +267,21 @@ public class MemberController {
 		return "redirect:/message/reservationCancelOk";
 	}
 	
+	// 회원 탈퇴 신청
+	@ResponseBody
+	@PostMapping("/userDelete")
+	public String userDeletePost(HttpSession session) {
+		String mid = (String) session.getAttribute("sMid");
+		int res = memberService.setUserDelete(mid);
+		
+		if(res != 0) { 
+			session.invalidate(); //현재 사용자의 세션을 즉시 삭제(로그아웃처리 보안상 세션 강제 초기화)
+			return "1";
+		}
+		else return "0";
+	}
+	
+
 	
 	
 	

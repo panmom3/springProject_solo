@@ -12,8 +12,29 @@
   <meta name="author" content="" />
   <jsp:include page="/WEB-INF/views/include/sub.jsp" />
   <title>마이페이지</title>
+  <script>
+  	function userDeleteCheck() {
+  		let ans = confirm("회원 탈퇴하시겠습니까?");
+  		if(ans) {
+  			ans = confirm("탈퇴하시면 1개월간 같은 아이디로는 다시 가입하실수 없습니다.\n그래도 탈퇴 하시겠습니까?");
+  			if(ans) {
+  				$.ajax({
+  					url : '${ctp}/member/userDelete',
+  					type : 'post',
+  					success : (res) => {
+  						if(res != '0') {
+  							alert("회원에서 탈퇴 되셨습니다.");
+  							location.href = '${ctp}/member/memberLogin';
+  						}
+  						else alert("회원 탈퇴 실패~~");
+  					},
+  					error : () => alert("전송오류!")
+  				});
+  			}
+  		}
+  	}
+  </script>
 </head>
-
 <body id="sub" class="sub">
 <div id="wrapper">
 	<jsp:include page="/WEB-INF/views/include/nav.jsp" />

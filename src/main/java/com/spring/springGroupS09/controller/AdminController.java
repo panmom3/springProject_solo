@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -57,6 +58,13 @@ public class AdminController {
 	public String adStayInputGet() {
 		
 		return "admin/stay/adStayInput";
+	}
+	
+	//회원 등급 변경 처리
+	@ResponseBody
+	@PostMapping("/member/memberLevelChange")
+	public int memberLevelChangePost(int idx, int level) {
+		return adminService.setMemberLevelChange(idx, level);
 	}
 	
 	// 관리자 1:1문의 리스트 보기
@@ -115,8 +123,34 @@ public class AdminController {
 		return res;
 	}
 	
+	// 관리자 답변글 수정처리
+	@PostMapping("/inquiry/adInquiryReply")
+	public String adInquiryReplyUpdatePost(InquiryReplyVO reVO) {
+		int res = adminService.setInquiryReplyUpdate(reVO); // 관리자가 답변글을 수정했을때 처리루틴
+		
+		if(res != 0) return "redirect:/message/adInquiryReplyUpdateOk?idx="+reVO.getInquiryIdx();
+		return "redirect:/message/adInquiryReplyUpdateNo?idx="+reVO.getInquiryIdx();
+	}
 	
+	// 답변글만 삭제하기(답변글을 삭제처리하면 원본글의 '상태'는 '답변대기중'으로 수정해준다.
+	@Transactional
+	@ResponseBody
+	@PostMapping("/inquiry/adInquiryReplyDelete")
+	public int adInquiryReplyDeletePost(int inquiryIdx, int reIdx) {
+		adminService.setAdInquiryReplyDelete(reIdx);
+		return adminService.setInquiryReplyStatusUpdate(inquiryIdx);
+	}
 	
+	//관리자 원본글과 답변글 삭제처리(답변글이 있을경우는 답변글 먼저 삭제후 원본글을 삭제처리한다.)
+	@Transactional
+	@RequestMapping(value="/inquiry/adInquiryDelete", method = RequestMethod.GET)
+	public String adInquiryDeleteGet(Model model, int idx, String fSName, int reIdx, int pag) {
+		//adminService.setAdInquiryReplyDelete(reIdx);	// 관리자가 현재글을 삭제했을때 먼저 답변글을 삭제처리해준다.
+		adminService.setAdInquiryDelete(idx, fSName, reIdx); // 답변글 삭제처리가 끝나면 원본글을 삭제처리해준다. (답변글삭제와 원본글 삭제를 동시에 처리한다.)
+		model.addAttribute("pag", pag);
+		
+		return "redirect:/message/adInquiryDeleteOk";
+	}
 	
 	
 	

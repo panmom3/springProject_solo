@@ -41,4 +41,31 @@ public class AdminServiceImpl implements AdminService {
 	public void setInquiryUpdateAdmin(int inquiryIdx) {
 		adminDAO.setInquiryUpdateAdmin(inquiryIdx); 
 	}
+
+	@Override
+	public int setMemberLevelChange(int idx, int level) {
+		return adminDAO.setMemberLevelChange(idx, level);
+	}
+	
+	@Override
+	public int setInquiryReplyUpdate(InquiryReplyVO reVO) {
+		return adminDAO.setInquiryReplyUpdate(reVO);
+	}
+
+	@Override
+	public int setAdInquiryReplyDelete(int reIdx) {
+		return adminDAO.setAdInquiryReplyDelete(reIdx);
+	}
+
+	@Override
+	public int setInquiryReplyStatusUpdate(int inquiryIdx) {
+		return adminDAO.setInquiryReplyStatusUpdate(inquiryIdx);
+	}
+
+	@Override
+	public void setAdInquiryDelete(int idx, String fSName, int reIdx) {
+		adminDAO.setAdInquiryDelete(idx, fSName, reIdx);
+	}
+
+	
 }

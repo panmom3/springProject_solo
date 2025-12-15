@@ -29,7 +29,7 @@
 								</div>
 								<div class="tit text2">
 									<span>패키지로 간편하게 떠나는<br />
-										가을 국내 여행
+										국내 여행
 									</span>
 								</div>
 							</div>

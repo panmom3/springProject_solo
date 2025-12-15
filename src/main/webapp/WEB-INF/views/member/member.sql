@@ -32,6 +32,7 @@ select * from member;
 alter table member add hopeTour varchar(20);
 alter table member add todayCnt int default 0;
 alter table member add point int default 100;
+alter table member add userDel char(2) default 'NO'; /* 회원 탈퇴신청여부(NO:현재 활동중, OK:탈퇴신청중)-탈퇴후1달간 같은아이디로 재가입 불가 */
 --컬럼삭제
 alter table member drop column aaa;
 
