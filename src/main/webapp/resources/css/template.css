@@ -1,12 +1,7 @@
 @charset "UTF-8";
 
-/* 템플릿 복사 기능*/
-[copy-attr="yes"] {cursor:pointer; transition: 0.2s;}
-[copy-attr="yes"]:hover {box-shadow: 3px 4px 5px 0 rgba(0, 0, 0, 0.5);}
-
 /* 탭메뉴 공통*/
 .tab+.tab{margin-top:60px}
-
 
 /* 탭메뉴 type1 */
 .tab.type1{font-size:0;line-height:0;margin-top: 50px;}
@@ -416,7 +411,7 @@ textarea.p-input{height:auto;padding:12px;word-wrap: break-word;word-break: brea
 .sd_input {display: inline-block; position: relative; margin: 2px; vertical-align: top;}
 .sd_input input {width:100%; height: 50px; padding:9px 16px; border: 1px solid #dadce0; border-radius: 5px; font-size: 16px; color:#898f9d;}
 .sd_input input.input-auto {display:inline-block; width: auto;}
-.sd_input input:hover{border-color:#898f9d; outline: none; color:#ffffff;}
+.sd_input input:hover{border-color:#898f9d; outline: none;}
 .sd_input input:focus {border-color:#4876ef; outline: none; color:#3a4159;}
 .sd_input input[disabled] {cursor: not-allowed; border-color:#c5c9d6; background-color: #f4f5f9; color:#888da6;}
 .sd_input.group_date {display: table; white-space: nowrap; width: 150px;}

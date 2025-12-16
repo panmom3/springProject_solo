@@ -45,12 +45,11 @@
 								<div class="menu_title">
 									<div class="innerbox">
 										<div class="title">여행정보</div>
-										<p class="text">오감을 열면 힐링이된다!</p>
+										<p class="text">계절을 담은 국내여행!</p>
 									</div>
 								</div>
 								<ul class="depth_list depth2_list clearfix">
 									<li class="depth_item depth2_item clearfix"><a href="${ctp}/travel/travelList" class="depth_text depth2_text"><span>추천여행</span></a></li>
-									<li class="depth_item depth2_item clearfix"><a href="" class="depth_text depth2_text"><span>테마여행</span></a></li>
 									<li class="depth_item depth2_item clearfix"><a href="" class="depth_text depth2_text"><span>축제소식</span></a></li>
 								</ul>
 							</div>
@@ -64,7 +63,7 @@
 								<div class="menu_title">
 									<div class="innerbox">
 										<div class="title">고객센터</div>
-										<p class="text">오감을 열면 힐링이된다!</p>
+										<p class="text">계절을 담은 국내여행!</p>
 									</div>
 								</div>
 								<ul class="depth_list depth2_list clearfix">

@@ -96,32 +96,35 @@
 /* 숙소예약 - 리스트 */
 .stay_list_warp{}
 .stay_list_warp .stay_box{padding:30px 0;border-bottom: 1px solid #ccc;} 
-.stay_list_warp .stay_list_title{position: relative;padding-left:30px;font-size: 30px;line-height: 1.5em;font-weight: 600;color: #000;} 
+.stay_list_warp .stay_list_title{position: relative;font-size: 30px;line-height: 1.5em;font-weight: 600;color: #000;} 
 .stay_list_warp .stay_list{position: relative;padding:30px 0;font-size:0;line-height:0;} 
 .stay_list_warp .stay_item{display: inline-block;margin-right: 20px;width: calc(25% - 20px);vertical-align: top;} 
 .stay_list_warp .stay_item:nth-last-child{margin-right: 0;}
-.stay_list_warp .stay_item > a{text-decoration: none;}
-.stay_list_warp .stay_item .image{overflow: hidden;width: 100%;height: 226px;}
+.stay_list_warp .stay_item > a{display:block;text-decoration: none;}
+.stay_list_warp .stay_item .image{overflow: hidden;width: 100%;}
+.stay_list_warp .stay_item .image .image_inner{width:100%;height:226px;background-repeat: no-repeat;background-size: cover;background-position: top center;transition: transform 0.5s ease-in;}
+.stay_list_warp .stay_item > a:hover .image .image_inner{transform: scale(1.2);}
 .stay_list_warp .stay_item .cont{font-size:18px;line-height: 1.2em;margin:20px 0 40px}
 .stay_list_warp .stay_item .cont .regin{color:#003fa1;}
 .stay_list_warp .stay_item .cont .tit{color:#000;margin-left:5px}
 .stay_list_warp .stay_item .cont .hash{margin-top: 10px;}
-.stay_list_warp .stay_item .cont .hash_list{}
 .stay_list_warp .stay_item .cont .hash_item{display: inline-block;font-size: 13px;margin-right: 5px;background-color: #d8defd;padding: 0 10px;border-radius: 6px;}
 .stay_list_warp .stay_item .price{font-size: 24px;color: #003fa1;font-weight: 600;line-height: 1.2em;text-align: right;}
 
 /* 숙소예약 - 상세페이지 */
 .stay_detail_wrap{position: relative;}
-.stay_detail_wrap .detail_list{}
 .stay_detail_wrap .detail_top{padding: 50px 0;border-bottom: 1px solid #000;border-top: 2px solid #000;}
 .stay_detail_wrap .detail_top .stay_list{display:block;}
 .stay_detail_wrap .detail_top .image{display: inline-block;width: 500px;vertical-align: top;} 
+.stay_detail_wrap .detail_top .image .image_inner{width:100%;height:300px;background-repeat: no-repeat;background-size: cover;background-position: top center;}
 .stay_detail_wrap .detail_top .desc{display: inline-block;width: calc(100% - 556px);margin-left: 50px;vertical-align: top;} 
 .stay_detail_wrap .detail_top .desc .cont{position: relative;margin-bottom: 20px;}
-.stay_detail_wrap .detail_top .desc .cont .part{font-size: 13px;}
-.stay_detail_wrap .detail_top .desc .cont .title{font-size: 20px;}
-.stay_detail_wrap .detail_top .desc .cont .keyword{font-size: 16px;}
-.stay_detail_wrap .detail_top .desc .info{position: relative;margin-bottom: 20px;}
+.stay_detail_wrap .detail_top .desc .cont .part{font-size: 15px;padding: 3px 14px 0;background-color: #3064ff;border-radius: 25px;line-height: 28px;color: #fff;}
+.stay_detail_wrap .detail_top .desc .cont .title{font-size: 28px;line-height:1.5em;margin:7px 0 10px}
+.stay_detail_wrap .detail_top .desc .cont .keyword_list .keyword_item{font-size: 16px;color: #797f95;}
+.stay_detail_wrap .detail_top .desc .cont .keyword_list .keyword_item:before{background-color: #3a4159;}
+.stay_detail_wrap .detail_top .desc .info{position: relative;margin-bottom: 20px;padding-left: 15px;}
 .stay_detail_wrap .detail_top .desc .price_box{text-align: right;margin-top: 50px;}
 .stay_detail_wrap .detail_top .desc .price{font-size: 30px;line-height: 1.5em;font-weight: 600;}
-.stay_detail_wrap .detail_top .desc .add{}
+
+.reservation_table .sd_input select{width:100%;padding-right:60px}

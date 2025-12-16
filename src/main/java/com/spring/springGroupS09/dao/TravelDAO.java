@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.spring.springGroupS09.vo.BoardVO;
 import com.spring.springGroupS09.vo.TravelVO;
 
 public interface TravelDAO {
@@ -30,5 +31,7 @@ public interface TravelDAO {
 	int setTravelReplyDelete(@Param("idx") int idx);
 
 	void setTravelDelete(@Param("idx") int idx);
+
+	List<TravelVO> getLatestTitles();
 
 }

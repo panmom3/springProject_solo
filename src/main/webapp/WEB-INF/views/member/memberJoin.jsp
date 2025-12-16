@@ -289,9 +289,9 @@
 																	</select>
 																</div>
 															</div>
-															<div class="col-8 col-sm-24">
+															<!-- <div class="col-8 col-sm-24">
 																<input type="button" value="인증번호받기" onclick="emailCertification()" id="certificationBtn" class="btn type2 medium">
-															</div>
+															</div> -->
 														</div>
 														<div id="demoSpin" class="mb-3"></div>
 													</td>
@@ -340,7 +340,7 @@
 																<input type="number" name="postcode" id="sample6_postcode" class="p-input p-input--auto zipcode" placeholder="우편번호">
 																<button type="button" onclick="sample6_execDaumPostcode()" title="새창" class="p-button primary postbtn">우편번호</button>
 															</div>
-															<div class="adress mb-2">
+															<div class="adress margin_b_10">
 																<input type="text" name="roadAddress" id="sample6_address" placeholder="주소" class="p-input adressinput">
 															</div>
 															<div class="adress">

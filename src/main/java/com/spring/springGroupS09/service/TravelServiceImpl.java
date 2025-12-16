@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.springGroupS09.common.ProjectProvide;
 import com.spring.springGroupS09.dao.TravelDAO;
+import com.spring.springGroupS09.vo.BoardVO;
 import com.spring.springGroupS09.vo.TravelVO;
 
 import net.coobird.thumbnailator.Thumbnailator;
@@ -119,6 +120,31 @@ public class TravelServiceImpl implements TravelService {
 	@Override
 	public void setTravelDelete(int idx) {
 		travelDAO.setTravelDelete(idx);
+	}
+
+	@Override
+	public List<TravelVO> getLatestTitles() {
+		return travelDAO.getLatestTitles();
+	}
+
+	@Override
+	public void imgDelete(String content) {
+		if(content == null || content.trim().equals("")) return;
+		
+		// src="...경로..." 형태 찾기
+		Pattern pattern = Pattern.compile("src=\"([^\"]+)\"");
+	    Matcher matcher = pattern.matcher(content);
+	    
+	    while(matcher.find()) {
+	    	// src 내부 전체 경로
+	    	String imgPath = matcher.group(1);
+	    	
+	    	// 마지막 / 뒤의 파일명만 추출
+	    	String imgFile = imgPath.substring(imgPath.lastIndexOf("/") + 1);
+	    	
+	    	// 파일 삭제실행
+	    	projectProvide.fileDelete(imgFile, "photoGallery");
+	    }
 	}
 
 

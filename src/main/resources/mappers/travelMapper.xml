@@ -13,6 +13,10 @@
 	<select id="getTravelReply" resultType="com.spring.springGroupS09.vo.TravelVO">
 		select *, idx as replyIdx from travelReply where travelIdx = #{idx} order by idx desc;
 	</select>
+	<!-- 최근 게시글 4개 조회(메인) -->
+	<select id="getLatestTitles" resultType="com.spring.springGroupS09.vo.TravelVO">
+		select idx, title, thumbnail, tags from travel order by pDate desc limit 4
+	</select>
 	
 	<insert id="setTravelInput">
 		insert into travel values (default,#{vo.mid},#{vo.part},#{vo.title},#{vo.content},#{vo.thumbnail},#{vo.address},default,default,default,#{vo.tags})
@@ -21,6 +25,10 @@
 	<insert id="setTravelReplyInput">
 		insert into travelReply values (default,#{vo.mid},#{vo.travelIdx},#{vo.content},default);
 	</insert>
+	
+	<update id="setTravelUpdate">
+		update travel set part=#{vo.part},title=#{vo.title},tags=#{vo.tags},content=#{vo.content},pDate=now() where idx=#{vo.idx}
+	</update>
 
 	<update id="setTravelReadNumPlus">
 		update travel set readNum = readNum + 1 where idx = #{idx};

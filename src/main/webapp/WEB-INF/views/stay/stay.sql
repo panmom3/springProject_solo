@@ -22,6 +22,8 @@ select * from stay;
 alter table stay add column latitude DECIMAL(10, 7) NULL,
 add column longitude DECIMAL(10, 7) NULL;
 
+ALTER TABLE STAY ADD COLUMN room VARCHAR(100) NOT NULL;
+
 -- 4. 예약
 CREATE TABLE reservation (
     reservation_idx INT AUTO_INCREMENT PRIMARY KEY,     /* 예약의 고유번호 */

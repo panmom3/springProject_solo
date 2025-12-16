@@ -3,6 +3,7 @@ package com.spring.springGroupS09.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.spring.springGroupS09.vo.BoardVO;
 import com.spring.springGroupS09.vo.TravelVO;
 
 public interface TravelService {
@@ -24,6 +25,10 @@ public interface TravelService {
 	int setTravelReplyDelete(int idx);
 
 	void setTravelDelete(int idx);
+
+	List<TravelVO> getLatestTitles();
+
+	void imgDelete(String content);
 
 
 }

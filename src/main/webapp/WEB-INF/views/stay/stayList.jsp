@@ -31,6 +31,36 @@
 									<input type="button" value="등록하기" onclick="location.href='stayInput';" class="btn type1 medium">
 								</div>
 							</c:if>
+							<!-- 펜션 -->
+							<div class="stay_box">
+								<div class="stay_list_title">요즘 뜨는 펜션</div>
+									<ul class="stay_list">
+										<c:forEach var="vo" items="${vos}" varStatus="st">
+										<c:if test="${vo.part == '펜션'}">
+											<li class="stay_item">
+												<a href="stayContent?idx=${vo.stay_idx}">
+													<div class="image">
+														<div class="image_inner" style="background-image: url(${ctp}/images/sub/${vo.stay_thumbnail})"></div>
+													</div>
+													<div class="cont">
+														<span class="regin">[${vo.region}]</span><span class="tit">${vo.title}</span>
+														<div class="hash">
+															<ul class="hash_list">
+															    <c:forTokens var="tag" items="${vo.stay_tags}" delims=",">
+															        <li class="hash_item">${tag}</li>
+															    </c:forTokens>
+															</ul>
+														</div>
+													</div>
+													<div class="price">
+														<span><fmt:formatNumber value="${vo.price}" type="number" />원~</span>
+													</div>
+												</a>
+											</li>
+										</c:if>
+										</c:forEach>
+								</ul>
+							</div> 
 							<!-- 리조트 -->
 							<div class="stay_box">
 								<div class="stay_list_title">요즘 뜨는 리조트</div>
@@ -59,34 +89,7 @@
 										</c:forEach>
 									</ul>
 							</div>
-							<!-- 펜션 -->
-							<div class="stay_box">
-								<div class="stay_list_title">요즘 뜨는 펜션</div>
-									<ul class="stay_list">
-										<c:forEach var="vo" items="${vos}" varStatus="st">
-										<c:if test="${vo.part == '펜션'}">
-											<li class="stay_item">
-												<a href="stayContent?idx=${vo.stay_idx}">
-													<div class="image"><img src="${ctp}/images/sub/${vo.stay_thumbnail}" alt=""></div>
-													<div class="cont">
-														<span class="regin">[${vo.region}]</span><span class="tit">${vo.title}</span>
-														<div class="hash">
-															<ul class="hash_list">
-															    <c:forTokens var="tag" items="${vo.stay_tags}" delims=",">
-															        <li class="hash_item">${tag}</li>
-															    </c:forTokens>
-															</ul>
-														</div>
-													</div>
-													<div class="price">
-														<span><fmt:formatNumber value="${vo.price}" type="number" />원~</span>
-													</div>
-												</a>
-											</li>
-										</c:if>
-										</c:forEach>
-								</ul>
-							</div> 
+							
 							<!--  -->
 						</div>
 					</div><!-- //#contents -->

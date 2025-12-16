@@ -84,7 +84,7 @@
 	              </div>
               </c:forEach>
             </div>
-            
+           
 						
 					</div><!-- //#contents -->
 				</article>

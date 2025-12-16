@@ -11,7 +11,6 @@
   <meta name="author" content="" />
   <jsp:include page="/WEB-INF/views/include/sub.jsp" />
   <title>숙소예약</title>
-
 </head>
 <body id="sub" class="sub">
 <div id="wrapper">
@@ -30,33 +29,32 @@
 							<div class="detail_list">
 								<div class="detail_top">
 									<div class="image">
-										<div class="image_wrap">
-											<img src="${ctp}/images/sub/${vo.stay_thumbnail}" alt="이미지">
-										</div>
+										<div class="image_inner" style="background-image: url(${ctp}/images/sub/${vo.stay_thumbnail})"></div>
 									</div>
 									<div class="desc">
 										<div class="cont">
 											<span class="part">${vo.part}</span>
 											<p class="title">${vo.title}</p>
-											<ul class="bu keyword">
-												<li>${vo.description}</li>
+											<ul class="keyword_list">
+												<c:forTokens var="keyword" items="${vo.description}" delims=",">
+										        <li class="keyword_item">- ${keyword}</li>
+										    </c:forTokens>
 											</ul>
 										</div>
-										<div class="info">
-											<div class="addr">주소 : ${vo.address}</div>
-											<div class="tel">TEL : ${vo.phone}</div>
-											<div class="site">홈페이지 : 
-												<a href="${vo.homepage}" target="_blank" title="새창">${vo.homepage}</a>
-											</div>
+										<div class="bu dl info">
+											<li class="addr"><div class="fiexbox"><span class="title">주소</span><span class="text">${vo.address}</span></div></li>
+											<li class="tel"><div class="fiexbox"><span class="title">TEL</span><span class="text">${vo.phone}</span></li>
+											<li class="site"><div class="fiexbox"><span class="title">홈페이지</span><span class="text"><a href="${vo.homepage}" target="_blank" title="새창">${vo.homepage}</span></a></li>
 										</div>
 										<div class="price_box">
-											<p class="price">1박 최저가 <fmt:formatNumber value="${vo.price}" type="number" />원~</p>
+											<p class="price"><em class="em_b_green margin_r_10">1박 최저가 </em> <fmt:formatNumber value="${vo.price}" type="number" />원~</p>
 											<span class="add">객실 세금/ 봉사료 포함</span>
 										</div>
 									</div>
 								</div>
 							</div>
 							<h3>숙소 예약하기</h3>
+							<p class="warning type1">체크인-체크아웃 입력시 총금액이 자동계산됩니다.</p>
 							<!-- 예약 슬라이드 영역 -->
 							<div id="reservaitionBox" class="reservation_wrap">
 								<form method="post" name="myform" action="${ctp}/stay/reservationInsert">
@@ -65,13 +63,31 @@
 									<input type="hidden" name="total_price" id="total_price_hidden">
 									
 									<table class="reservation_table table type2">
+									<colgroup>
+										<col class="w30p"/>
+										<col class="w70p"/>
+									</colgroup>
+									<tbody>
 										<tr>
-											<th>체크인</th>
-											<td><input type="date" id="checkIn" name="check_in" required></td>
+											<th>객실선택</th>
+											<td>
+												<div class="sd_input">
+														<select name="room" id="room">
+																<option value="" }selected>객실을 선택하세요.</option>
+																<option value="">A동 아이에스(2인/최대4인)</option>
+																<option value="">B동 스콜피온(2인/최대4인)</option>
+																<option value="">C동 캔서(2인/최대4인)</option>
+														</select>
+												</div>
+											</td>
 										</tr>
 										<tr>
-											<th>체크아웃</th>
-											<td><input type="date" id="checkOut" name="check_out" required></td>
+											<th>일정(체크인-체크아웃)</th>
+											<td>
+												<div class="sd_input"><input type="date" id="checkIn" name="check_in" required /></div>
+												<span class="margin_t_15"> - </span>
+												<div class="sd_input"><input type="date" id="checkOut" name="check_out" required></div>
+											</td>
 										</tr>
 										<tr>
 											<th>1박 요금</th>
@@ -81,13 +97,14 @@
 											<th>총금액</th>
 											<td><span id="totalPrice">0</span> 원</td>
 										</tr>
+									</tbody>
 									</table>
 									<div class="text_center margin_t_20">
 							      <input type="button" value="예약신청" class="btn medium type2" onclick="fCheck()" />
 							    </div>
 								</form>
 							</div>
-							<h3>지도보기</h3>
+							<h3>위치정보</h3>
 							<div id="map" style="width:100%;height:500px;"></div>
 							<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=278ab31c9959388aaf266a68e59371b2"></script>
 							<script>
@@ -99,18 +116,13 @@
 							
 							var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 							
-							var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
-							    imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
-							    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-							      
+					
 							// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-							var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-							    markerPosition = new kakao.maps.LatLng(${vo.latitude}, ${vo.longitude}); // 마커가 표시될 위치입니다
+							var markerPosition = new kakao.maps.LatLng(${vo.latitude}, ${vo.longitude}); // 마커가 표시될 위치입니다
 							
 							// 마커를 생성합니다
 							var marker = new kakao.maps.Marker({
-							    position: markerPosition, 
-							    image: markerImage // 마커이미지 설정 
+							    position: markerPosition
 							});
 							
 							// 마커가 지도 위에 표시되도록 설정합니다
@@ -128,6 +140,15 @@
   <script>
   
 	  function fCheck() {
+			// 로그인 체크
+			let mid = "<%= session.getAttribute("sMid") %>";
+
+			if(mid === "null" || mid === "") {
+				alert("로그인 후 이용해주세요.");
+				location.href = "${ctp}/member/memberLogin";
+				return false;
+			}
+		  
 		  if(document.myform.check_in.value == "") {
 			  alert("체크인 날짜를 선택하세요");
 			  return false;

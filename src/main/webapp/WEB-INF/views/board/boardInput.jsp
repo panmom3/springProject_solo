@@ -79,15 +79,17 @@
 										</span>	
 										</td>
 									</tr>
-									<tr>
-										<td colspan="2" class="text-center">
-											<input type="submit" value="글올리기" class="btn type1 medium" />
-											<input type="reset" value="다시입력" class="btn type3 medium" />
-											<input type="button" value="돌아가기" onclick="location.href='boardList';" class="btn type2 medium" />
-										</td>
-									</tr>
 								</tbody>
 								</table>
+								<div class="row_group margin_t_30">
+									<div class="sd_input">
+										<input type="submit" value="글올리기" class="btn type1 medium" />
+									</div>
+									<div class="sd_input right">
+										<input type="reset" value="다시입력" class="btn type3 medium" />
+										<input type="button" value="돌아가기" onclick="location.href='boardList';" class="btn type2 medium" />
+									</div>
+								</div>
 								<input type="hidden" name="mid" value="${sMid}"/>
 							</form>
 						</div>

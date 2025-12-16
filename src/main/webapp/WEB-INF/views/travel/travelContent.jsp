@@ -204,7 +204,7 @@
 								</div>
 								<c:if test="${sLevel == 0}">
 								<div class="floatright">
-									<a href="location.href='travelUpdate?idx=${vo.idx}'" class="btn type1 medium">수정</a>
+									<a href="travelUpdate?idx=${vo.idx}" class="btn type1 medium">수정</a>
 									<a href="deleteCheck(${vo.idx})" class="btn type3 medium">삭제</a>
 								</div>
 								</c:if>

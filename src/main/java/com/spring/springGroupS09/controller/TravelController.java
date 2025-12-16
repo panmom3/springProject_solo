@@ -100,14 +100,39 @@ public class TravelController {
 	}
 	
 	// 게시글 삭제하기
-	@GetMapping("/travelDelete/{idx}")
-	public String travelDeleteGet(@PathVariable("idx") int idx) {
+	@GetMapping("/travelDelete")
+	public String travelDeleteGet(@RequestParam("idx") int idx) {
 		travelService.setTravelDelete(idx);
 		return "redirect:/message/travelDeleteOk";
 	}
 	
 	// 게시글 수정하기 폼보기
+	@GetMapping("/travelUpdate")
+	public String travelUpdateGet(Model model, int idx) {
+		TravelVO vo = travelService.getTravelIdxSearch(idx);
+		
+		model.addAttribute("vo", vo);
+		return "travel/travelUpdate";
+	}
 	
+	// 게시글 수정하기
+	@PostMapping("/travelUpdate")
+	public String travelUpdatePost(Model model, TravelVO vo, HttpServletRequest request) {
+		TravelVO origVO = travelService.getTravelIdxSearch(vo.getIdx());
+		
+		int res = 0;
+		if(!origVO.getContent().equals(vo.getContent())) {
+			if(origVO.getContent().indexOf("src=\"/") != -1) travelService.imgDelete(origVO.getContent());
+			
+			vo.setContent(vo.getContent().replace("/data/photoGallery", "/data/ckeditor"));
+			
+			String realPath = request.getSession().getServletContext().getRealPath("/resources/data/");
+			res = travelService.imgCheck(vo, realPath);
+		}
+		
+		if(res != 0) return "redirect:/message/travelUpdateOk";
+		else return "redirect:/message/travelUpdateNo?idx="+vo.getIdx();
+	}
 	
 	// 댓글달기
 	@ResponseBody
